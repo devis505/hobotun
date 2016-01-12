@@ -53,6 +53,10 @@ div.ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
 	width: 500px;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 .GreenHidden {
 	background: white;
 	display: block;
@@ -107,3 +111,4 @@ div.ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
 input[file] {
 	width: 100px !important;
 }
+
