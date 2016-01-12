@@ -11,9 +11,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 
-@ManagedBean(name = "modelNotModer")
+@ManagedBean(name = "modelBay")
 @ViewScoped
-public class ModelNotModer {
+public class ModelBay {
 
 	private List<ModelTbl> models;
 	private ModelDao modelDao;
@@ -21,7 +21,7 @@ public class ModelNotModer {
 	@PostConstruct
 	public void init() {
 		modelDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
-		setModels(modelDao.selectModelByIdUser(UserSession.getInstance().getUser().getUserTbl().getId_user(), 0));
+		setModels(modelDao.selectModelByIdUserBay(UserSession.getInstance().getUser().getUserTbl().getId_user()));
 	}
 
 	public List<ModelTbl> getModels() {

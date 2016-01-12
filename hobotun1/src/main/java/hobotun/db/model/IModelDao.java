@@ -11,7 +11,9 @@ public interface IModelDao {
 
 	public void insertModelReturnId(ModelTbl modele);
 
-	public List<ModelTbl> selectModelMyIdUser(Long id, Integer isModeration);
+	public List<ModelTbl> selectModelByIdUser(Long id, Integer isModeration);
+	
+	public List<ModelTbl> selectModelByIdUserBay(Long id);
 
 	public List<CountModelTbl> getCountModel();
 	

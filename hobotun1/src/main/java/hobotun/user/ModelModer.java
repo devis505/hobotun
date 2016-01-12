@@ -21,7 +21,7 @@ public class ModelModer {
 	@PostConstruct
 	public void init() {
 		modelDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
-		setModels(modelDao.selectModelMyIdUser(UserSession.getInstance().getUser().getUserTbl().getId_user(), 1));
+		setModels(modelDao.selectModelByIdUser(UserSession.getInstance().getUser().getUserTbl().getId_user(), 1));
 	}
 
 	public List<ModelTbl> getModels() {

@@ -146,6 +146,9 @@ public class User implements Serializable {
 	if (userPageId.equals(4)) {
 	    return "myModels";
 	}
+	if (userPageId.equals(5)) {
+	    return "myBayModels";
+	}
 	if (userPageId.equals(9)) {
 	    return "downloadModels";
 	} else {

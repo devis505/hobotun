@@ -17,6 +17,7 @@ import hobotun.db.model.action.SelectAllModelOrderByFree;
 import hobotun.db.model.action.SelectAllModelOrderByPopular;
 import hobotun.db.model.action.SelectModelById;
 import hobotun.db.model.action.SelectModelByIdUser;
+import hobotun.db.model.action.SelectModelByIdUserBay;
 import hobotun.db.model.tbl.CountModelTbl;
 import hobotun.db.model.tbl.ModelTbl;
 
@@ -26,6 +27,7 @@ public class ModelDao implements IModelDao {
 	private SelectModelById selectModelById;
 	private InsertModelReturnId insertModel;
 	private SelectModelByIdUser selectModelByIdUser;
+	private SelectModelByIdUserBay selectModelByIdUserBay;
 	private GetCountModel getCountModel;
 
 	private SelectAllModelOrderByDate selectAllModelOrderByDate;
@@ -44,6 +46,7 @@ public class ModelDao implements IModelDao {
 		selectAllModelOrderByPopular = new SelectAllModelOrderByPopular(dataSource);
 		selectAllModelOrderByCost = new SelectAllModelOrderByCost(dataSource);
 		selectAllModelOrderByFree = new SelectAllModelOrderByFree(dataSource);
+		selectModelByIdUserBay = new SelectModelByIdUserBay(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -69,12 +72,20 @@ public class ModelDao implements IModelDao {
 	}
 
 	@Override
-	public List<ModelTbl> selectModelMyIdUser(Long id, Integer isModeration) {
+	public List<ModelTbl> selectModelByIdUser(Long id, Integer isModeration) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("idUser", id);
 		paramMap.put("is_moderation", isModeration);
 
 		return selectModelByIdUser.executeByNamedParam(paramMap);
+	}
+	
+	@Override
+	public List<ModelTbl> selectModelByIdUserBay(Long id) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("idUser", id);
+		
+		return selectModelByIdUserBay.executeByNamedParam(paramMap);
 	}
 
 	@Override
