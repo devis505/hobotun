@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:form id="info">
+		<h:panelGrid columns="2" cellpadding="10" id="infoPanel">
+			<p:outputLabel styleClass="Fs18" value="ФИО:" />
+			<p:outputLabel styleClass="Fs18"  style="padding-top: 9px !important; padding-bottom:9px !important;" value="#{userSession.user.userTbl.fio}" rendered="#{!userSession.user.editMode}"/>
+			<p:inputText styleClass="Fs18" style="padding-left:0px !important;" value="#{userSession.user.userTbl.fio}" rendered="#{userSession.user.editMode}"/>
+			
+			<p:outputLabel styleClass="Fs18" value="Дата регистрации:" />
+			<p:outputLabel styleClass="Fs18" value="#{userSession.user.userTbl.dtReg}" />
+							
+			<p:commandButton value="Редактировать" class="CyanButton Fleft" rendered="#{!userSession.user.editMode}"
+				icon="fa fa-pencil" update="infoPanel" action="#{userSession.user.changeEditMode}" >
+			</p:commandButton>
+			
+			<p:commandButton value="Сохранить" class="CyanButton Fleft" rendered="#{userSession.user.editMode}"
+				icon="fa fa-pencil" update="infoPanel" action="#{userSession.user.changeEditMode}">
+			</p:commandButton>
+		</h:panelGrid>
+	</h:form>
+	
+</ui:composition>

@@ -1,0 +1,181 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title = '';
+                this.cfg.seriesColors = ['#FF4081', '#FB8C00', '#43A047', '#8E24AA'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#F5F5F5',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#666F77'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    lineWidth:1,
+                    markerOptions: {
+                        shadow: false,
+                        size:7,
+                        style:'circle'
+                    }
+                }
+            }
+
+            function skinPie() {
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1', '#33ccff', '#9fadb5'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#eaeaea',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false,
+                    borderWidth: 0
+                };
+                this.cfg.seriesDefaults.shadow = false;
+            }
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #546E7A;
+            }
+        </style>
+
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+    </ui:define>
+    
+    <h:form id="main">
+	    <div style="width: 1224px; margin: auto;">
+			<div class="Container100 Responsive100">
+				<div class="ContainerIndent">
+					<div class="Card">
+				        <div class="CardTopic"> 
+				        	<a href="../user/userProfil.jsf?id=1">
+				        		<h:graphicImage styleClass="Fleft MarRight10" url="http://b.3ddd.ru/media/cache/sky_user_avatar_blog/avatar/users/560d536abd41c.jpeg"></h:graphicImage>
+				        	</a>
+				            Kitchen Set 16<br/><br/>
+				        	<span class="CardSubTopic Fs12 Fleft">
+				        		<i class="fa fa-rub Fs12 Fleft MarRight10"> 1500</i>
+				        		<i class="fa fa-star-o Fs12 Fleft MarRight10"> 234</i>
+				        		<i class="fa fa-upload Fs12 Fleft MarRight10"> 444</i>
+				        		<i class="fa fa-wechat Fs12 Fleft MarRight10"> 554</i>
+							</span>
+				            <div class="EmptyBox10"></div>
+				        </div>
+				        
+				        <div class="SeparatorFull"></div>
+				        <div class="EmptyBox10"></div>
+				        
+				        
+				        <div class="Container100 Responsive100">
+				        	<div class="ContainerIndent Fleft">
+				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic1Classes}" url="#{modele.miniPic1Url}">
+				        			<p:ajax event="mouseup" update="main" process="@form" listener="#{modele.select1}" />
+				        		</h:graphicImage>
+				        	</div>
+				        	<div class="ContainerIndent Fleft">
+				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic2Classes}" url="#{modele.miniPic2Url}">
+				        			<p:ajax event="mouseup" update="main" process="@form" listener="#{modele.select2}" />
+				        		</h:graphicImage>
+				        	</div>
+				        	<div class="ContainerIndent Fleft">
+				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic3Classes}" url="#{modele.miniPic3Url}">
+				        			<p:ajax event="mouseup" update="main" process="@form" listener="#{modele.select3}" />
+				        		</h:graphicImage>
+				        	</div>				        	
+				        </div>		
+				        
+				        <h:graphicImage id="img" styleClass="ContainerIndent Fleft MarRight10" url="#{modele.selectedBigPic}"></h:graphicImage>	
+				        
+				        <div class="ContainerIndent Fleft MarRight10">
+							<div>
+	                            <p:rating styleClass="Fleft" cancel="false" stars="5" value="#{modele.rating}"> 
+	                            	<p:ajax event="rate" listener="#{modele.onrate}" update="main" process="@form" />
+	                            </p:rating>
+	                            <div class="Fs18 Fleft">#{modele.modeleRating}</div>
+							</div>
+							<div class="EmptyBox10"></div>
+							<div style="width: 400px">
+							
+								<i class="icon-settings"> 3dsMax 2009 и ниже (Vray)</i>
+								<div class="EmptyBox10"></div>
+								<i class="fa fa-floppy-o"> 30.67 MB</i>
+								<div class="EmptyBox10"></div>
+								<i class="fa fa-clock-o"> 2015.10.23 03:52</i>
+								<div class="EmptyBox10"></div>
+								<i class="icon-hash"><br/>
+									<span style="padding-left:20px;">
+										<a href="#" class="Underline">банка</a>, <a href="#" class="Underline">специи</a>, 
+										<a href="#" class="Underline">крупа</a>, <a href="#" class="Underline">доска</a>, <a href="#" class="Underline">корзина</a>, 
+										<a href="#" class="Underline">лук</a>, <a href="#" class="Underline">терка</a>, <a href="#" class="Underline">турка</a>, 
+										<a href="#" class="Underline">уксус</a>, <a href="#" class="Underline">масло</a>, <a href="#" class="Underline">тарелка</a>, 
+										<a href="#" class="Underline">яйца</a>, <a href="#" class="Underline">бутыль</a>, <a href="#" class="Underline">укроп</a>, 
+										<a href="#" class="Underline">сахар</a>, <a href="#" class="Underline">кофе</a>, <a href="#" class="Underline">чашка</a>
+									</span>
+								</i>
+								<div class="EmptyBox10"></div>
+								<i class="icon-info"><br/>
+									<span style="padding-left:20px;">
+										- банки для сыпучих<br/>
+										- доски разделочные<br/>
+										- корзина с луком<br/>
+										- терки<br/>
+										- турка кофейная<br/>
+										- уксус, масло<br/>
+										- тарелка деревянная, яйца<br/>
+										- бутыли<br/>
+										- укроп<br/>
+										- сахар, кофе<br/>
+										- чашки<br/>
+									</span>
+								</i>
+								<div class="EmptyBox10"></div>
+								<i class="fa fa-rub Red">1500</i>
+								<div class="EmptyBox20"></div>
+								<div class="Separator"></div>
+								<p:button value="Добавить в карзину" class="CyanButton Fright" href="#" icon="fa fa-cart-arrow-down"/>
+							</div>	
+							
+						</div>
+						
+						
+						    	
+				    	
+					        
+				        <div class="EmptyBox10"></div>
+				        <div class="SeparatorFull"></div>
+				        <div class="EmptyBox10"></div>
+				         
+						<p:panel class="Container100 Responsive100">
+				            <div style="width: 150px; height:150px;" class="Fleft">
+				            	<h:graphicImage url="http://simpleicon.com/wp-content/uploads/user1.png" width="150" styleClass="Fleft"></h:graphicImage>
+				            </div>
+				            <div class="Fleft ContainerIndent"> Коментарий коментарий коментарийкоментарийкоментарийкоментарийкоментарий коментарийкоментарий коментарий </div>
+				        </p:panel>
+				        
+				        <div class="EmptyBox10"></div>
+				        
+				        <p:panel class="Container100 Responsive100">
+				            <div style="width: 150px; height:150px;" class="Fleft">
+				            	<h:graphicImage url="http://simpleicon.com/wp-content/uploads/user1.png" width="150" styleClass="Fleft"></h:graphicImage>
+				            </div>
+				            <div class="Fleft ContainerIndent"> Коментарий коментарий коментарийкоментарийкоментарийкоментарийкоментарий коментарийкоментарий коментарий </div>
+				        </p:panel>	
+
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</h:form>
+</ui:composition>

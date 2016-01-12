@@ -1,0 +1,39 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+    
+    <!-- TOPBAR START -->
+    <div id="layout-topbar">
+        <a id="menu-button" class="Animated1">
+            <span id="menuline1" class="Animated05"></span>
+            <span id="menuline2" class="Animated05"></span>
+            <span id="menuline3" class="Animated05"></span>
+        </a>
+        <a href="../../index.jsf"><h:graphicImage name="images/logo.svg" id="logo" library="adamantium-layout" /></a>
+        
+        <a id="topmenu-button" class="Animated1">
+            <i class="icon-list2"></i>
+        </a>
+        
+        <ul id="top-menu">
+            <li>
+                <a class="menulink Animated05"><i class="fa fa-search"></i> <span>Поиск</span></a>
+                <ul style="margin-left:-150px;">
+                    <li><span class="PadWithBorder10 DispBlock"><p:inputText placeholder="Искать тут" styleClass="Wid60"/> <p:button icon="fa fa-search" styleClass="Fright"/></span></li>
+                </ul>
+            </li>
+            <li>
+                <a class="menulink Animated05" href="../user/registration.jsf" ><i class="fa fa-plus-square"></i> <span>Зарегистрироваться</span></a>
+            </li>
+            <li>
+                <a class="menulink Animated05" href="../user/login.jsf"><i class="fa fa-sign-in"></i> <span>Войти</span></a>
+            </li>
+        </ul>
+    </div>
+    <!-- TOPBAR END -->
+    
+</ui:composition>

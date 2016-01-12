@@ -1,0 +1,45 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<div class="Container100">
+	    <div class="EmptyBox50"></div>
+	    
+	    <div class="Wid90 MarAuto">
+	        <div class="Wid30 DispBlock MarAuto WidAutoOnMobile">
+	            <div class="Card TexAlCenter" style="margin-bottom:-650px;">
+	                <h:graphicImage name="images/logo.svg" library="adamantium-layout" style="max-width:180px;"/>
+	                <div class="SeparatorFull"></div>
+	                <div class="Wid100 OvHidden BigTopic"><i class="icon-security DispBlock"></i> Регистрация</div>
+	                <div class="EmptyBox20"></div>
+	                <div class="Card SoftGrayBack">
+	                    
+	                    <h:form id="login-form">
+							<h:panelGrid id="grid" columns="1" styleClass="MarAuto Wid90" >
+								<p:inputText id="login" placeholder="Логин" styleClass="Wid90 TexAlCenter" />
+		                		<p:message for="login" id="loginlErr" />
+		                		<p:inputText id="Email" placeholder="Email" styleClass="Wid90 TexAlCenter" />
+		                		<p:message for="Email" id="EmailErr" />
+		                		<p:inputText id="password" type="password" placeholder="Пароль" styleClass="Wid90 TexAlCenter" />
+		                		<p:message for="password" />
+		                		<p:inputText id="password2" type="password" placeholder="Пароль ещё раз" styleClass="Wid90 TexAlCenter" />
+		                		<p:message for="password2" />
+		                	</h:panelGrid>
+		                	
+		                    <div class="EmptyBox30"></div>
+		                    <!-- p:commandButton id="submitButton" value="Войти" actionListener="#{messagesView.growlMessage()}" update="grid" styleClass="CyanButton/ -->
+		                    <p:commandButton id="enterUser" value="Зарегистрироваться" icon="fa fa-sign-in" styleClass="CyanButton" update="grid" process="@form"/>
+		                    <div class="EmptyBox10 ShowOnMobile"></div>
+		            	</h:form>
+	                </div>
+	                <div class="EmptyBox10"></div>
+	            </div>
+	        </div>
+	    </div>
+	    
+	    <div class="EmptyBox10"></div>
+	</div>
+</ui:composition>

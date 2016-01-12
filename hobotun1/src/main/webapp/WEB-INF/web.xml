@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<display-name>Archetype Created Web Application</display-name>
+
+	<welcome-file-list>
+		<welcome-file>index.jsf</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GetImage</servlet-name>
+		<servlet-class>hobotun.servlets.GetImage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetImage</servlet-name>
+		<url-pattern>/GetImage</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>adamantium</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+		<param-value>/WEB-INF/primefaces-adamantium.taglib.xml</param-value>
+	</context-param>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/pages/errors/404.jsf</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/pages/common/main.jsf</location>
+	</error-page>
+
+</web-app>

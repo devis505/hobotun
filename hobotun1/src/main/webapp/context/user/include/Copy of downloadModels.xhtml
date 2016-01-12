@@ -1,0 +1,128 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui">
+
+		<div class="EmptyBox30"></div>
+		<h:form id="main" enctype="multipart/form-data">
+			<table style="width: 600px; margin: auto;">
+				<tr>
+					<td><p:inputText id="name" placeholder="Название модели"
+							styleClass="MarBot10" value="#{saveModel.name}"
+							style="width:90%;" /></td>
+				</tr>
+				<tr>
+					<td><p:inputText id="model" disabled="false" readonly="true"
+							placeholder="Выбирите файл архива (zip, rar, 7z)"
+							styleClass="MarBot10" value="#{saveModel.textModeleFile}"
+							style="width:250px; color:red;" /> <p:fileUpload
+							value="#{saveModel.modelFile}"
+							allowTypes="/(\.|\/)(zip|rar|7z)$/" mode="simple"
+							skinSimple="true" label="Выбрать"
+							style="padding-left: 12px; width:100px !important;" /></td>
+				</tr>
+				<tr>
+					<td><p:inputText id="tags"
+							placeholder="Список #тегов через запятую" styleClass="MarBot10"
+							value="#{saveModel.tegs}" style="width:90%;" /></td>
+				</tr>
+				<tr>
+					<td><p:selectOneMenu id="Category" style="width:220px;"
+							value="#{saveModel.category.category}">
+							<f:selectItem itemLabel="Выберите категорию" itemValue="" />
+							<f:selectItems value="#{saveModel.category.categoryes}" />
+						</p:selectOneMenu> <p:selectOneMenu id="Format" style="width:220px;"
+							value="#{saveModel.format.format}">
+							<f:selectItem itemLabel="Выберите формат" itemValue="" />
+							<f:selectItems value="#{saveModel.format.formates}" />
+						</p:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td><p:inputTextarea value="#{saveModel.description}"
+							maxlength="320" rows="4" autoResize="true"
+							placeholder="Описание (Максимальная длина 320 символов)"
+							style="width:90%;" /></td>
+				</tr>
+				<tr>
+					<td><h:panelGrid columns="2" style="margin-bottom:10px"
+							cellpadding="5">
+							<h:outputText value="Содержит obj " />
+							<p:selectBooleanCheckbox value="#{saveModel.checkObj}" />
+							<h:outputText value="Содержит fbx " />
+							<p:selectBooleanCheckbox value="#{saveModel.checkFbx}" />
+						</h:panelGrid></td>
+				</tr>
+				<tr>
+					<!-- td><span class="Fs20 DispBlock MarBot10 Fleft" style="padding-right: 10px;">Картинка 1</span></td -->
+					<td><p:inputText id="pik1" disabled="false"
+							value="#{saveModel.textImgFile1}" readonly="true"
+							placeholder="Основную Картинка (размер 640х640)"
+							styleClass="MarBot10" style="width:250px; color:red;" /> <p:fileUpload
+							value="#{saveModel.imgFile1}" allowTypes="IMAGE_TYPES"
+							mode="simple" skinSimple="true" label="Выбрать"
+							style="padding-left: 12px;" /></td>
+				</tr>
+				<tr>
+					<!--td><span class="Fs20 DispBlock MarBot10 Fleft" style="padding-right: 10px;">Картинка 2</span></td -->
+					<td><p:inputText id="pik2" disabled="false"
+							value="#{saveModel.textImgFile2}" readonly="true"
+							placeholder="Дополнительная Картинка (размер 640х640)"
+							styleClass="MarBot10" style="width:250px; color:red;" /> <p:fileUpload
+							value="#{saveModel.imgFile2}" mode="simple" skinSimple="true"
+							label="Выбрать" style="padding-left: 12px;" /></td>
+				</tr>
+				<tr>
+					<!--td><span class="Fs20 DispBlock MarBot10 Fleft" style="padding-right: 10px;">Картинка 3</span></td -->
+					<td><p:inputText id="pik3" disabled="false"
+							value="#{saveModel.textImgFile3}" readonly="true"
+							placeholder="Дополнительная Картинка (размер 640х640)"
+							styleClass="MarBot10" style="width:250px; color:red;" /> <p:fileUpload
+							value="#{saveModel.imgFile3}" mode="simple" skinSimple="true"
+							label="Выбрать" style="padding-left: 12px;" /></td>
+				</tr>
+				<tr>
+					<!--td><span class="Fs20 DispBlock MarBot10 Fleft" style="padding-right: 10px;">Hi-poly</span></td -->
+					<td><p:inputText id="HiPoly" disabled="false"
+							value="#{saveModel.textImgFile4}" readonly="true"
+							placeholder="Картинка Hi-poly (размер 640х640)"
+							styleClass="MarBot10" style="width:250px; color:red;" /> <p:fileUpload
+							value="#{saveModel.imgFile4}" mode="simple" skinSimple="true"
+							label="Выбрать" style="padding-left: 12px;" /></td>
+				</tr>
+				<tr>
+					<!--td><span class="Fs20 DispBlock MarBot10 Fleft" style="padding-right: 10px;">Low-poly</span></td -->
+					<td><p:inputText id="LowPoly" disabled="false"
+							value="#{saveModel.textImgFile5}" readonly="true" 
+							placeholder="Картинка Low-poly (размер 640х640)"
+							styleClass="MarBot10" style="width:250px; color:red;" /> 
+						<p:fileUpload
+							value="#{saveModel.imgFile5}" mode="simple" allowTypes=""
+							skinSimple="true" label="Выбрать" style="padding-left: 12px;" >
+						</p:fileUpload>
+					</td>
+				</tr>
+				<tr>
+					<td><h:panelGrid columns="2" style="margin-bottom:10px"
+							cellpadding="5">
+							<h:outputText value="Я альтруист " />
+							<p:selectBooleanCheckbox value="#{saveModel.altruist}" />
+						</h:panelGrid></td>
+				</tr>
+				<tr>
+					<td><p:commandButton value="Сохранить"
+							class="CyanButton Fleft" icon="fa fa-plus" process="@form"
+							update="@form" action="#{saveModel.save}" ajax="false">
+						</p:commandButton></td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:composition>
+
+</ui:composition>

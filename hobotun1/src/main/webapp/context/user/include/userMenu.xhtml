@@ -1,0 +1,146 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<div class="EmptyBox40"></div>
+	<div class="Container100 TexAlCenter" style="color: #ABB4C1;">
+		<h:graphicImage style="border-radius: 100px;" url="/GetImage?idImg=${userSession.user.userTbl.idImage}"></h:graphicImage>
+
+		<div class="EmptyBox10"></div>
+
+		<div>
+			<p:link styleClass="FontBold HoverEffect Fs16"
+				style="color: #ABB4C1 !important; font-size: medium;"
+				value="Сменить аватар">
+			</p:link>
+		</div>
+
+		<div class="EmptyBox10"></div>
+
+		<i class="fa fa-rub Fs16"> #{userSession.user.userTbl.balance} </i>
+
+	</div>
+	<div class="EmptyBox20"></div>
+	<div class="SeparatorFull"
+		style="border-bottom: solid 3px #30424A !important; margin: 20px -10px 20px !important;"></div>
+	<div class="EmptyBox20"></div>
+
+	<div class="Container100"
+		style="color: #A0ACBF !important; padding-left: 15px;">
+
+		<i class="fa fa-info Fs18" style="padding-left: 5px;"> <p:link
+				styleClass="HoverEffect Fs20"
+				style="color: #A0ACBF !important; font-size: medium; padding-left:17px;"
+				value="Обомне">
+				<f:param name="userPageId" value="1" />
+			</p:link>
+		</i>
+
+	</div>
+
+	<div class="EmptyBox20"></div>
+
+	<div class="Container100"
+		style="color: #A0ACBF !important; padding-left: 15px;">
+
+		<i class="fa fa-arrow-circle-o-down Fs18"> <p:link
+				styleClass="HoverEffect Fs20"
+				style="color: #A0ACBF !important; font-size: medium; padding-left:15px;"
+				value="Пополнить баланс">
+				<f:param name="userPageId" value="2" />
+			</p:link>
+		</i>
+
+		<div class="EmptyBox10"></div>
+
+		<i class="fa fa-arrow-circle-o-up Fs18"> <p:link
+				styleClass="HoverEffect Fs20"
+				style="color: #A0ACBF !important; font-size: medium; padding-left:15px;"
+				value="Вывод средств">
+				<f:param name="userPageId" value="3" />
+			</p:link>
+		</i>
+
+		<div class="EmptyBox10"></div>
+
+	</div>
+
+	<div class="EmptyBox20"></div>
+
+
+	<div class="Container100"
+		style="color: #A0ACBF !important; padding-left: 15px;">
+
+		<i class="fa fa-connectdevelop Fs18"> <p:link
+				styleClass="HoverEffect Fs20"
+				style="color: #A0ACBF !important; font-size: medium; padding-left:10px;"
+				value="Мои модели">
+				<f:param name="userPageId" value="4" />
+			</p:link>
+		</i>
+
+		<div class="EmptyBox10"></div>
+
+		<i class="fa fa-shopping-cart Fs18"> <p:link
+				styleClass="HoverEffect Fs20"
+				style="color: #A0ACBF !important; font-size: medium; padding-left:15px;"
+				value="Мои покупки">
+				<f:param name="userPageId" value="5" />
+			</p:link>
+		</i>
+
+		<div class="EmptyBox10"></div>
+
+	</div>
+
+	<div class="EmptyBox20"></div>
+
+
+	<!-- div class="Container100"
+		style="color: #A0ACBF !important; padding-left: 15px;">
+
+		<i class="fa fa-briefcase Fs18"> <p:link
+				styleClass="HoverEffect Fs20"
+				style="color: #A0ACBF !important; font-size: medium; padding-left:15px;"
+				value="Моя работа">
+				<f:param name="userPageId" value="6" />
+			</p:link>
+		</i>
+
+		<div class="EmptyBox10"></div>
+
+		<i class="fa fa-briefcase Fs18"> <p:link
+				styleClass="HoverEffect Fs20"
+				style="color: #A0ACBF !important; font-size: medium; padding-left:15px;"
+				value="Я работаю">
+				<f:param name="userPageId" value="7" />
+			</p:link>
+		</i>
+
+		<div class="EmptyBox10"></div>
+
+	</div 
+
+	<div class="EmptyBox20"></div>
+
+
+	<div class="Container100"
+		style="color: #A0ACBF !important; padding-left: 15px;">
+
+		<i class="fa fa-wechat Fs18"> <p:link
+				styleClass="HoverEffect Fs20"
+				style="color: #A0ACBF !important; font-size: medium; padding-left:15px;"
+				value="Форум">
+				<f:param name="userPageId" value="8" />
+			</p:link>
+		</i>
+
+
+	</div-->
+
+	<div class="EmptyBox50"></div>
+
+</ui:composition>

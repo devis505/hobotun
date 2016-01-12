@@ -1,0 +1,240 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title = '';
+                this.cfg.seriesColors = ['#FF4081', '#FB8C00', '#43A047', '#8E24AA'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#F5F5F5',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#666F77'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    lineWidth:1,
+                    markerOptions: {
+                        shadow: false,
+                        size:7,
+                        style:'circle'
+                    }
+                }
+            }
+
+            function skinPie() {
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1', '#33ccff', '#9fadb5'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#eaeaea',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false,
+                    borderWidth: 0
+                };
+                this.cfg.seriesDefaults.shadow = false;
+            }
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #546E7A;
+            }
+        </style>
+
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+    </ui:define>
+    
+    <h:form id="main">
+	    <div style="width: 1224px; margin: auto;">
+			<div class="Container100 Responsive100">
+				<div class="ContainerIndent">
+					<div class="Card">
+				        <div class="CardTopic"> 
+				        	<i class="fa fa-briefcase Fs30 Fleft MarRight10"></i> 
+				            Работа от пользователей<br/>
+				            <span class="CardSubTopic">Предложения фриланса от пользователей системы</span>
+				            <div class="EmptyBox10"></div>
+				        </div>
+				        
+				        <div class="SeparatorFull"></div>
+				        <div class="EmptyBox10"></div>
+				        
+				        <h:panelGrid columns="1" cellpadding="5">
+					        <p:outputLabel for="cort" value="Сортировать по:" />
+	                        <p:selectOneButton id="cort">
+	                            <f:selectItem itemLabel="Популярности" itemValue="Популярности" />
+	                            <f:selectItem itemLabel="Дате" itemValue="Дате" />
+	                            <f:selectItem itemLabel="Цене" itemValue="Цене" />
+	                        </p:selectOneButton>
+                        </h:panelGrid>
+				        			        
+				        <div class="EmptyBox10"></div>
+				        <div class="SeparatorFull"></div>
+				        <div class="EmptyBox10"></div>
+				        
+				        <div class="Container20 Responsive100">
+				        	<div class="ContainerIndent">
+						        <div class="CardTopicMini">
+						        	<i class="fa fa-connectdevelop Fs30 Fleft MarRight10 Green"></i> 
+						        	<div class="Green">Сделать модель самолёта</div>
+						        	<div class="EmptyBox10"></div>
+						        	<span class="CardSubTopic Fs10 Fleft">
+						        		<i class="fa fa-user Fs10 Fleft MarRight10"> ziga_v</i>
+						        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 15</i>
+						        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 10</i>
+									</span>
+						        </div>
+								<div class="EmptyBox10"></div>
+						        <div class="Fs12">Требуется нарисовать простой дом, краткое описание бла бла бла бла 
+						          Требуется нарисовать простой дом, краткое описание бла бла бла бла Требуется нарисовать 
+						          простой дом, краткое описание бла бла бла бла</div>
+						        <div class="EmptyBox10"></div>
+						        <i class="fa fa-rub Fs18 Fleft MarRight10 Red">1500</i> 
+						        <a href="work.jsf?id=1">
+						        	<i class="fa fa-angle-double-right Fs18 Fright"></i>
+						        </a> 
+						    </div>
+				        </div>	
+				        
+				        <div class="Container20 Responsive100">
+				        	<div class="ContainerIndent">
+						        <div class="CardTopicMini">
+						        	<i class="fa fa-pencil-square-o Fs30 Fleft MarRight10 Orange"></i> 
+						        	<div class="Orange">Сделать модель самолёта</div>
+						        	<div class="EmptyBox10"></div>
+						        	<span class="CardSubTopic Fs10 Fleft">
+						        		<i class="fa fa-user Fs10 Fleft MarRight10"> ziga_v</i>
+						        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 15</i>
+						        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 10</i>
+									</span>
+						        </div>
+								<div class="EmptyBox10"></div>
+						        <div class="Fs12">Требуется нарисовать простой дом, краткое описание бла бла бла бла 
+						          Требуется нарисовать простой дом, краткое описание бла бла бла бла Требуется нарисовать 
+						          простой дом, краткое описание бла бла бла бла</div>
+						        <div class="EmptyBox10"></div>
+						        <i class="fa fa-rub Fs18 Fleft MarRight10 Red">1500</i> 
+						        <a href="work.jsf?id=1">
+						        	<i class="fa fa-angle-double-right Fs18 Fright"></i>
+						        </a> 
+						    </div>
+				        </div>	
+				        
+				        <div class="Container20 Responsive100">
+				        	<div class="ContainerIndent">
+						        <div class="CardTopicMini">
+						        	<i class="fa fa-connectdevelop Fs30 Fleft MarRight10 Green"></i> 
+						        	<div class="Green">Сделать модель самолёта</div>
+						        	<div class="EmptyBox10"></div>
+						        	<span class="CardSubTopic Fs10 Fleft">
+						        		<i class="fa fa-user Fs10 Fleft MarRight10"> ziga_v</i>
+						        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 15</i>
+						        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 10</i>
+									</span>
+						        </div>
+								<div class="EmptyBox10"></div>
+						        <div class="Fs12">Требуется нарисовать простой дом, краткое описание бла бла бла бла 
+						          Требуется нарисовать простой дом, краткое описание бла бла бла бла Требуется нарисовать 
+						          простой дом, краткое описание бла бла бла бла</div>
+						        <div class="EmptyBox10"></div>
+						        <i class="fa fa-rub Fs18 Fleft MarRight10 Red">1500</i> 
+						        <a href="work.jsf?id=1">
+						        	<i class="fa fa-angle-double-right Fs18 Fright"></i>
+						        </a> 
+						    </div>
+				        </div>	
+				        
+				        <div class="Container20 Responsive100">
+				        	<div class="ContainerIndent">
+						        <div class="CardTopicMini">
+						        	<i class="fa fa-connectdevelop Fs30 Fleft MarRight10 Green"></i> 
+						        	<div class="Green">Сделать модель самолёта</div>
+						        	<div class="EmptyBox10"></div>
+						        	<span class="CardSubTopic Fs10 Fleft">
+						        		<i class="fa fa-user Fs10 Fleft MarRight10"> ziga_v</i>
+						        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 15</i>
+						        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 10</i>
+									</span>
+						        </div>
+								<div class="EmptyBox10"></div>
+						        <div class="Fs12">Требуется нарисовать простой дом, краткое описание бла бла бла бла 
+						          Требуется нарисовать простой дом, краткое описание бла бла бла бла Требуется нарисовать 
+						          простой дом, краткое описание бла бла бла бла</div>
+						        <div class="EmptyBox10"></div>
+						        <i class="fa fa-rub Fs18 Fleft MarRight10 Red">1500</i> 
+						        <a href="work.jsf?id=1">
+						        	<i class="fa fa-angle-double-right Fs18 Fright"></i>
+						        </a> 
+						    </div>
+				        </div>	
+				        
+				        <div class="Container20 Responsive100">
+				        	<div class="ContainerIndent">
+						        <div class="CardTopicMini">
+						        	<i class="fa fa-pencil-square-o Fs30 Fleft MarRight10 Orange"></i> 
+						        	<div class="Orange">Сделать модель самолёта</div>
+						        	<div class="EmptyBox10"></div>
+						        	<span class="CardSubTopic Fs10 Fleft">
+						        		<i class="fa fa-user Fs10 Fleft MarRight10"> ziga_v</i>
+						        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 15</i>
+						        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 10</i>
+									</span>
+						        </div>
+								<div class="EmptyBox10"></div>
+						        <div class="Fs12">Требуется нарисовать простой дом, краткое описание бла бла бла бла 
+						          Требуется нарисовать простой дом, краткое описание бла бла бла бла Требуется нарисовать 
+						          простой дом, краткое описание бла бла бла бла</div>
+						        <div class="EmptyBox10"></div>
+						        <i class="fa fa-rub Fs18 Fleft MarRight10 Red">1500</i> 
+						        <a href="work.jsf?id=1">
+						        	<i class="fa fa-angle-double-right Fs18 Fright"></i>
+						        </a> 
+						    </div>
+				        </div>	
+				        
+				        <div class="Container20 Responsive100">
+				        	<div class="ContainerIndent">
+						        <div class="CardTopicMini">
+						        	<i class="fa fa-connectdevelop Fs30 Fleft MarRight10 Green"></i> 
+						        	<div class="Green">Сделать модель самолёта</div>
+						        	<div class="EmptyBox10"></div>
+						        	<span class="CardSubTopic Fs10 Fleft">
+						        		<i class="fa fa-user Fs10 Fleft MarRight10"> ziga_v</i>
+						        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 15</i>
+						        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 10</i>
+									</span>
+						        </div>
+								<div class="EmptyBox10"></div>
+						        <div class="Fs12">Требуется нарисовать простой дом, краткое описание бла бла бла бла 
+						          Требуется нарисовать простой дом, краткое описание бла бла бла бла Требуется нарисовать 
+						          простой дом, краткое описание бла бла бла бла</div>
+						        <div class="EmptyBox10"></div>
+						        <i class="fa fa-rub Fs18 Fleft MarRight10 Red">1500</i> 
+						        <a href="work.jsf?id=1">
+						        	<i class="fa fa-angle-double-right Fs18 Fright"></i>
+						        </a> 
+						    </div>
+				        </div>	
+				        
+				        
+				        <div class="EmptyBox10"></div>
+				        <div class="SeparatorFull"></div>
+				        <span class="Red FontAdamantiumBold Fs18">98</span><br/>
+				        <span class="Fs12 FontAdamantiumRegular">Всего моделей найдено</span>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</h:form>
+</ui:composition>

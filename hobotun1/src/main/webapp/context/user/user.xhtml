@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title = '';
+                this.cfg.seriesColors = ['#FF4081', '#FB8C00', '#43A047', '#8E24AA'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#F5F5F5',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#666F77'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    lineWidth:1,
+                    markerOptions: {
+                        shadow: false,
+                        size:7,
+                        style:'circle'
+                    }
+                }
+            }
+
+            function skinPie() {
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1', '#33ccff', '#9fadb5'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#eaeaea',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false,
+                    borderWidth: 0
+                };
+                this.cfg.seriesDefaults.shadow = false;
+            }
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #546E7A;
+            }
+        </style>
+
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+    </ui:define>
+    
+    <div id="MainDiv" Class="MarginAuto" style="width: 1224px; ">
+    	
+	    	<p:panelGrid style="background-color:#f7f5f3;">
+	    		<p:row>
+					<p:column style="background-color:#455a64; width:250px; vertical-align: top;">
+						<ui:include src="include/userMenu.xhtml" />						
+					</p:column>
+					<p:column style="width:974px; vertical-align: top; background: white; vertical-align: top; ">
+						<ui:include src="include/#{userSession.user.userPage}.xhtml" />	
+					</p:column>   		
+	    		</p:row>
+	    	</p:panelGrid>    
+
+	</div>
+</ui:composition>

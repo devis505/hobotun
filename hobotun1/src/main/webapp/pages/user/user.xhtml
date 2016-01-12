@@ -1,0 +1,15 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/context/templates/default-template.xhtml">
+
+	<f:metadata>
+	    <f:viewParam name="userPageId" value="#{userSession.user.userPageId}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<ui:include src="/context/user/user.xhtml" />
+	</ui:define>
+
+
+</ui:composition>

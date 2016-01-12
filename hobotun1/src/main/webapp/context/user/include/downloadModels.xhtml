@@ -1,0 +1,246 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui">
+
+		<div class="EmptyBox30"></div>
+		<h:form id="main" enctype="multipart/form-data" style="padding-left: 75px;">
+			
+			<h:panelGrid columns="3" id="mainPanel">
+				<p:outputLabel value="Название: " styleClass="Fs20" />
+				<p:inputText id="name" value="#{saveModel.modelName.param}" class="inputTextPF">
+					<p:ajax event="keyup" update="greenTags itogo" />
+				</p:inputText>
+				<p:panel id="greenName" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText value=" " styleClass="GreenHidden" />
+						<h:outputText value=" " styleClass="CostBlock" />
+					</h:panelGrid>
+				</p:panel>
+			
+				<p:outputLabel for="tegs" value="Теги:" styleClass="Fs20" />
+				<p:inputText id="tegs" value="#{saveModel.modeleTegs.param}" placeholder="перечислять через запятую" class="inputTextPF" label="Tegs">
+					<p:ajax event="keyup" update="greenTags itogo" />
+				</p:inputText>
+				<p:panel id="greenTags" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText id="tagsGrinBox" value=" " styleClass="GreenBlick #{saveModel.modeleTegs.opacity}" rendered="true" />
+						<h:outputText id="tagsCost" value="+5руб." styleClass="CostBlock #{saveModel.modeleTegs.opacity}" rendered="true" />
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:outputLabel value="Описание: " styleClass="Fs20" />
+				<p:inputTextarea id="description" value="#{saveModel.modeleDescription.param}" maxlength="320" rows="4" autoResize="true"
+							placeholder="Описание (Максимальная длина 320 символов)" style="width:500px;" >
+					<p:ajax event="keyup" update="greenDesc itogo" />
+				</p:inputTextarea>
+				<p:panel id="greenDesc" styleClass="GreenPanel" style="height: 99px; width: 85px;">
+					<h:panelGrid columns="2">
+						<h:outputText id="descGrinBox" value=" " styleClass="GreenArea #{saveModel.modeleDescription.opacity}" rendered="true" />
+						<h:outputText id="descCost" value=" +5руб." styleClass="CostBlock #{saveModel.modeleDescription.opacity}" rendered="true" />
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:outputLabel value="Форматы: " styleClass="Fs20" />
+				<p:selectOneMenu id="Format" style="width:250px;" value="#{saveModel.formats.format}" >
+					<p:ajax listener="#{saveModel.onChangeFormat}" update="greenFormats itogo" />
+					<f:selectItem itemLabel="Выберите формат" itemValue="" />
+					<f:selectItems value="#{saveModel.formats.formates}" />
+				</p:selectOneMenu>
+				<p:panel id="greenFormats" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText id="formatGrinBox" value=" " styleClass="GreenBlick #{saveModel.formatGreenVisible.opacity}" rendered="true" />
+						<h:outputText id="formatCost" value=" +5руб." styleClass="CostBlock #{saveModel.formatGreenVisible.opacity}" rendered="true" />
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:outputLabel value="Категория: " styleClass="Fs20" />
+				<p:selectOneMenu id="Category" style="width:250px;" value="#{saveModel.categoryes.category}"  >
+					<p:ajax listener="#{saveModel.onChangeCategory}" update="greenCategory itogo" />
+					<f:selectItem itemLabel="Выберите категорию" itemValue="" />
+					<f:selectItems value="#{saveModel.categoryes.categoryes}" />
+				</p:selectOneMenu>
+				<p:panel id="greenCategory" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText id="categoryGrinBox" value=" " styleClass="GreenBlick #{saveModel.categoryGreenVisible.opacity}" rendered="true" />
+						<h:outputText id="categoryCost" value=" +5руб." styleClass="CostBlock #{saveModel.categoryGreenVisible.opacity}" rendered="true" />
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:outputLabel value="Содержит: " styleClass="Fs20" />
+				<h:panelGrid  columns="2" style="margin-bottom:10px" cellpadding="5">
+					<h:outputText value="obj" />
+					<p:selectBooleanCheckbox value="#{saveModel.obj.param}" >
+						<p:ajax update="greenFbx itogo" listener="#{saveModel.onChangeFbx}" />
+					</p:selectBooleanCheckbox>
+					<h:outputText value="fbx " />
+					<p:selectBooleanCheckbox value="#{saveModel.fbx.param}" >
+						<p:ajax update="greenFbx itogo"  listener="#{saveModel.onChangeFbx}"/>
+					</p:selectBooleanCheckbox>
+					<h:outputText value="текстуры и материалы "  /> 
+					<p:selectBooleanCheckbox value="#{saveModel.texture.param}" >
+						<p:ajax update="greenFbx itogo"  listener="#{saveModel.onChangeFbx}"/>
+					</p:selectBooleanCheckbox>
+				</h:panelGrid>
+				<p:panel id="greenFbx" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText id="fbxGrinBox" value=" " styleClass="GreenArea #{saveModel.booleanParams.opacity}" rendered="true" />
+						<h:outputText id="fbxCost" value="+#{saveModel.costFlex}руб." styleClass="CostBlock #{saveModel.booleanParams.opacity}" rendered="true" />
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:outputLabel for="countPoligons" value="Кол-во полигонов:" styleClass="Fs20" style="padding-right: 10px;" />
+				<p:spinner id="countPoligons" value="#{saveModel.countPoligons.param}" label="countPoligons" min="0" size="40">
+					<p:ajax process="@this" update="greenPolingons itogo" />
+				</p:spinner>
+				<p:panel id="greenPolingons" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText id="polingonsGrinBox" value=" " styleClass="GreenBlick #{saveModel.countPoligons.opacity}" rendered="true" />
+						<h:outputText id="polingonsCost" value="+5руб." styleClass="CostBlock #{saveModel.countPoligons.opacity}" rendered="true" />
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:outputLabel value="Модель: " styleClass="Fs20" />
+				<p:panel styleClass="HiddenBorder">
+					<span style="display: block; cursor: pointer;">
+						<p:button value="Загрузить" style="padding-left: 0px; margin-left: -7px; z-index: 0;"/>
+						<h:inputFile id="modelFile" value="#{saveModel.fileModel.param}" required="true" 
+						   style="z-index: 100; height: 38px; opacity: 0; margin-left: -108px; width: 515px; cursor: pointer; position: absolute;">
+							<f:ajax listener="#{saveModel.onSaveModelFile}" render="modelText itogo" />
+						</h:inputFile>
+						<p:inputText id="modelText" value="#{saveModel.fileModel.text}" placeholder="Размер до 50Мб. Формат файлов .rar .zip .7z" style="height: 18px; width: 385px; z-index: 0;" />
+					</span>
+				</p:panel>				
+				<p:panel id="greenModel" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText value=" " styleClass="GreenHidden" />
+						<h:outputText value=" " styleClass="CostBlock" />
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:outputLabel value="1 рендер: " styleClass="Fs20" />
+				<p:panel styleClass="HiddenBorder">
+					<span style="display: block; cursor: pointer;">
+						<p:button value="Загрузить" style="padding-left: 0px; margin-left: -7px; z-index: 0;"/>
+						<h:inputFile id="modelImg1" value="#{saveModel.bigImg1.param}" required="true" 
+						   style="z-index: 100; height: 38px; opacity: 0; margin-left: -108px; width: 515px; cursor: pointer; position: absolute;">
+							<f:ajax listener="#{saveModel.onSaveModelImg1}" render="modelImg1Text itogo" />
+						</h:inputFile>
+						<p:inputText id="modelImg1Text" value="#{saveModel.bigImg1.text}" placeholder="Размер до 1Мб. Формат .jpeg" style="height: 18px; width: 385px; z-index: 0;" />
+					</span>
+				</p:panel>				
+				<p:panel id="greenModelImg1" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText value=" " styleClass="GreenHidden" />
+						<h:outputText value=" " styleClass="CostBlock" />
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:outputLabel value="2 рендер: " styleClass="Fs20" />
+				<p:panel styleClass="HiddenBorder">
+					<span style="display: block; cursor: pointer;">
+						<p:button value="Загрузить" style="padding-left: 0px; margin-left: -7px; z-index: 0;"/>
+						<h:inputFile id="modelImg2" value="#{saveModel.bigImg2.param}" required="true" 
+						   style="z-index: 100; height: 38px; opacity: 0; margin-left: -108px; width: 515px; cursor: pointer; position: absolute;">
+							<f:ajax listener="#{saveModel.onSaveModelImg2}" render="modelImg2Text itogo" />
+						</h:inputFile>
+						<p:inputText id="modelImg2Text" value="#{saveModel.bigImg2.text}" placeholder="Размер до 1Мб. Формат .jpeg" style="height: 18px; width: 385px; z-index: 0;" />
+					</span>
+				</p:panel>				
+				<p:panel id="greenModelImg2" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText value=" " styleClass="GreenHidden" />
+						<h:outputText value=" " styleClass="CostBlock" />
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:outputLabel value="3 рендер: " styleClass="Fs20" />
+				<p:panel styleClass="HiddenBorder">
+					<span style="display: block; cursor: pointer;">
+						<p:button value="Загрузить" style="padding-left: 0px; margin-left: -7px; z-index: 0;"/>
+						<h:inputFile id="modelImg3" value="#{saveModel.bigImg3.param}" required="true" 
+						   style="z-index: 100; height: 38px; opacity: 0; margin-left: -108px; width: 515px; cursor: pointer; position: absolute;">
+							<f:ajax listener="#{saveModel.onSaveModelImg3}" render="modelImg3Text greenModelImg3 itogo" />
+						</h:inputFile>
+						<p:inputText id="modelImg3Text" value="#{saveModel.bigImg3.text}" placeholder="Размер до 1Мб. Формат .jpeg" style="height: 18px; width: 385px; z-index: 0;" />
+					</span>
+				</p:panel>				
+				<p:panel id="greenModelImg3" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText value=" " styleClass="GreenHidden" />
+						<h:outputText value=" " styleClass="CostBlock" />
+					</h:panelGrid>
+				</p:panel>	
+				
+				<p:outputLabel value="Сетка hi-poly: " styleClass="Fs20" />
+				<p:panel styleClass="HiddenBorder">
+					<span style="display: block; cursor: pointer;">
+						<p:button value="Загрузить" style="padding-left: 0px; margin-left: -7px; z-index: 0;"/>
+						<h:inputFile id="modelHiPoly" value="#{saveModel.bigImg4.param}" required="true" 
+						   style="z-index: 100; height: 38px; opacity: 0; margin-left: -108px; width: 515px; cursor: pointer; position: absolute;">
+							<f:ajax listener="#{saveModel.onSaveModelImg4}" render="modelHiPolyText greenModeHiPoly itogo" />
+						</h:inputFile>
+						<p:inputText id="modelHiPolyText" value="#{saveModel.bigImg4.text}" placeholder="Размер до 1Мб. Формат .jpeg" style="height: 18px; width: 385px; z-index: 0;" />
+					</span>
+				</p:panel>				
+				<p:panel id="greenModeHiPoly" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText id="HiPolyGrinBox" value=" " styleClass="GreenBlick #{saveModel.bigImg4.opacity}" rendered="true" />
+						<h:outputText id="HiPolyCost" value="+10руб." styleClass="CostBlock #{saveModel.bigImg4.opacity}" rendered="true" />
+					</h:panelGrid>
+				</p:panel>		
+				
+				<p:outputLabel value="Сетка low-poly: " styleClass="Fs20" />
+				<p:panel styleClass="HiddenBorder">
+					<span style="display: block; cursor: pointer;">
+						<p:button value="Загрузить" style="padding-left: 0px; margin-left: -7px; z-index: 0;"/>
+						<h:inputFile id="modellowPoly" value="#{saveModel.bigImg5.param}" required="true" 
+						   style="z-index: 100; height: 38px; opacity: 0; margin-left: -108px; width: 515px; cursor: pointer; position: absolute;">
+							<f:ajax listener="#{saveModel.onSaveModelImg5}" render="modellowPolyText greenModelowPoly itogo" />
+						</h:inputFile>
+						<p:inputText id="modellowPolyText" value="#{saveModel.bigImg5.text}" placeholder="Размер до 1Мб. Формат .jpeg" style="height: 18px; width: 385px; z-index: 0;" />
+					</span>
+				</p:panel>				
+				<p:panel id="greenModelowPoly" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText id="lowPolyGrinBox" value=" " styleClass="GreenBlick #{saveModel.bigImg5.opacity}" rendered="true" />
+						<h:outputText id="lowPolyCost" value="+20руб." styleClass="CostBlock #{saveModel.bigImg5.opacity}" rendered="true" />
+					</h:panelGrid>
+				</p:panel>				
+				
+			</h:panelGrid>
+			
+			<span>
+				<h:panelGrid columns="3">
+					<p:outputLabel value="Я альтруист" styleClass="Fs20" />
+					<p:selectBooleanCheckbox value="#{saveModel.altruist}" style="padding-left:65px;">
+						<p:ajax update="itogo" listener="#{saveModel.onChangeFbx}"/>
+					</p:selectBooleanCheckbox>
+					<p:outputLabel id="itogo" value="Итого: #{saveModel.cost}" styleClass="Fs18" style="padding-left: 435px;" />
+				</h:panelGrid>
+			</span>
+			
+			<div class="Separator" style="width: 792px;"></div>
+		</h:form>
+		
+		<h:form>
+			<span>
+				<h:panelGrid columns="3" id="saveModel">
+					<p:outputLabel id="allErr" value="#{saveModel.allErr}" styleClass="#{saveModel.errColor}" style="width:677px; display:block; font-size: 20px !important; padding-left: 70px;" />
+					<p:commandButton value="Сохранить" id="save" update="saveModel" actionListener="#{saveModel.onSaveModel}" disabled="#{saveModel.saveButtonEnable}" />
+				</h:panelGrid>
+			</span>
+		</h:form>
+		
+		<div class="EmptyBox20"></div>
+		
+	</ui:composition>
+
+</ui:composition>

@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui">
+		
+		<h:panelGrid columns="2" cellpadding="10" id="outPanel" style="padding-left: 5px;">
+			<p:link styleClass="HoverEffect Fs20" value="Загрузить">
+				<f:param name="userPageId" value="9" />
+			</p:link>
+		</h:panelGrid>
+		
+		<div class="EmptyBox10"></div>
+		<p:outputLabel value="Ожидают модерации" styleClass="Fs20" style="padding-left:16px;" />
+
+		<h:form id="notModeration" enctype="multipart/form-data" style="padding-left: 10px;">
+			<p:dataGrid var="model" value="#{modelNotModer.models}" columns="4" paginator="false" id="modelsNotModeration" layout="grid" >
+
+				<span style="width: 170px; height: 160px; padding-bottom: 20px;" class="Container100 ContainerIndent #{model.opacality}"> 
+					<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 
+					
+					<span style="width: 170px;"> 
+						<i class="fa fa-rub Fs10 Fleft MarRight10"> #{model.price}</i> 
+						<i class="fa fa-star-o Fs10 Fleft MarRight10">0</i> 
+						<i class="fa fa-upload Fs10 Fleft MarRight10">0</i> 
+						<i class="fa fa-wechat Fs10 Fleft MarRight10">0</i>
+					</span>
+				</span>
+				
+			</p:dataGrid>
+		</h:form>
+		
+		<div class="EmptyBox10"></div>
+		<p:outputLabel value="Активне модели" styleClass="Fs20" style="padding-left:16px;" />
+
+		<h:form id="moderation" enctype="multipart/form-data" style="padding-left: 10px;">
+			<p:dataGrid var="model" value="#{modelModer.models}" columns="4" paginator="false" id="modelsModeration" layout="grid">
+
+				<span style="width: 170px; height: 160px; padding-bottom: 20px;" class="Container100 ContainerIndent #{model.opacality}"> 
+					<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 
+					<span style="width: 170px;"> 
+						<i class="fa fa-rub Fs10 Fleft MarRight10"> #{model.price}</i> 
+						<i class="fa fa-star-o Fs10 Fleft MarRight10">0</i> 
+						<i class="fa fa-upload Fs10 Fleft MarRight10">0</i> 
+						<i class="fa fa-wechat Fs10 Fleft MarRight10">0</i>
+					</span>
+				</span>
+				
+			</p:dataGrid>
+		</h:form>
+		
+		<div class="EmptyBox30"></div>
+		
+	</ui:composition>
+
+</ui:composition>

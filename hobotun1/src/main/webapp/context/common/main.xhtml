@@ -1,0 +1,287 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title = '';
+                this.cfg.seriesColors = ['#FF4081', '#FB8C00', '#43A047', '#8E24AA'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#F5F5F5',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#666F77'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    lineWidth:1,
+                    markerOptions: {
+                        shadow: false,
+                        size:7,
+                        style:'circle'
+                    }
+                }
+            }
+
+            function skinPie() {
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1', '#33ccff', '#9fadb5'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#eaeaea',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false,
+                    borderWidth: 0
+                };
+                this.cfg.seriesDefaults.shadow = false;
+            }
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #546E7A;
+            }
+        </style>
+
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+    </ui:define>
+    
+    <div style="width: 1224px; margin: auto;">
+		<div class="Container100 Responsive100">
+			<div class="ContainerIndent">
+				<div class="Card">
+			        <div class="CardTopic"> 
+			        	<i class="fa fa-connectdevelop Fs30 Fleft MarRight10"></i> 
+			            <p:button icon="fa fa-search White" styleClass="Fright GreenButton" href="../modele/modelelist.jsf"/>
+			            Новые модели <br/>
+			            <span class="CardSubTopic">Нажмите поиск, что бы найти нужную модель</span>
+			        </div>
+			        <div class="SeparatorFull"></div>
+			        <div class="EmptyBox10"></div>
+			        
+			        <h:form id="notModeration" enctype="multipart/form-data" style="padding-left: 0px;">
+						<p:dataGrid var="model" value="#{mainModelModer.models}" columns="6" rows="12" paginator="false" id="modelsNotModeration" layout="grid" >
+							<a href="../../pages/modele/modele.jsf?id=#{model.idModel}">
+								<span style="width: 170px; height: 160px; padding-bottom: 20px;" class="Container100 ContainerIndent"> 
+									<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 
+									
+									<span style="width: 170px;"> 
+										<i class="fa fa-rub Fs10 Fleft MarRight10">#{model.price}</i> 
+										<i class="fa fa-star-o Fs10 Fleft MarRight10">0</i> 
+										<i class="fa fa-upload Fs10 Fleft MarRight10">0</i> 
+										<i class="fa fa-wechat Fs10 Fleft MarRight10">0</i>
+									</span>
+								</span>
+							</a>
+						</p:dataGrid>
+			        </h:form>
+			        			        
+			        <div class="EmptyBox10"></div>
+			        <div class="SeparatorFull"></div>
+			        <p:button value="Показать все" class="CyanButton Fright" href="../modele/modelelist.jsf"/>
+			        <span class="Red FontAdamantiumBold Fs18">#{mainModelModer.count.count}</span><br/>
+			        <span class="Fs12 FontAdamantiumRegular">Всего моделей</span>
+		        </div>
+		    </div>
+		</div>
+		
+		<!-- div class="Container50 Responsive50">
+			<div class="ContainerIndent">
+				<div class="Card">
+			        <div class="CardTopic"> 
+			        	<i class="fa fa-briefcase Fs30 Fleft MarRight10"></i> 
+			            Новая работа <br/>
+			            <span class="CardSubTopic">Предложения фриланса</span>
+			        </div>
+			        <div class="SeparatorFull"></div>
+			        <div class="EmptyBox10"></div>
+			        
+			        <div class="Container50 Responsive100">
+			        	<div class="ContainerIndent">
+					        <div class="CardTopicMini">
+					        	<i class="fa fa-pencil-square-o Fs30 Fleft MarRight10 Orange"></i> 
+					        	<div class="Orange">Нарисовать искиз стола</div>
+					        	<span class="CardSubTopic Fs10 Fleft">
+					        		<i class="fa fa-user Fs10 Fleft MarRight10"> hobotun</i>
+					        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 234</i>
+					        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 10</i>
+								</span>
+					        </div><br/>
+					        <div class="Fs12">Требуется нарисовать простой дом, краткое описание бла бла бла бла </div>
+					        <a href="../work/work.jsf?id=1">
+					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
+					        </a> 
+					    </div>
+			        </div>
+			        
+			        <div class="Container50 Responsive100">
+			        	<div class="ContainerIndent">
+					        <div class="CardTopicMini">
+					        	<i class="fa fa-connectdevelop Fs30 Fleft MarRight10 Green"></i> 
+					        	<div class="Green">Сделать модель самолёта</div>
+					        	<span class="CardSubTopic Fs10 Fleft">
+					        		<i class="fa fa-user Fs10 Fleft MarRight10"> ziga_v</i>
+					        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 15</i>
+					        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 10</i>
+								</span>
+					        </div><br/>
+					        <div class="Fs12">Требуется нарисовать простой дом, краткое описание бла бла бла бла </div>
+					        <a href="../work/work.jsf?id=1">
+					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
+					        </a> 
+					    </div>
+			        </div>	
+			        
+			        <div class="Container50 Responsive100">
+			        	<div class="ContainerIndent">
+					        <div class="CardTopicMini">
+					        	<i class="fa fa-connectdevelop Fs30 Fleft MarRight10 Green"></i> 
+					        	<div class="Green">Сделать модель верталёта</div>
+					        	<span class="CardSubTopic Fs10 Fleft">
+					        		<i class="fa fa-user Fs10 Fleft MarRight10"> admin</i>
+					        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 151</i>
+					        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 0</i>
+								</span>
+					        </div><br/>
+					        <div class="Fs12">Смоделировать вертолет, жёлтого цвета, краткое описание бла бла бла бла </div>
+					        <a href="../work/work.jsf?id=1">
+					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
+					        </a> 
+					    </div>
+			        </div>	
+			        
+			        <div class="Container50 Responsive100">
+			        	<div class="ContainerIndent">
+					        <div class="CardTopicMini">
+					        	<i class="fa fa-pencil-square-o Fs30 Fleft MarRight10 Orange"></i> 
+					        	<div class="Green">Нарисовать дом</div>
+					        	<span class="CardSubTopic Fs10 Fleft">
+					        		<i class="fa fa-user Fs10 Fleft MarRight10"> terobyte</i>
+					        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 51</i>
+					        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 101</i>
+								</span>			        	
+					        </div><br/>
+					        <div class="Fs12">Требуется нарисовать простой дом, краткое описание бла бла бла бла </div>
+					        <a href="../work/work.jsf?id=1">
+					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
+					        </a> 
+					    </div>
+			        </div>	    
+			        
+			        <div class="Container50 Responsive100">
+			        	<div class="ContainerIndent">
+					        <div class="CardTopicMini">
+					        	<i class="fa fa-connectdevelop Fs30 Fleft MarRight10 Green"></i> 
+					        	<div class="Green">Сделать модель верталёта</div>
+					        	<span class="CardSubTopic Fs10 Fleft">
+					        		<i class="fa fa-user Fs10 Fleft MarRight10"> admin</i>
+					        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 151</i>
+					        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 0</i>
+								</span>
+					        </div><br/>
+					        <div class="Fs12">Смоделировать вертолет, жёлтого цвета, краткое описание бла бла бла бла </div>
+					        <a href="../work/work.jsf?id=1">
+					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
+					        </a> 
+					    </div>
+			        </div>	
+			        
+			        <div class="Container50 Responsive100">
+			        	<div class="ContainerIndent">
+					        <div class="CardTopicMini">
+					        	<i class="fa fa-pencil-square-o Fs30 Fleft MarRight10 Orange"></i> 
+					        	<div class="Green">Нарисовать дом</div>
+					        	<span class="CardSubTopic Fs10 Fleft">
+					        		<i class="fa fa-user Fs10 Fleft MarRight10"> terobyte</i>
+					        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 51</i>
+					        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 101</i>
+								</span>			        	
+					        </div><br/>
+					        <div class="Fs12">Требуется нарисовать простой дом, краткое описание бла бла бла бла </div>
+					        <a href="../work/work.jsf?id=1">
+					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
+					        </a> 
+					    </div>
+			        </div>	    
+			        
+			        <div class="EmptyBox10"></div>
+			        <div class="SeparatorFull"></div>
+			        <p:button value="Показать все" class="CyanButton Fright" href="../work/worklist.jsf" />
+			        <span class="Red FontAdamantiumBold Fs18">98</span><br/>
+			        <span class="Fs12 FontAdamantiumRegular">Всего предложений</span>
+		        </div>
+		    </div>
+		</div -->
+		
+		<!-- div class="Container50 Responsive50">
+			<div class="ContainerIndent">
+				<div class="Card">
+			        <div class="CardTopic"> 
+			        	<i class="fa fa-newspaper-o Fs30 Fleft MarRight10"></i> 
+			            Последние новости <br/>
+			            <span class="CardSubTopic">Интересные новости или статье</span>
+			        </div>
+			        <div class="SeparatorFull"></div>
+			        <div class="EmptyBox10"></div>
+			        
+			        <div class="Container100 Responsive100">
+			        	<div class="ContainerIndent">
+					        <div class="CardTopicMini">
+					        	<i class="fa fa-newspaper-o Fs30 Fleft MarRight10 Orange"></i> 
+					        	<div class="Fleft Orange">Вышла новая версия 3d max</div><br/>
+					        	<span class="CardSubTopic Fs10 Fleft">
+					        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 234</i>
+					        		<i class="fa fa-upload Fs10 Fleft MarRight10"> 444</i>
+					        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 554</i>
+								</span>
+					        </div><br/>
+					        <div class="Fs12">До этого работал визуализатором интерьеров, и предложение поработать над мультфильмом показалось мне занятной идеей... 
+					          Как соберусь с мыслями – напишу небольшой рассказ о работе в студии, а пока просто хочу поделится результатами своей работы (кстати здесь 
+					          только часть того что мы успели за год, каждую неделю будем выкладывать новые серии) </div>
+					        <a href="../news/news.jsf?id=1">
+					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
+					        </a> 
+					    </div>
+			        </div>
+			        
+			        <div class="Container100 Responsive100">
+			        	<div class="ContainerIndent">
+					        <div class="CardTopicMini">
+					        	<i class="fa fa-file-image-o Fs30 Fleft MarRight10 Green"></i> 
+					        	<div class="Fleft Green">CORONA Renderer alpha6</div><br/>
+					        	<span class="CardSubTopic Fs10 Fleft">
+					        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 234</i>
+					        		<i class="fa fa-upload Fs10 Fleft MarRight10"> 444</i>
+					        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 554</i>
+								</span>
+					        </div><br/>
+					        <div class="Fs12">Здравствуйте коллеги!<br/>
+								Так как corona является unbiased рендером профессионалу, который работает в вирее, переход на корону особой трудности не вызовет. 
+								Но начинающему специалисту всегда нужны базовые знания. Поэтому решил выложить несколько уроков по короне а6. Уроки записывал год 
+								назад со своей ученицей. Надеюсь многим будет полезен.  </div>
+					        <a href="../news/news.jsf?id=1">
+					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
+					        </a> 
+					    </div>
+			        </div>		        
+			        
+			        <div class="EmptyBox10"></div>
+			        <div class="SeparatorFull"></div>
+			        <p:button value="Показать все" class="CyanButton Fright" href="../news/newslist.jsf" />
+			        <span class="Red FontAdamantiumBold Fs18">18</span><br/>
+			        <span class="Fs12 FontAdamantiumRegular">Всего новостей</span>
+		        </div>
+		    </div>
+		</div -->
+	</div>
+	
+</ui:composition>

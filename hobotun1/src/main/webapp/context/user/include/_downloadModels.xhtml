@@ -1,0 +1,125 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui">
+
+		<div class="EmptyBox30"></div>
+		<h:form id="main" enctype="multipart/form-data">
+			<table style="width: 600px; margin: auto;">
+				<tr>
+					<td>
+						<p:inputText id="name" placeholder="Название модели" styleClass="MarBot10" value="#{saveModel.name}" style="width:90%;" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:panelGrid columns="1" width="575" > 
+							
+							<p:fileUpload id="imageDownload0" label="Выбрать" style="width:170px !important;'" mode="simple" skinSimple="true"
+								value="#{saveModel.modelFile}"	multiple="false" auto="true" fileUploadListener="#{saveModel.handleFile1Upload}" />
+																
+							
+						</h:panelGrid>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p:inputText id="tags" placeholder="Список #тегов через запятую" styleClass="MarBot10"
+							value="#{saveModel.tegs}" style="width:90%;" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p:selectOneMenu id="Category" style="width:220px;" value="#{saveModel.category.category}">
+							<f:selectItem itemLabel="Выберите категорию" itemValue="" />
+							<f:selectItems value="#{saveModel.category.categoryes}" />
+						</p:selectOneMenu> 
+						
+						<p:selectOneMenu id="Format" style="width:220px;" value="#{saveModel.format.format}">
+							<f:selectItem itemLabel="Выберите формат" itemValue="" />
+							<f:selectItems value="#{saveModel.format.formates}" />
+						</p:selectOneMenu>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p:inputTextarea value="#{saveModel.description}" maxlength="320" rows="4" autoResize="true"
+							placeholder="Описание (Максимальная длина 320 символов)" style="width:90%;" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:panelGrid  columns="4" style="margin-bottom:10px" cellpadding="5">
+							<h:outputText value="Содержит obj " />
+							<p:selectBooleanCheckbox value="#{saveModel.checkObj}" />
+							<h:outputText value="Содержит fbx " />
+							<p:selectBooleanCheckbox value="#{saveModel.checkFbx}" />
+						</h:panelGrid>
+					</td>
+				</tr>
+				<tr>
+					<td>        
+						<h:form enctype="multipart/form-data" id="Image1">   
+							<h:panelGrid columns="3" width="575" > 
+								<p:outputLabel value="Скриншот модели" style="padding-left:27px;" />
+								<p:outputLabel value="Скриншот модели" style="padding-left:27px;" />
+								<p:outputLabel value="Скриншот модели" style="padding-left:27px;" />
+								
+								<p:graphicImage id="thisImage1" value="/GetImage?idImg=#{saveModel.img1min.idImage}" width="170" height="170" style="background:#f5f5f5;" />  
+								<p:graphicImage id="thisImage2" value="/GetImage?idImg=#{saveModel.img2min.idImage}" width="170" height="170" style="background:#f5f5f5;" />  
+								<p:graphicImage id="thisImage3" value="/GetImage?idImg=#{saveModel.img3min.idImage}" width="170" height="170" style="background:#f5f5f5;" />
+								  
+								<p:fileUpload id="imageDownload1" update="thisImage1" label="Выбрать" style="width:170px !important;'" 
+									multiple="false" auto="true" fileUploadListener="#{saveModel.handleFile1Upload}" />
+								<p:fileUpload id="imageDownload2" update="thisImage2" label="Выбрать" style="width:170px !important;'" 
+									multiple="false" auto="true" fileUploadListener="#{saveModel.handleFile2Upload}" />
+								<p:fileUpload id="imageDownload3" update="thisImage3" label="Выбрать" style="width:170px !important;'" 
+									multiple="false" auto="true" fileUploadListener="#{saveModel.handleFile3Upload}" />
+							</h:panelGrid>
+						</h:form>  
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:form enctype="multipart/form-data" id="Image4">   
+							<h:panelGrid columns="2" width="385" > 
+								<p:outputLabel value="Картинка Hi-poly" style="padding-left:27px;" />
+								<p:outputLabel value="Картинка Low-poly" style="padding-left:27px;" />
+								
+								<p:graphicImage id="thisImage4" value="/GetImage?idImg=#{saveModel.img4min.idImage}" width="170" height="170" style="background:#f5f5f5;" />
+								<p:graphicImage id="thisImage5" value="/GetImage?idImg=#{saveModel.img5min.idImage}" width="170" height="170" style="background:#f5f5f5;" />
+								  
+								<p:fileUpload id="imageDownload4" update="thisImage4" label="Выбрать" style="width:170px !important;'" 
+									multiple="false" auto="true" fileUploadListener="#{saveModel.handleFile4Upload}" 
+									valueChangeListener="#{saveModel.handleChange4}"/> 
+								<p:fileUpload id="imageDownload5" update="thisImage5" label="Выбрать" style="width:170px !important;'" 
+									multiple="false" auto="true" fileUploadListener="#{saveModel.handleFile5Upload}" />
+							</h:panelGrid>
+						</h:form>							
+					</td>
+				</tr>
+				<tr>
+					<td><h:panelGrid columns="2" style="margin-bottom:10px"
+							cellpadding="5">
+							<h:outputText value="Я альтруист " />
+							<p:selectBooleanCheckbox value="#{saveModel.altruist}" />
+						</h:panelGrid></td>
+				</tr>
+				<tr>
+					<td><p:commandButton value="Сохранить"
+							class="CyanButton Fleft" icon="fa fa-plus" process="Image4"
+							update="Image4" action="#{saveModel.save}" ajax="true">
+						</p:commandButton></td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:composition>
+
+</ui:composition>

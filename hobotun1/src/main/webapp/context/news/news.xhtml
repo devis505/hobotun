@@ -1,0 +1,120 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title = '';
+                this.cfg.seriesColors = ['#FF4081', '#FB8C00', '#43A047', '#8E24AA'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#F5F5F5',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#666F77'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    lineWidth:1,
+                    markerOptions: {
+                        shadow: false,
+                        size:7,
+                        style:'circle'
+                    }
+                }
+            }
+
+            function skinPie() {
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1', '#33ccff', '#9fadb5'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#eaeaea',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false,
+                    borderWidth: 0
+                };
+                this.cfg.seriesDefaults.shadow = false;
+            }
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #546E7A;
+            }
+        </style>
+
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+    </ui:define>
+    
+    <div style="width: 1224px; margin: auto;">
+		<div class="Container100 Responsive100">
+			<div class="ContainerIndent">
+				<div class="Card">
+			        <div class="CardTopic"> 
+			        	<i class="fa fa-newspaper-o Fleft MarRight10 Orange"></i> 
+			        	<div class="Fright TexAlCenter">
+                            <p:rating stars="5" cancel="false" onRate="alert('Вы поставили рейтинг ' + value)" />
+                            <div class="Fs10 FNone">Оцените новость</div>
+						</div>
+			            <div class="Fleft Orange">Вышла новая версия 3d max </div><br/><br/>
+			            <span class="CardSubTopic Fs11 Fleft">
+			        		<i class="fa fa-star-o Fs11 Fleft MarRight10"> 234</i>
+			        		<i class="fa fa-upload Fs11 Fleft MarRight10"> 444</i>
+			        		<i class="fa fa-wechat Fs11 Fleft MarRight10"> 554</i>
+						</span>
+			        </div>
+			        <div class="SeparatorFull"></div>
+			        <div class="EmptyBox10"></div>
+			        			        			        
+			        <div class="Container100 Responsive100">
+			        	<div class="ContainerIndent">
+					        <div class="Fs18">До этого работал визуализатором интерьеров, и предложение поработать над мультфильмом показалось мне занятной идеей... 
+					          Как соберусь с мыслями – напишу небольшой рассказ о работе в студии, а пока просто хочу поделится результатами своей работы (кстати здесь 
+					          только часть того что мы успели за год, каждую неделю будем выкладывать новые серии) </div>
+					    </div>
+			        </div>
+		        </div>
+		    </div>
+		</div>
+		
+		<div class="Container100 Responsive100">
+			<div class="ContainerIndent">
+				<div class="Card">
+					<div class="CardTopic"> 
+			        	<i class="icon-chat2 Fleft MarRight10"></i> 
+						<div class="Fleft">Оставляйте своим коментарии</div>
+						<div class="EmptyBox10"></div>
+			        </div>
+			        <div class="SeparatorFull"></div>
+			        <div class="EmptyBox10"></div>
+			        
+			        <p:panel class="Container100 Responsive100">
+			            <div style="width: 150px; height:150px;" class="Fleft">
+			            	<h:graphicImage url="http://simpleicon.com/wp-content/uploads/user1.png" width="150" styleClass="Fleft"></h:graphicImage>
+			            </div>
+			            <div class="Fleft ContainerIndent"> Коментарий коментарий коментарийкоментарийкоментарийкоментарийкоментарий коментарийкоментарий коментарий </div>
+			        </p:panel>
+			        
+			        <div class="EmptyBox10"></div>
+			        
+			        <p:panel class="Container100 Responsive100">
+			            <div style="width: 150px; height:150px;" class="Fleft">
+			            	<h:graphicImage url="http://simpleicon.com/wp-content/uploads/user1.png" width="150" styleClass="Fleft"></h:graphicImage>
+			            </div>
+			            <div class="Fleft ContainerIndent"> Коментарий коментарий коментарийкоментарийкоментарийкоментарийкоментарий коментарийкоментарий коментарий </div>
+			        </p:panel>		        
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</ui:composition>
