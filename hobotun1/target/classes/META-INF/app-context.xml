@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
+		p:username="${jdbc.username}" p:password="${jdbc.password}" />
+	
+	<bean id="userDao" class="hobotun.db.user.UserDao" p:dataSource-ref="dataSource" />
+	<bean id="categoryDao" class="hobotun.db.category.CategoryDao" p:dataSource-ref="dataSource" />
+	<bean id="formatDao" class="hobotun.db.format.FormatDao" p:dataSource-ref="dataSource" />
+	<bean id="imageDao" class="hobotun.db.Image.ImageDao" p:dataSource-ref="dataSource" />
+	<bean id="fileDao" class="hobotun.db.file.FileDao" p:dataSource-ref="dataSource" />
+	<bean id="modelDao" class="hobotun.db.model.ModelDao" p:dataSource-ref="dataSource" />
+	<bean id="systemParamDao" class="hobotun.db.SystemParam.SystemParamDao" p:dataSource-ref="dataSource" /> 
+	<bean id="userModelDao" class="hobotun.db.userModel.UserModelDao" p:dataSource-ref="dataSource" /> 
+		
+	<context:property-placeholder location="classpath:META-INF/application.properties"/>
+	
+	
+
+</beans>

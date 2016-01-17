@@ -12,16 +12,19 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
             <meta name="apple-mobile-web-app-capable" content="yes" />
         </f:facet>
-        <title>PrimeFaces Adamantium - Responsive Layout</title>
+        <title>#{defValue.title}</title>
         
         <h:outputScript name="js/ripple-effect.js" library="adamantium-layout" />
         <h:outputScript name="js/perfect-scrollbar.js" library="adamantium-layout" />
         <h:outputScript name="js/layout.js" library="adamantium-layout" />
+        <h:outputScript name="js/jquery-1.12.0.js" library="adamantium-layout" />
+        <!-- h:outputScript name="js/jquery.lazyload.js" library="adamantium-layout" /-->
+        
 
         <ui:insert name="head" />
     </h:head>
     
-    <h:body styleClass="dark">
+    <h:body styleClass="dark" style="display: none;" >
         
         <ui:include src="#{userSession.topMenu}" />
         <ui:include src="../common/layoutmenu.xhtml" />
@@ -50,6 +53,20 @@
         <h:outputStylesheet name="css/font-awesome.css" library="adamantium-layout" />
         <h:outputStylesheet name="css/adamantium-layout.css" library="adamantium-layout" />
         <h:outputStylesheet name="css/style.css" library="adamantium-layout" />
+        
+        <script>
+			$(document).ready(function(){
+			  $("body").css("display","none").fadeIn("slow");
+			  
+			  $("img").load(function() {
+				  $(this).css("display","none").fadeIn("slow");
+			  });
+			});
+
+			
+			
+		</script>
+        
     </h:body>
     
 </html>
