@@ -110,7 +110,7 @@
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 				        
-			        	<p:dataGrid var="model" value="#{findModele.models}" columns="6" rows="12" paginator="false" id="modelsFinded" layout="grid" >
+			        	<p:dataGrid var="model" value="#{findModele.models}" columns="6" rows="12" paginator="true" id="modelsFinded" layout="grid" paginatorPosition="bottom" >
 							<a href="../../pages/modele/modele.jsf?id=#{model.idModel}">
 								<span style="width: 170px; height: 160px; padding-bottom: 20px;" class="Container100 ContainerIndent"> 
 									<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 
