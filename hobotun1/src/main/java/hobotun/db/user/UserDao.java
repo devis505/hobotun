@@ -5,6 +5,7 @@ import hobotun.db.user.table.OutUserBalanceTbl;
 import hobotun.db.user.table.UserTbl;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -84,6 +85,14 @@ public class UserDao implements IUserDao, Serializable {
 
 	@Override
 	public List<UserTbl> getUserById(Map<String, Object> params) {
+		return findUserById.executeByNamedParam(params);
+	}
+	
+	public List<UserTbl> getUserById(Long id) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id_user", id);
+		
 		return findUserById.executeByNamedParam(params);
 	}
 

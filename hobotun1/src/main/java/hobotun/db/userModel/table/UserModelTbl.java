@@ -1,10 +1,23 @@
 package hobotun.db.userModel.table;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class UserModelTbl {
 
 	private Long idUser;
 	private Long idModel;
 	private Long idEntityType;
+	
+	public UserModelTbl() {
+		
+	}
+	
+	public UserModelTbl(ResultSet rs) throws SQLException {
+		idUser = rs.getLong("idUser");
+		idModel = rs.getLong("IdModel");
+		idEntityType = rs.getLong("idEntityType");
+	}
 
 	public Long getIdUser() {
 		return idUser;

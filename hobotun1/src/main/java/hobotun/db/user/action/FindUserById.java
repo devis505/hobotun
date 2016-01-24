@@ -13,20 +13,18 @@ import org.springframework.jdbc.object.MappingSqlQuery;
 
 public class FindUserById extends MappingSqlQuery<UserTbl> {
 
-    private static final String SQL_FIND_USER_BY_ID = 
-	    "select * \n"
-	  + "  from hb_user u \n"
-	  + " where u.id_user = :id_user \n";
+	private static final String SQL_FIND_USER_BY_ID = "select * \n" + "  from hb_user u \n"
+			+ " where u.id_user = :id_user \n";
 
-    public FindUserById(DataSource dataSource) {
-	super(dataSource, SQL_FIND_USER_BY_ID);
+	public FindUserById(DataSource dataSource) {
+		super(dataSource, SQL_FIND_USER_BY_ID);
 
-	super.declareParameter(new SqlParameter("id_user", Types.INTEGER));
-    }
+		super.declareParameter(new SqlParameter("id_user", Types.INTEGER));
+	}
 
-    @Override
-    protected UserTbl mapRow(ResultSet rs, int rowNum) throws SQLException {
-	return new UserTbl(rs);
-    }
+	@Override
+	protected UserTbl mapRow(ResultSet rs, int rowNum) throws SQLException {
+		return new UserTbl(rs);
+	}
 
 }

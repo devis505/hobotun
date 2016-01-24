@@ -72,7 +72,7 @@
 						<p:dataGrid var="model" value="#{mainModelModer.models}" columns="6" rows="12" paginator="false" id="modelsNotModeration" layout="grid" >
 							<a href="../../pages/modele/modele.jsf?id=#{model.idModel}">
 								<span style="width: 170px; height: 160px; padding-bottom: 20px;" class="Container100 ContainerIndent"> 
-									<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" styleClass="lazy" style="display:none;" /> 
+									<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 
 									
 									<span style="width: 170px;"> 
 										<i class="fa fa-rub Fs10 Fleft MarRight10">#{model.price}</i> 

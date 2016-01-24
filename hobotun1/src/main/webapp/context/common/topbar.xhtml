@@ -8,18 +8,33 @@
     
     <!-- TOPBAR START -->
     <div id="layout-topbar">
-        <a id="menu-button" class="Animated1">
+        <!-- a id="menu-button" class="Animated1">
             <span id="menuline1" class="Animated05"></span>
             <span id="menuline2" class="Animated05"></span>
             <span id="menuline3" class="Animated05"></span>
-        </a>
+        </a-->
         <a href="../../index.jsf"><h:graphicImage name="images/logo.svg" id="logo" library="adamantium-layout" /></a>
         
         <a id="topmenu-button" class="Animated1">
             <i class="icon-list2"></i>
         </a>
         
-        <ul id="top-menu">
+        <div id="top-menu" style="padding-top: 25px;">
+        	<a href="../../pages/modele/modelelist.jsf" style="color: #ABADAF; font-size: 20px; padding-right: 15px;">
+        		<i class="fa fa-search"></i> 
+        		<span>Поиск</span>
+        	</a>
+        	<a href="../../pages/user/user.jsf?userPageId=1" style="color: #ABADAF; font-size: 20px; padding-right: 15px;">
+        		<i class="fa fa-user"></i> 
+        		<span>Кабинет</span>
+        	</a>
+        	<a href="../../pages/user/logout.jsf" style="color: #ABADAF; font-size: 20px; padding-right: 15px;">
+        		<i class="fa fa-sign-out"></i>
+				<span>Выход</span>
+			</a>
+        </div>
+        
+        <!--ul id="top-menu">
             <li>
                 <a class="menulink Animated05"><i class="fa fa-search"></i> <span>Поиск</span></a>
                 <ul style="margin-left:-150px;">
@@ -38,7 +53,7 @@
             <li>
                 <a href="../../pages/user/logout.jsf" class="menulink Animated05"><i class="fa fa-sign-out"></i> <span>Выход</span></a>
             </li>
-        </ul>
+        </ul-->
     </div>
     <!-- TOPBAR END -->
     

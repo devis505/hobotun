@@ -127,16 +127,16 @@ public class SaveModelForm {
 				model.setIdFile(file.getIdFile());
 
 				model.setIdImg1(imgTbl1.getIdImage());
-				model.setIdImg2(imgTbl1.getIdImage());
-				model.setIdImg3(imgTbl1.getIdImage());
-				model.setIdImg4(imgTbl1.getIdImage());
-				model.setIdImg5(imgTbl1.getIdImage());
+				model.setIdImg2(imgTbl2.getIdImage());
+				model.setIdImg3(imgTbl3.getIdImage());
+				model.setIdImg4(imgTbl4.getIdImage());
+				model.setIdImg5(imgTbl5.getIdImage());
 
 				model.setIdImg1min(miniImgTbl1.getIdImage());
-				model.setIdImg2min(miniImgTbl1.getIdImage());
-				model.setIdImg3min(miniImgTbl1.getIdImage());
-				model.setIdImg4min(miniImgTbl1.getIdImage());
-				model.setIdImg5min(miniImgTbl1.getIdImage());
+				model.setIdImg2min(miniImgTbl2.getIdImage());
+				model.setIdImg3min(miniImgTbl3.getIdImage());
+				model.setIdImg4min(miniImgTbl4.getIdImage());
+				model.setIdImg5min(miniImgTbl5.getIdImage());
 
 				ModelDao modelDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
 				modelDao.insertModelReturnId(model);
