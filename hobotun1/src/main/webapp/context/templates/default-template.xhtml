@@ -17,14 +17,11 @@
         <h:outputScript name="js/ripple-effect.js" library="adamantium-layout" />
         <h:outputScript name="js/perfect-scrollbar.js" library="adamantium-layout" />
         <h:outputScript name="js/layout.js" library="adamantium-layout" />
-        <h:outputScript name="js/jquery-1.12.0.js" library="adamantium-layout" />
-        <!-- h:outputScript name="js/jquery.lazyload.js" library="adamantium-layout" /-->
-        
 
         <ui:insert name="head" />
     </h:head>
     
-    <h:body styleClass="dark" style="display: none;" >
+    <h:body styleClass="dark" style="display:none;" >
         
         <ui:include src="#{userSession.topMenu}" />
         <ui:include src="../common/layoutmenu.xhtml" />
@@ -54,15 +51,12 @@
         <h:outputStylesheet name="css/adamantium-layout.css" library="adamantium-layout" />
         <h:outputStylesheet name="css/style.css" library="adamantium-layout" />
         
-        <script>
-			$(document).ready(function(){
-			  $("body").css("display","none").fadeIn("slow");
-			});
-
-			
-			
-		</script>
-        
+        <script type="text/javascript">
+	        $(document).ready(function() {
+	            $('body').fadeIn("slow");
+	        });
+        </script> 
+               
     </h:body>
     
 </html>

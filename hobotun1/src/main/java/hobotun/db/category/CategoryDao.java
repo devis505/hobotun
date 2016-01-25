@@ -1,10 +1,13 @@
 package hobotun.db.category;
 
 import hobotun.db.category.action.SelectAllCategory;
+import hobotun.db.category.action.SelectCategoryById;
 import hobotun.db.category.table.CategoryTbl;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -13,10 +16,12 @@ public class CategoryDao implements ICategoryDao, Serializable {
 	private static final long serialVersionUID = 6758246860262697891L;
 	private DataSource dataSource;
 	private SelectAllCategory selectAllCategory;
+	private SelectCategoryById SelectCategoryById;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 		selectAllCategory = new SelectAllCategory(dataSource);
+		SelectCategoryById = new SelectCategoryById(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -28,22 +33,11 @@ public class CategoryDao implements ICategoryDao, Serializable {
 		return selectAllCategory.execute();
 	}
 
-	@Override
 	public CategoryTbl getCategoryById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void updateCatery(CategoryTbl categiry) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void insertCategiry(CategoryTbl category) {
-		// TODO Auto-generated method stub
-
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id_category", id);
+		
+		return SelectCategoryById.executeByNamedParam(paramMap).get(0);
 	}
 
 }

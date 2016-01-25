@@ -1,21 +1,22 @@
 package hobotun.user;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
+
 import hobotun.db.DBUtil;
 import hobotun.db.category.CategoryDao;
 import hobotun.db.category.table.CategoryTbl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.model.SelectItem;
-import javax.faces.view.ViewScoped;
-
 @ManagedBean(name = "category")
 @ViewScoped
-public class Category {
+public class Category implements Serializable{
 
+	private static final long serialVersionUID = 2009978316840459139L;
 	private Integer category = 0;
 	private List<SelectItem> categoryes;
 
@@ -31,7 +32,6 @@ public class Category {
 		return categoryes;
 	}
 
-	@PostConstruct
 	public void init() {
 
 		categoryes = new ArrayList<SelectItem>();

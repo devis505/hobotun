@@ -116,53 +116,51 @@
 							
 								<TABLE>
 									<TR>
-										<TD><i class="icon-settings"></i></TD>
-										<TD>3dsMax 2009 и ниже (Vray)</TD>
+										<TD style="vertical-align: top;"><i class="fa fa-list-ul"></i></TD>
+										<TD><p:outputLabel value="#{modele.category.nmCategory}" /></TD>
 									</TR>
 									<TR>
-										<TD><i class="fa fa-floppy-o"></i></TD>
-										<TD>30.67 MB</TD>
+										<TD style="vertical-align: top;"><i class="fa fa-cog"></i></TD>
+										<TD>
+											<p:outputLabel value="#{modele.format.nmFormat}" />
+											<p:outputLabel value=", FBX" rendered="#{modele.modele.fbx == 1}" />
+											<p:outputLabel value=", OBJ" rendered="#{modele.modele.obj == 1}" />
+											<p:outputLabel value=", Текстуры и материалы" rendered="#{modele.modele.texture == 1}" />
+										</TD>
+									</TR>
+									<TR>
+										<TD style="vertical-align: top;"><i class="fa fa-floppy-o"></i></TD>
+										<TD><p:outputLabel value="#{modele.fileModele.mb} Мб" /></TD>
+									</TR>
+									<TR>
+										<TD style="vertical-align: top;"><i class="fa fa-info-circle"></i></TD>
+										<TD><p:outputLabel value="#{modele.modele.tegs}" /></TD>
+									</TR>
+									<TR>
+										<TD style="vertical-align: top;"><i class="fa fa-info-circle"></i></TD>
+										<TD><p:outputLabel value="#{modele.modele.description}" /></TD>
+									</TR>
+									<TR>
+										<TD style="vertical-align: top;"><i class="fa fa-rub"></i></TD>
+										<TD><p:outputLabel value="#{modele.modele.price}" /></TD>
 									</TR>
 								</TABLE>
-							
-								<!-- 
-								<i class="icon-settings"> 3dsMax 2009 и ниже (Vray)</i>
+
 								<div class="EmptyBox10"></div>
-								<i class="fa fa-floppy-o"> 30.67 MB</i>
-								<div class="EmptyBox10"></div>
-								<i class="fa fa-clock-o"> 2015.10.23 03:52</i>
-								<div class="EmptyBox10"></div>
-								<i class="icon-hash"><br/>
-									<span style="padding-left:20px;">
-										<a href="#" class="Underline">банка</a>, <a href="#" class="Underline">специи</a>, 
-										<a href="#" class="Underline">крупа</a>, <a href="#" class="Underline">доска</a>, <a href="#" class="Underline">корзина</a>, 
-										<a href="#" class="Underline">лук</a>, <a href="#" class="Underline">терка</a>, <a href="#" class="Underline">турка</a>, 
-										<a href="#" class="Underline">уксус</a>, <a href="#" class="Underline">масло</a>, <a href="#" class="Underline">тарелка</a>, 
-										<a href="#" class="Underline">яйца</a>, <a href="#" class="Underline">бутыль</a>, <a href="#" class="Underline">укроп</a>, 
-										<a href="#" class="Underline">сахар</a>, <a href="#" class="Underline">кофе</a>, <a href="#" class="Underline">чашка</a>
-									</span>
-								</i> -->
-								<div class="EmptyBox10"></div>
-								<i class="icon-info"><br/>
-									<span style="padding-left:20px;">
-										- банки для сыпучих<br/>
-										- доски разделочные<br/>
-										- корзина с луком<br/>
-										- терки<br/>
-										- турка кофейная<br/>
-										- уксус, масло<br/>
-										- тарелка деревянная, яйца<br/>
-										- бутыли<br/>
-										- укроп<br/>
-										- сахар, кофе<br/>
-										- чашки<br/>
-									</span>
-								</i>
-								<div class="EmptyBox10"></div>
-								<i class="fa fa-rub Red">1500</i>
-								<div class="EmptyBox20"></div>
 								<div class="Separator"></div>
-								<p:button value="Добавить в карзину" class="CyanButton Fright" href="#" icon="fa fa-cart-arrow-down"/>
+								
+								
+									<h:panelGrid columns="1">
+										<h:column rendered="#{!userSession.user.authorization}"><p:outputLabel value="Что бы скачать модель, требуется регистрация" styleClass="Red" /></h:column>
+										<h:column rendered="#{userSession.user.authorization}">
+											<p:selectOneRadio id="console" value="#{modele.provider}">
+												<f:selectItem itemLabel="Деньгионлайн" itemValue="1" />
+												<f:selectItem itemLabel="Robokassa" itemValue="2" />
+											</p:selectOneRadio>
+											</h:column>
+										<h:column><p:button value="Купить" class="CyanButton" href="#" icon="fa fa-cart-arrow-down" disabled="#{!userSession.user.authorization}"/></h:column>
+									</h:panelGrid>
+								
 							</div>	
 							
 						</div>

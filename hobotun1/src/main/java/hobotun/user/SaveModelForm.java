@@ -95,7 +95,7 @@ public class SaveModelForm {
 		boolean err = false;
 		String errText = "";
 
-		// TODO: сделать проверки
+		// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 		if (err) {
 			errColor = "Red";
@@ -150,7 +150,7 @@ public class SaveModelForm {
 				UserModelDao userModel = DBUtil.getInstance().getBean("userModelDao", UserModelDao.class);
 				userModel.insertUserModel(userEntity);
 
-				allErr = "Модель успешно загружена и ожидает модерации.";
+				allErr = "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.";
 
 				errColor = "Green";
 				saveButtonEnable = true;

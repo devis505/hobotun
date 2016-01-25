@@ -1,5 +1,6 @@
 package hobotun.request;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -12,8 +13,9 @@ import hobotun.user.Category;
 
 @ManagedBean(name = "findModele")
 @ViewScoped
-public class FindModele {
+public class FindModele implements Serializable{
 	
+	private static final long serialVersionUID = 4759632650445905080L;
 	private List<ModelTbl> models;
 	private ModelDao modelDao;
 	private Category categoryes;
@@ -30,19 +32,19 @@ public class FindModele {
 	
 	private void changeSort() {
 		if ("1".equals(option)) {
-			setModels(modelDao.selectModelOrderByDate(1, categoryes.getCategory(), "%" + keyWord + "%"));
+			setModels(modelDao.selectModelOrderByDate(1, Integer.valueOf(categoryes.getCategory()), "%" + keyWord + "%"));
 		}
 		
 		if ("2".equals(option)) {
-			setModels(modelDao.selectModelOrderByPopular(1, categoryes.getCategory(), "%" + keyWord + "%"));
+			setModels(modelDao.selectModelOrderByPopular(1, Integer.valueOf(categoryes.getCategory()), "%" + keyWord + "%"));
 		}
 		
 		if ("3".equals(option)) {
-			setModels(modelDao.selectModelOrderByCost(1, categoryes.getCategory(), "%" + keyWord + "%"));
+			setModels(modelDao.selectModelOrderByCost(1, Integer.valueOf(categoryes.getCategory()), "%" + keyWord + "%"));
 		}
 		
 		if ("4".equals(option)) {
-			setModels(modelDao.selectModelOrderByFree(1, categoryes.getCategory(), "%" + keyWord + "%"));
+			setModels(modelDao.selectModelOrderByFree(1, Integer.valueOf(categoryes.getCategory()), "%" + keyWord + "%"));
 		}
 	}
 	

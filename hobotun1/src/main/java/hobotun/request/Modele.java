@@ -8,6 +8,12 @@ import javax.faces.context.FacesContext;
 
 import hobotun.core.Misc;
 import hobotun.db.DBUtil;
+import hobotun.db.category.CategoryDao;
+import hobotun.db.category.table.CategoryTbl;
+import hobotun.db.file.FileDao;
+import hobotun.db.file.tbl.FileTbl;
+import hobotun.db.format.FormatDao;
+import hobotun.db.format.table.FormatTabl;
 import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
 import hobotun.db.user.UserDao;
@@ -24,6 +30,11 @@ public class Modele implements Serializable {
 	private ModelTbl modele;
 	private UserModelTbl userModel;
 	private UserTbl user;
+	private FileTbl fileModele;
+	private CategoryTbl category;
+	private FormatTabl format;
+	
+	private Integer provider = 1;
 
 	private boolean visibleImg1 = true;
 	private boolean visibleImg2 = true;
@@ -55,6 +66,15 @@ public class Modele implements Serializable {
 		UserDao userDao = DBUtil.getInstance().getBean("userDao", UserDao.class);
 		user = userDao.getUserById(userModel.getIdUser()).get(0);
 		
+		FileDao fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
+		fileModele = fileDao.SelectFileById(userModel.getIdModel()).get(0);
+		
+		CategoryDao categoryDao = DBUtil.getInstance().getBean("categoryDao", CategoryDao.class);
+		category = categoryDao.getCategoryById(modele.getIdCategory());
+		
+		FormatDao formatDao = DBUtil.getInstance().getBean("formatDao", FormatDao.class);
+		format = formatDao.getFormatById(modele.getIdFormat());
+		
 		visibleImg1 = (modele.getIdImg1min() != 0);
 		visibleImg2 = (modele.getIdImg2min() != 0);
 		visibleImg3 = (modele.getIdImg3min() != 0);
@@ -63,7 +83,7 @@ public class Modele implements Serializable {
 		
 		idBigImg = modele.getIdImg1(); 
 	}
-	
+		
 	public void select1() {
 		seceted = 1;
 		refreshComanents();
@@ -210,7 +230,28 @@ public class Modele implements Serializable {
 		return idBigImg;
 	}
 	
+	public FileTbl getFileModele() {
+		return fileModele;
+	}
+	
 	public void onRate() {
 		
 	}
+
+	public CategoryTbl getCategory() {
+		return category;
+	}
+
+	public FormatTabl getFormat() {
+		return format;
+	}
+
+	public Integer getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Integer provider) {
+		this.provider = provider;
+	}
+
 }

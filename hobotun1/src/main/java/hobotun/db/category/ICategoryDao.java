@@ -8,10 +8,4 @@ public interface ICategoryDao {
 
     public List<CategoryTbl> getAllCategory();
 
-    public CategoryTbl getCategoryById(Integer id);
-
-    public void updateCatery(CategoryTbl categiry);
-
-    public void insertCategiry(CategoryTbl category);
-
 }
