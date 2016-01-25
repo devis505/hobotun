@@ -97,7 +97,7 @@
 				        
 				        <h:panelGrid columns="1" cellpadding="5">
 					        <p:outputLabel for="cort" value="Сортировать по:" />
-	                        <p:selectOneButton id="cort" value="#{findModele.option}">
+	                        <p:selectOneButton id="cort" value="#{findModele.option}" style="border: 0;">
 	                        	<p:ajax update="modelsFinded" listener="#{findModele.onChangeOption}" /> 
 	                        	<f:selectItem itemLabel="Дате" itemValue="1" />
 	                            <f:selectItem itemLabel="Популярности" itemValue="2" />

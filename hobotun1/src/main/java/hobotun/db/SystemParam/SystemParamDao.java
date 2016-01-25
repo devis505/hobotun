@@ -11,24 +11,24 @@ import javax.sql.DataSource;
 
 public class SystemParamDao implements ISystemParamDao {
 
-    private DataSource dataSource;
-    private SelectParamById selectParamById;
+	private DataSource dataSource;
+	private SelectParamById selectParamById;
 
-    public void setDataSource(DataSource dataSource) {
-	this.dataSource = dataSource;
-	selectParamById = new SelectParamById(dataSource);
-    }
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+		selectParamById = new SelectParamById(dataSource);
+	}
 
-    public DataSource getDataSource() {
-	return dataSource;
-    }
+	public DataSource getDataSource() {
+		return dataSource;
+	}
 
-    @Override
-    public List<SystemParamTbl> getParamById(Integer id) {
-	Map<String, Object> paramMap = new HashMap<String, Object>();
-	paramMap.put("idParam", id);
+	@Override
+	public List<SystemParamTbl> getParamById(Integer id) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("idParam", id);
 
-	return selectParamById.executeByNamedParam(paramMap);
-    }
+		return selectParamById.executeByNamedParam(paramMap);
+	}
 
 }

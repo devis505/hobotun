@@ -108,3 +108,42 @@ input[file] {
 	width: 100px !important;
 }
 
+body {
+	font-family: Calibri !important;
+}
+
+span {
+	font-family: Calibri !important;
+}
+
+div {
+	font-family: Calibri !important;
+}
+
+label {
+	font-family: Calibri !important;
+}
+
+li {
+	font-family: Calibri !important;
+}
+
+label.ui-selectonemenu-label {
+    font-family: Calibri !important;
+}
+
+td {
+    font-family: Calibri !important;
+}
+
+a {
+	font-family: Calibri !important;
+}
+
+.info {
+	color: #8DCCFB;
+    font-size: 20px;
+    padding-right: 12px;
+}
+
+

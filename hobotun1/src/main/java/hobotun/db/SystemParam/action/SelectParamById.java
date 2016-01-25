@@ -13,16 +13,16 @@ import org.springframework.jdbc.object.MappingSqlQuery;
 
 public class SelectParamById extends MappingSqlQuery<SystemParamTbl> {
 
-    private static final String SQL_SELECT_PARAM_BY_ID = "select * from hb_params p where p.idParam = :idParam";
+	private static final String SQL_SELECT_PARAM_BY_ID = "select * from hb_params p where p.idParam = :idParam";
 
-    public SelectParamById(DataSource dataSource) {
-	super(dataSource, SQL_SELECT_PARAM_BY_ID);
-	super.declareParameter(new SqlParameter("idParam", Types.INTEGER));
-    }
+	public SelectParamById(DataSource dataSource) {
+		super(dataSource, SQL_SELECT_PARAM_BY_ID);
+		super.declareParameter(new SqlParameter("idParam", Types.INTEGER));
+	}
 
-    @Override
-    protected SystemParamTbl mapRow(ResultSet rs, int rowNum) throws SQLException {
-	return new SystemParamTbl(rs);
-    }
+	@Override
+	protected SystemParamTbl mapRow(ResultSet rs, int rowNum) throws SQLException {
+		return new SystemParamTbl(rs);
+	}
 
 }

@@ -18,21 +18,27 @@
         <a id="topmenu-button" class="Animated1">
             <i class="icon-list2"></i>
         </a>
-        
+
         <div id="top-menu" style="padding-top: 25px;">
-        	<a href="../../pages/modele/modelelist.jsf" style="color: #ABADAF; font-size: 20px; padding-right: 15px;">
-        		<i class="fa fa-search"></i> 
-        		<span>Поиск</span>
+			<a href="../../pages/user/user.jsf?userPageId=3" style="color: #43D021; font-size: 18px; padding-right: 15px;">
+        		<span>#{userSession.user.userTbl.balance} ₽</span>
         	</a>
         	<a href="../../pages/user/user.jsf?userPageId=1" style="color: #ABADAF; font-size: 20px; padding-right: 15px;">
         		<i class="fa fa-user"></i> 
-        		<span>Кабинет</span>
+        		<span>#{userSession.user.userTbl.login}</span>
         	</a>
         	<a href="../../pages/user/logout.jsf" style="color: #ABADAF; font-size: 20px; padding-right: 15px;">
         		<i class="fa fa-sign-out"></i>
 				<span>Выход</span>
 			</a>
         </div>
+        
+        <div id="top-menu" style="padding-top: 25px; float: left; padding-left: 40px;">
+			<a href="../../pages/modele/modelelist.jsf" style="color: #ABADAF; font-size: 20px; padding-right: 15px;">
+        		<i class="fa fa-connectdevelop"></i> 
+        		<span style="font-family: Calibri !important;">3d Модели</span>
+        	</a>
+		</div>
         
         <!--ul id="top-menu">
             <li>

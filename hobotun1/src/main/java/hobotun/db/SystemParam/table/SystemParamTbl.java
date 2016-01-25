@@ -5,42 +5,42 @@ import java.sql.SQLException;
 
 public class SystemParamTbl {
 
-    private Long idParam;
-    private String nmParam;
-    private String vlParam;
+	private Long idParam;
+	private String nmParam;
+	private String vlParam;
 
-    public SystemParamTbl() {
+	public SystemParamTbl() {
 
-    }
+	}
 
-    public SystemParamTbl(ResultSet rs) throws SQLException {
-	idParam = rs.getLong("idParam");
-	nmParam = rs.getString("nmParam");
-	vlParam = rs.getString("vlParam");
-    }
+	public SystemParamTbl(ResultSet rs) throws SQLException {
+		idParam = rs.getLong("idParam");
+		nmParam = rs.getString("nmParam");
+		vlParam = rs.getString("vlParam");
+	}
 
-    public String getNmParam() {
-	return nmParam;
-    }
+	public String getNmParam() {
+		return nmParam;
+	}
 
-    public void setNmParam(String nmParam) {
-	this.nmParam = nmParam;
-    }
+	public void setNmParam(String nmParam) {
+		this.nmParam = nmParam;
+	}
 
-    public Long getIdParam() {
-	return idParam;
-    }
+	public Long getIdParam() {
+		return idParam;
+	}
 
-    public void setIdParam(Long idParam) {
-	this.idParam = idParam;
-    }
+	public void setIdParam(Long idParam) {
+		this.idParam = idParam;
+	}
 
-    public String getVlParam() {
-	return vlParam;
-    }
+	public String getVlParam() {
+		return vlParam;
+	}
 
-    public void setVlParam(String vlParam) {
-	this.vlParam = vlParam;
-    }
+	public void setVlParam(String vlParam) {
+		this.vlParam = vlParam;
+	}
 
 }

@@ -9,16 +9,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.imageio.ImageIO;
 import javax.servlet.http.Part;
 
+import hobotun.core.Misc;
 import hobotun.core.UserSession;
 import hobotun.db.DBUtil;
 import hobotun.db.Image.ImageDao;
 import hobotun.db.Image.tbl.ImageTbl;
+import hobotun.db.SystemParam.SystemParamDao;
 import hobotun.db.file.FileDao;
 import hobotun.db.file.tbl.FileTbl;
 import hobotun.db.model.ModelDao;
@@ -140,17 +143,21 @@ public class SaveModelForm {
 
 				ModelDao modelDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
 				modelDao.insertModelReturnId(model);
-				
+
 				UserModelTbl userEntity = new UserModelTbl();
-				
+
 				userEntity.setIdEntityType(new Long(1));
 				userEntity.setIdModel(model.getIdModel());
 				userEntity.setIdUser(UserSession.getInstance().getUser().getUserTbl().getId_user());
-				
+
 				UserModelDao userModel = DBUtil.getInstance().getBean("userModelDao", UserModelDao.class);
 				userModel.insertUserModel(userEntity);
 
-				allErr = "������ ������� ��������� � ������� ���������.";
+				SystemParamDao systemParamDao = DBUtil.getInstance().getBean("systemParamDao", SystemParamDao.class);
+				String messageSuccess = systemParamDao.getParamById(ID_PARAM_SUCCESS_SAVE).get(0).getVlParam();
+
+				allErr = "Модель удачно загружена на сервер.";
+				Misc.setMessageElement(ID_MSG_FOR_SAVE_ELEMENT, FacesMessage.SEVERITY_INFO, messageSuccess);
 
 				errColor = "Green";
 				saveButtonEnable = true;
@@ -533,24 +540,27 @@ public class SaveModelForm {
 	public void setAltruist(boolean isAltruist) {
 		this.isAltruist = isAltruist;
 		/*
-		fileModel.setAltruist(this.isAltruist);
-		bigImg1.setAltruist(this.isAltruist);
-		bigImg2.setAltruist(this.isAltruist);
-		bigImg3.setAltruist(this.isAltruist);
-		bigImg4.setAltruist(this.isAltruist);
-		bigImg5.setAltruist(this.isAltruist);
-		modelName.setAltruist(this.isAltruist);
-		modeleTegs.setAltruist(this.isAltruist);
-		modeleDescription.setAltruist(this.isAltruist);
-		fbx.setAltruist(this.isAltruist);
-		obj.setAltruist(this.isAltruist);
-		texture.setAltruist(this.isAltruist);
-		booleanParams.setAltruist(this.isAltruist);
-		countPoligons.setAltruist(this.isAltruist);
-		formatGreenVisible.setAltruist(this.isAltruist);
-		categoryGreenVisible.setAltruist(this.isAltruist);*/
+		 * fileModel.setAltruist(this.isAltruist);
+		 * bigImg1.setAltruist(this.isAltruist);
+		 * bigImg2.setAltruist(this.isAltruist);
+		 * bigImg3.setAltruist(this.isAltruist);
+		 * bigImg4.setAltruist(this.isAltruist);
+		 * bigImg5.setAltruist(this.isAltruist);
+		 * modelName.setAltruist(this.isAltruist);
+		 * modeleTegs.setAltruist(this.isAltruist);
+		 * modeleDescription.setAltruist(this.isAltruist);
+		 * fbx.setAltruist(this.isAltruist); obj.setAltruist(this.isAltruist);
+		 * texture.setAltruist(this.isAltruist);
+		 * booleanParams.setAltruist(this.isAltruist);
+		 * countPoligons.setAltruist(this.isAltruist);
+		 * formatGreenVisible.setAltruist(this.isAltruist);
+		 * categoryGreenVisible.setAltruist(this.isAltruist);
+		 */
 	}
 
 	private static final int IMG_WIDTH = 170;
 	private static final int IMG_HEIGHT = 170;
+
+	private static final String ID_MSG_FOR_SAVE_ELEMENT = "saveForm:save";
+	private static final Integer ID_PARAM_SUCCESS_SAVE = 1;
 }

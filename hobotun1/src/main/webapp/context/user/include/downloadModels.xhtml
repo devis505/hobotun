@@ -13,11 +13,16 @@
 		<div class="EmptyBox30"></div>
 		<h:form id="main" enctype="multipart/form-data" style="padding-left: 75px;">
 			
-			<h:panelGrid columns="3" id="mainPanel">
-				<p:outputLabel value="Название: " styleClass="Fs20" />
+			<h:panelGrid columns="4" id="mainPanel">
+			    <h:outputLink id="track1" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack1" for="track1" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
+			    <p:outputLabel value="Название:" styleClass="Fs20" />
 				<p:inputText id="name" value="#{saveModel.modelName.param}" class="inputTextPF">
 					<p:ajax event="keyup" update="greenTags itogo" />
 				</p:inputText>
+				
 				<p:panel id="greenName" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
 						<h:outputText value=" " styleClass="GreenHidden" />
@@ -25,6 +30,10 @@
 					</h:panelGrid>
 				</p:panel>
 			
+				<h:outputLink id="track2" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack2" for="track2" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
 				<p:outputLabel for="tegs" value="Теги:" styleClass="Fs20" />
 				<p:inputText id="tegs" value="#{saveModel.modeleTegs.param}" placeholder="перечислять через запятую" class="inputTextPF" label="Tegs">
 					<p:ajax event="keyup" update="greenTags itogo" />
@@ -36,6 +45,10 @@
 					</h:panelGrid>
 				</p:panel>
 				
+				<h:outputLink id="track3" value="#">
+			        <i class="fa fa-info-circle info" id="track3"></i> 
+			        <p:tooltip id="toolTipTrack3" for="track3" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
 				<p:outputLabel value="Описание: " styleClass="Fs20" />
 				<p:inputTextarea id="description" value="#{saveModel.modeleDescription.param}" maxlength="320" rows="4" autoResize="true"
 							placeholder="Описание (Максимальная длина 320 символов)" style="width:500px;" >
@@ -48,7 +61,11 @@
 					</h:panelGrid>
 				</p:panel>
 				
-				<p:outputLabel value="Форматы: " styleClass="Fs20" />
+				<h:outputLink id="track4" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack4" for="track4" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
+				<p:outputLabel value="Версия редактора: " styleClass="Fs20" />
 				<p:selectOneMenu id="Format" style="width:250px;" value="#{saveModel.formats.format}" >
 					<p:ajax listener="#{saveModel.onChangeFormat}" update="greenFormats itogo" />
 					<f:selectItem itemLabel="Выберите формат" itemValue="" />
@@ -61,6 +78,10 @@
 					</h:panelGrid>
 				</p:panel>
 				
+				<h:outputLink id="track5" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack5" for="track5" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
 				<p:outputLabel value="Категория: " styleClass="Fs20" />
 				<p:selectOneMenu id="Category" style="width:250px;" value="#{saveModel.categoryes.category}"  >
 					<p:ajax listener="#{saveModel.onChangeCategory}" update="greenCategory itogo" />
@@ -74,28 +95,48 @@
 					</h:panelGrid>
 				</p:panel>
 				
-				<p:outputLabel value="Содержит: " styleClass="Fs20" />
+				<h:outputLink id="track6" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack6" for="track6" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
+				<p:outputLabel value="Доп. форматы: " styleClass="Fs20" />
 				<h:panelGrid  columns="2" style="margin-bottom:10px" cellpadding="5">
-					<h:outputText value="obj" />
-					<p:selectBooleanCheckbox value="#{saveModel.obj.param}" >
+					<p:selectBooleanCheckbox value="#{saveModel.obj.param}" itemLabel="obj" >
 						<p:ajax update="greenFbx itogo" listener="#{saveModel.onChangeFbx}" />
 					</p:selectBooleanCheckbox>
-					<h:outputText value="fbx " />
-					<p:selectBooleanCheckbox value="#{saveModel.fbx.param}" >
-						<p:ajax update="greenFbx itogo"  listener="#{saveModel.onChangeFbx}"/>
-					</p:selectBooleanCheckbox>
-					<h:outputText value="текстуры и материалы "  /> 
-					<p:selectBooleanCheckbox value="#{saveModel.texture.param}" >
+					<p:selectBooleanCheckbox value="#{saveModel.fbx.param}" itemLabel="fbx" >
 						<p:ajax update="greenFbx itogo"  listener="#{saveModel.onChangeFbx}"/>
 					</p:selectBooleanCheckbox>
 				</h:panelGrid>
-				<p:panel id="greenFbx" styleClass="GreenPanel">
+				<p:panel id="greenFbx" styleClass="GreenPanel" style="height: 66px;">
 					<h:panelGrid columns="2">
-						<h:outputText id="fbxGrinBox" value=" " styleClass="GreenArea #{saveModel.booleanParams.opacity}" rendered="true" />
+						<h:outputText id="fbxGrinBox" value=" " styleClass="GreenBlick #{saveModel.booleanParams.opacity}" rendered="true" />
 						<h:outputText id="fbxCost" value="+#{saveModel.costFlex}руб." styleClass="CostBlock #{saveModel.booleanParams.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>
 				
+				<h:outputLink id="track15" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack15" for="track15" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
+				<p:outputLabel value="Содержит: " styleClass="Fs20" />
+				<h:panelGrid  columns="2" style="margin-bottom:10px" cellpadding="5">
+					<p:selectBooleanCheckbox value="#{saveModel.texture.param}" itemLabel="текстуры и материалы" >
+						<p:ajax update="greenTexture itogo"  listener="#{saveModel.onChangeFbx}"/>
+					</p:selectBooleanCheckbox>
+				</h:panelGrid>
+				<p:panel id="greenTexture" styleClass="GreenPanel">
+					<h:panelGrid columns="2">
+						<h:outputText id="textureGrinBox" value=" " styleClass="GreenBlick #{saveModel.booleanParams.opacity}" rendered="true" />
+						<h:outputText id="textureCost" value="+#{saveModel.costFlex}руб." styleClass="CostBlock #{saveModel.booleanParams.opacity}" rendered="true" />
+					</h:panelGrid>
+				</p:panel>
+				
+				
+				<h:outputLink id="track7" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack7" for="track7" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
 				<p:outputLabel for="countPoligons" value="Кол-во полигонов:" styleClass="Fs20" style="padding-right: 10px;" />
 				<p:spinner id="countPoligons" value="#{saveModel.countPoligons.param}" label="countPoligons" min="0" size="40">
 					<p:ajax process="@this" update="greenPolingons itogo" />
@@ -107,6 +148,10 @@
 					</h:panelGrid>
 				</p:panel>
 				
+				<h:outputLink id="track8" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack8" for="track8" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
 				<p:outputLabel value="Модель: " styleClass="Fs20" />
 				<p:panel styleClass="HiddenBorder">
 					<span style="display: block; cursor: pointer;">
@@ -125,6 +170,10 @@
 					</h:panelGrid>
 				</p:panel>
 				
+				<h:outputLink id="track9" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack9" for="track9" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
 				<p:outputLabel value="1 рендер: " styleClass="Fs20" />
 				<p:panel styleClass="HiddenBorder">
 					<span style="display: block; cursor: pointer;">
@@ -143,6 +192,10 @@
 					</h:panelGrid>
 				</p:panel>
 				
+				<h:outputLink id="track10" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack10" for="track10" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
 				<p:outputLabel value="2 рендер: " styleClass="Fs20" />
 				<p:panel styleClass="HiddenBorder">
 					<span style="display: block; cursor: pointer;">
@@ -161,6 +214,10 @@
 					</h:panelGrid>
 				</p:panel>
 				
+				<h:outputLink id="track11" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack11" for="track11" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
 				<p:outputLabel value="3 рендер: " styleClass="Fs20" />
 				<p:panel styleClass="HiddenBorder">
 					<span style="display: block; cursor: pointer;">
@@ -179,6 +236,10 @@
 					</h:panelGrid>
 				</p:panel>	
 				
+				<h:outputLink id="track12" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack12" for="track12" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
 				<p:outputLabel value="Сетка hi-poly: " styleClass="Fs20" />
 				<p:panel styleClass="HiddenBorder">
 					<span style="display: block; cursor: pointer;">
@@ -197,6 +258,10 @@
 					</h:panelGrid>
 				</p:panel>		
 				
+				<h:outputLink id="track13" value="#">
+			        <i class="fa fa-info-circle info" id="track"></i> 
+			        <p:tooltip id="toolTipTrack13" for="track13" value="This tooltip tracks mouse position" trackMouse="true" />
+			    </h:outputLink>
 				<p:outputLabel value="Сетка low-poly: " styleClass="Fs20" />
 				<p:panel styleClass="HiddenBorder">
 					<span style="display: block; cursor: pointer;">
@@ -218,7 +283,11 @@
 			</h:panelGrid>
 			
 			<span>
-				<h:panelGrid columns="3">
+				<h:panelGrid columns="4">
+					<h:outputLink id="track14" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack14" for="track14" value="This tooltip tracks mouse position" trackMouse="true" />
+				    </h:outputLink>
 					<p:outputLabel value="Я альтруист" styleClass="Fs20" />
 					<p:selectBooleanCheckbox value="#{saveModel.altruist}" style="padding-left:65px;">
 						<p:ajax update="itogo" listener="#{saveModel.onChangeFbx}"/>
@@ -230,10 +299,10 @@
 			<div class="Separator" style="width: 792px;"></div>
 		</h:form>
 		
-		<h:form>
+		<h:form id="saveForm">
 			<span>
-				<h:panelGrid columns="3" id="saveModel">
-					<p:outputLabel id="allErr" value="#{saveModel.allErr}" styleClass="#{saveModel.errColor}" style="width:677px; display:block; font-size: 20px !important; padding-left: 70px;" />
+				<h:panelGrid columns="2" id="saveModel" style="float:right;">
+					<p:message for="save" />
 					<p:commandButton value="Сохранить" id="save" update="saveModel" actionListener="#{saveModel.onSaveModel}" disabled="#{saveModel.saveButtonEnable}" />
 				</h:panelGrid>
 			</span>
