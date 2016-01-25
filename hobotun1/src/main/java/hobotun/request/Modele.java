@@ -1,6 +1,7 @@
 package hobotun.request;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -35,6 +36,7 @@ public class Modele implements Serializable {
 	private FormatTabl format;
 	
 	private Integer provider = 1;
+	private boolean free = false;
 
 	private boolean visibleImg1 = true;
 	private boolean visibleImg2 = true;
@@ -80,6 +82,12 @@ public class Modele implements Serializable {
 		visibleImg3 = (modele.getIdImg3min() != 0);
 		visibleImg4 = (modele.getIdImg4min() != 0);
 		visibleImg5 = (modele.getIdImg5min() != 0);
+		
+		if (modele.getPrice().compareTo(BigDecimal.ZERO) > 0) {
+			free = false;
+		} else {
+			free = true;
+		}
 		
 		idBigImg = modele.getIdImg1(); 
 	}
@@ -252,6 +260,14 @@ public class Modele implements Serializable {
 
 	public void setProvider(Integer provider) {
 		this.provider = provider;
+	}
+
+	public boolean isFree() {
+		return free;
+	}
+
+	public void setFree(boolean free) {
+		this.free = free;
 	}
 
 }
