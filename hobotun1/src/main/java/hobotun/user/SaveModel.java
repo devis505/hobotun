@@ -1,17 +1,5 @@
 package hobotun.user;
 
-import hobotun.core.UserSession;
-import hobotun.db.DBUtil;
-import hobotun.db.Image.ImageDao;
-import hobotun.db.Image.tbl.ImageTbl;
-import hobotun.db.file.FileDao;
-import hobotun.db.file.tbl.FileTbl;
-import hobotun.db.model.ModelDao;
-import hobotun.db.model.tbl.ModelTbl;
-import hobotun.db.userModel.UserModelDao;
-import hobotun.db.userModel.table.UserModelTbl;
-import hobotun.util.SystemParams;
-
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -30,6 +18,18 @@ import javax.servlet.http.Part;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
+
+import hobotun.core.UserSession;
+import hobotun.db.DBUtil;
+import hobotun.db.Image.ImageDao;
+import hobotun.db.Image.tbl.ImageTbl;
+import hobotun.db.file.FileDao;
+import hobotun.db.file.tbl.FileTbl;
+import hobotun.db.model.ModelDao;
+import hobotun.db.model.tbl.ModelTbl;
+import hobotun.db.userModel.UserModelDao;
+import hobotun.db.userModel.table.UserModelTbl;
+import hobotun.util.SystemParams;
 
 @ManagedBean(name = "saveModel1")
 @ViewScoped
@@ -127,7 +127,7 @@ public class SaveModel implements Serializable {
 		format = new Format();
 		format.init();
 
-		percent = Integer.valueOf(SystemParams.getInstance().getParamByName(1));
+		percent = Integer.valueOf(SystemParams.getInstance().getParam(new Long(1)));
 
 		imageDao = DBUtil.getInstance().getBean("imageDao", ImageDao.class);
 		fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
@@ -216,7 +216,8 @@ public class SaveModel implements Serializable {
 		// BigDecimal sum =
 		// price.multiply(BigDecimal.valueOf(percent)).divide(BigDecimal.valueOf(100));
 		// return "Цена модели составляет: " + price +
-		// ". за каждое скачивание вы получите: " + sum;
+		// ". за каждое скачивание вы получите: " +
+		// sum;
 	}
 
 	public UploadedFile getImgFile1() {

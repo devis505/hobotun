@@ -1,5 +1,6 @@
 package hobotun.db.SystemParam;
 
+import hobotun.db.SystemParam.action.SelectAllParams;
 import hobotun.db.SystemParam.action.SelectParamById;
 import hobotun.db.SystemParam.table.SystemParamTbl;
 
@@ -13,10 +14,12 @@ public class SystemParamDao implements ISystemParamDao {
 
 	private DataSource dataSource;
 	private SelectParamById selectParamById;
+	private SelectAllParams selectAllParams;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 		selectParamById = new SelectParamById(dataSource);
+		selectAllParams = new SelectAllParams(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -29,6 +32,10 @@ public class SystemParamDao implements ISystemParamDao {
 		paramMap.put("idParam", id);
 
 		return selectParamById.executeByNamedParam(paramMap);
+	}
+
+	public List<SystemParamTbl> getAllParams() {
+		return selectAllParams.execute();
 	}
 
 }

@@ -1,18 +1,26 @@
 package hobotun.util;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import hobotun.db.DBUtil;
 import hobotun.db.SystemParam.SystemParamDao;
-
-import java.util.HashMap;
-import java.util.Map;
+import hobotun.db.SystemParam.table.SystemParamTbl;
 
 public class SystemParams {
 
 	private static SystemParams instance = null;
-	private Map<Integer, String> params = new HashMap<Integer, String>();
+	private Map<Long, String> params = new HashMap<>();
+	private List<SystemParamTbl> systemParams = null;
 
 	private SystemParams() {
-
+		SystemParamDao sysDao = DBUtil.getInstance().getBean("systemParamDao", SystemParamDao.class);
+		systemParams = sysDao.getAllParams();
+		
+		for (SystemParamTbl systemParamTbl : systemParams) {
+			params.put(systemParamTbl.getIdParam(), systemParamTbl.getVlParam());
+		}
 	}
 
 	public static SystemParams getInstance() {
@@ -27,15 +35,12 @@ public class SystemParams {
 		return instance;
 	}
 
-	public String getParamByName(Integer key) {
-
-		if (!params.containsKey(key)) {
-			SystemParamDao sysDao = DBUtil.getInstance().getBean("systemParamDao", SystemParamDao.class);
-			params.put(key, sysDao.getParamById(key).get(0).getVlParam());
-		}
-
+	public String getParam(Long key) {
 		return params.get(key);
-
+	}
+	
+	public String getParamByName(Long key) {
+		return params.get(key);
 	}
 
 }
