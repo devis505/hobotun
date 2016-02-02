@@ -29,6 +29,7 @@ import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
 import hobotun.db.userModel.UserModelDao;
 import hobotun.db.userModel.table.UserModelTbl;
+import hobotun.user.modelParams.ModeleHints;
 import hobotun.util.SystemParams;
 
 @ManagedBean(name = "saveModel1")
@@ -84,6 +85,7 @@ public class SaveModel implements Serializable {
 	private ImageTbl img3min = new ImageTbl();
 	private ImageTbl img4min = new ImageTbl();
 	private ImageTbl img5min = new ImageTbl();
+	
 
 	public ImageTbl getImg1min() {
 		return img1min;

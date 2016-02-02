@@ -29,6 +29,7 @@ import hobotun.db.model.tbl.ModelTbl;
 import hobotun.db.userModel.UserModelDao;
 import hobotun.db.userModel.table.UserModelTbl;
 import hobotun.user.modelParams.ModeleBooleanParam;
+import hobotun.user.modelParams.ModeleHints;
 import hobotun.user.modelParams.ModeleIntegerParam;
 import hobotun.user.modelParams.ModelePartParam;
 import hobotun.user.modelParams.ModeleStringParam;
@@ -84,6 +85,12 @@ public class SaveModelForm {
 	private ImageTbl imgTbl3 = new ImageTbl();
 	private ImageTbl imgTbl4 = new ImageTbl();
 	private ImageTbl imgTbl5 = new ImageTbl();
+	
+	private ModeleHints modeleHint = new ModeleHints();
+
+	public ModeleHints getModeleHint() {
+		return modeleHint;
+	}
 
 	public SaveModelForm() {
 		formats = new Format();
