@@ -110,6 +110,7 @@ input[file] {
 
 body {
 	font-family: Calibri !important;
+	overflow-y: scroll;
 }
 
 span {
