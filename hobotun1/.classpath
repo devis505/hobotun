@@ -23,7 +23,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/work/javaLib/adamantium-theme-1.0.jar">
+	<classpathentry kind="lib" path="D:/work/Проекты/javaLib/adamantium-theme-1.0.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
@@ -33,7 +33,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/work/javaLib/com.mysql.jdbc_5.1.5.jar">
+	<classpathentry kind="lib" path="D:/work/Проекты/javaLib/com.mysql.jdbc_5.1.5.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

@@ -58,12 +58,13 @@ public class SaveModelForm {
 
 	private ModeleBooleanParam fbx = new ModeleBooleanParam();
 	private ModeleBooleanParam obj = new ModeleBooleanParam();
-	private ModeleBooleanParam texture = new ModeleBooleanParam();
 	private ModeleBooleanParam booleanParams = new ModeleBooleanParam();
+	
+	private ModeleBooleanParam texture = new ModeleBooleanParam();
+	private ModeleBooleanParam booleanTexture = new ModeleBooleanParam();
 
 	private ModeleIntegerParam countPoligons = new ModeleIntegerParam();
 
-	private Integer costFlex = 5;
 	private Integer cost = 0;
 
 	private Format formats;
@@ -104,8 +105,6 @@ public class SaveModelForm {
 
 		boolean err = false;
 		String errText = "";
-
-		// TODO: ������� ��������
 
 		if (err) {
 			errColor = "Red";
@@ -181,35 +180,21 @@ public class SaveModelForm {
 			imageDao.Insert(img);
 		}
 	}
+	
+	public void onChangeTexture() {
+		if (texture.getParam()) {
+			texture.setOpacity100();
+		} else {
+			texture.setOpacity50();
+		}
+	}
 
 	public void onChangeFbx() {
-
-		Integer f1 = 0;
-		Integer f2 = 0;
-
-		booleanParams.setOpacity50();
-
-		if (obj.getParam()) {
-			f1 = 5;
+		if (fbx.getParam() || obj.getParam()) {
 			booleanParams.setOpacity100();
+		} else {
+			booleanParams.setOpacity50();
 		}
-
-		if (fbx.getParam()) {
-			f1 = 5;
-			booleanParams.setOpacity100();
-		}
-
-		if (texture.getParam()) {
-			f2 = 5;
-			booleanParams.setOpacity100();
-		}
-
-		Integer f3 = f1 + f2;
-
-		if (f3.equals(0))
-			f3 = 5;
-
-		setCostFlex(f3);
 	}
 
 	public void onChangeCategory() {
@@ -380,14 +365,6 @@ public class SaveModelForm {
 
 	public void setTexture(ModeleBooleanParam texture) {
 		this.texture = texture;
-	}
-
-	public Integer getCostFlex() {
-		return costFlex;
-	}
-
-	public void setCostFlex(Integer costFlex) {
-		this.costFlex = costFlex;
 	}
 
 	public ModeleBooleanParam getFormatGreenVisible() {
@@ -563,6 +540,14 @@ public class SaveModelForm {
 		 * formatGreenVisible.setAltruist(this.isAltruist);
 		 * categoryGreenVisible.setAltruist(this.isAltruist);
 		 */
+	}
+
+	public ModeleBooleanParam getBooleanTexture() {
+		return booleanTexture;
+	}
+
+	public void setBooleanTexture(ModeleBooleanParam booleanTexture) {
+		this.booleanTexture = booleanTexture;
 	}
 
 	private static final int IMG_WIDTH = 170;

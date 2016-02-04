@@ -1,15 +1,15 @@
 package hobotun.user;
 
-import hobotun.core.UserSession;
-import hobotun.db.DBUtil;
-import hobotun.db.model.ModelDao;
-import hobotun.db.model.tbl.ModelTbl;
-
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
+
+import hobotun.core.UserSession;
+import hobotun.db.DBUtil;
+import hobotun.db.model.ModelDao;
+import hobotun.db.model.tbl.ModelTbl;
 
 @ManagedBean(name = "modelNotModer")
 @ViewScoped

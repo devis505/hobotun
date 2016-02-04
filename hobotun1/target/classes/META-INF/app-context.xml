@@ -21,7 +21,8 @@
 	<bean id="fileDao" class="hobotun.db.file.FileDao" p:dataSource-ref="dataSource" />
 	<bean id="modelDao" class="hobotun.db.model.ModelDao" p:dataSource-ref="dataSource" />
 	<bean id="systemParamDao" class="hobotun.db.SystemParam.SystemParamDao" p:dataSource-ref="dataSource" /> 
-	<bean id="userModelDao" class="hobotun.db.userModel.UserModelDao" p:dataSource-ref="dataSource" /> 
+	<bean id="userModelDao" class="hobotun.db.userModel.UserModelDao" p:dataSource-ref="dataSource" />
+	<bean id="forumDao" class="hobotun.db.userModel.UserModelDao" p:dataSource-ref="dataSource" /> 
 		
 	<context:property-placeholder location="classpath:META-INF/application.properties"/>
 	

@@ -111,7 +111,7 @@
 				<p:panel id="greenFbx" styleClass="GreenPanel" style="height: 66px;">
 					<h:panelGrid columns="2">
 						<h:outputText id="fbxGrinBox" value=" " styleClass="GreenBlick #{saveModel.booleanParams.opacity}" rendered="true" />
-						<h:outputText id="fbxCost" value="+#{saveModel.costFlex}руб." styleClass="CostBlock #{saveModel.booleanParams.opacity}" rendered="true" />
+						<h:outputText id="fbxCost" value="+5руб." styleClass="CostBlock #{saveModel.booleanParams.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>
 				
@@ -122,13 +122,13 @@
 				<p:outputLabel value="Содержит: " styleClass="Fs20" />
 				<h:panelGrid  columns="2" style="margin-bottom:10px" cellpadding="5">
 					<p:selectBooleanCheckbox value="#{saveModel.texture.param}" itemLabel="текстуры и материалы" >
-						<p:ajax update="greenTexture itogo"  listener="#{saveModel.onChangeFbx}"/>
+						<p:ajax update="greenTexture itogo"  listener="#{saveModel.onChangeTexture}"/>
 					</p:selectBooleanCheckbox>
 				</h:panelGrid>
 				<p:panel id="greenTexture" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
-						<h:outputText id="textureGrinBox" value=" " styleClass="GreenBlick #{saveModel.booleanParams.opacity}" rendered="true" />
-						<h:outputText id="textureCost" value="+#{saveModel.costFlex}руб." styleClass="CostBlock #{saveModel.booleanParams.opacity}" rendered="true" />
+						<h:outputText id="textureGrinBox" value=" " styleClass="GreenBlick #{saveModel.texture.opacity}" rendered="true" />
+						<h:outputText id="textureCost" value="+5руб." styleClass="CostBlock #{saveModel.texture.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>
 				
@@ -138,9 +138,9 @@
 			        <p:tooltip id="toolTipTrack7" for="track7" value="#{saveModel.modeleHint.hint[7]}" trackMouse="true" />
 			    </h:outputLink>
 				<p:outputLabel for="countPoligons" value="Кол-во полигонов:" styleClass="Fs20" style="padding-right: 10px;" />
-				<p:spinner id="countPoligons" value="#{saveModel.countPoligons.param}" label="countPoligons" min="0" size="40">
+				<p:inputMask id="countPoligons" value="#{saveModel.countPoligons.param}" label="countPoligons" size="40" mask="9999999999">
 					<p:ajax process="@this" update="greenPolingons itogo" />
-				</p:spinner>
+				</p:inputMask>
 				<p:panel id="greenPolingons" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
 						<h:outputText id="polingonsGrinBox" value=" " styleClass="GreenBlick #{saveModel.countPoligons.opacity}" rendered="true" />
