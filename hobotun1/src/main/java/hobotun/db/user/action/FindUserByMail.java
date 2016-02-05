@@ -13,21 +13,19 @@ import org.springframework.jdbc.object.MappingSqlQuery;
 
 public class FindUserByMail extends MappingSqlQuery<UserTbl> {
 
-    private static final String SQL_FIND_USER_BY_MAIL = 
-	    "select * \n"
-	  + "  from hb_user u \n"
-	  + " where u.mail = :mail \n";
+	private static final String SQL_FIND_USER_BY_MAIL = "select * \n" + "  from hb_user u \n"
+			+ " where u.mail = :mail \n";
 
-    public FindUserByMail(DataSource dataSource) {
-	super(dataSource, SQL_FIND_USER_BY_MAIL);
+	public FindUserByMail(DataSource dataSource) {
+		super(dataSource, SQL_FIND_USER_BY_MAIL);
 
-	super.declareParameter(new SqlParameter("mail", Types.VARCHAR));
-	super.declareParameter(new SqlParameter("password", Types.VARCHAR));
-    }
+		super.declareParameter(new SqlParameter("mail", Types.VARCHAR));
+		super.declareParameter(new SqlParameter("password", Types.VARCHAR));
+	}
 
-    @Override
-    protected UserTbl mapRow(ResultSet rs, int rowNum) throws SQLException {
-	return new UserTbl(rs);
-    }
+	@Override
+	protected UserTbl mapRow(ResultSet rs, int rowNum) throws SQLException {
+		return new UserTbl(rs);
+	}
 
 }

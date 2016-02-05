@@ -1,35 +1,39 @@
 package hobotun.forum;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 
 import hobotun.db.DBUtil;
 import hobotun.db.forum.ForumDao;
 import hobotun.db.forum.table.ForumSectionTbl;
+import hobotun.db.forum.table.ForumTbl;
 
-@ManagedBean(name = "forumSection")
-@ViewScoped
-public class ForumSection implements Serializable {
-
-	private static final long serialVersionUID = 4207631485152406643L;
-	private List<ForumSectionTbl> forumSections;
-
-	private ForumSection() {
-
+public class ForumSection {
+	
+	private ForumSectionTbl forumSection;
+	private List<ForumTbl> forums = new ArrayList<>();
+		
+	public ForumSection (ForumSectionTbl forumSection) {
+		this.forumSection = forumSection;
+		
 		ForumDao forumDao = DBUtil.getInstance().getBean("forumDao", ForumDao.class);
-		forumSections = forumDao.getAllForumSection();
-
+		setForums(forumDao.getAllForumBySelection(forumSection.getId_forum_section()));
 	}
 
-	public List<ForumSectionTbl> getForumSections() {
-		return forumSections;
+	public ForumSectionTbl getForumSection() {
+		return forumSection;
 	}
 
-	public void setForumSections(List<ForumSectionTbl> forumSections) {
-		this.forumSections = forumSections;
+	public void setForumSection(ForumSectionTbl forumSections) {
+		this.forumSection = forumSections;
 	}
 
+	public List<ForumTbl> getForums() {
+		return forums;
+	}
+
+	public void setForums(List<ForumTbl> forums) {
+		this.forums = forums;
+	}
+	
 }

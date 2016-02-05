@@ -70,22 +70,31 @@
 				        
 				        <table style="margin: auto; width: 85%; color:white; background-color: #455a64;">
 				        	<tr>
-				        		<td style="border-right-color: white; border-right-style: ridge;"><span style="padding-left: 15px;">Форум</span></td>
+				        		<td style="border-right-color: white; border-right-style: ridge; height: 35px;"><span style="padding-left: 15px;">Форум</span></td>
 				        		<td style="width:70px; border-right-color: white; border-right-style: ridge; text-align: center;">Темы</td>
 				        		<td style="width:90px; text-align: center;">Сообщения</td>
 				        	</tr>
 				        	<tr>
-				        		<td colspan="3" style="background-color: white;">
+								<td colspan="3" style="background-color: white;">
 									<h:form id="FormForumSection" enctype="multipart/form-data" style="padding-left: 0px;">
-										<p:dataGrid var="section" value="#{forumSection.forumSections}" columns="1" paginator="false" id="forumSection" layout="grid" >
-											<span>
-												<i class="fa #{section.vl_icon}">#{section.nm_forum_section}</i>
+										<p:dataGrid var="section" value="#{forumMain.forumSections}" columns="1" paginator="false" id="forumSection" layout="grid" >
+											<span style="font-size: 20px;">
+												<i class="fa #{section.forumSection.vl_icon}">#{section.forumSection.nm_forum_section}</i>
 											</span>
+											<table style="margin-top: -25px; width: 100%;">
+												<p:dataGrid var="forums" value="#{section.forums}" columns="1" paginator="false" id="forums" layout="grid" >
+													<tr style="background: rgba(0, 0, 0, 0.06);">
+														<td style="font-size: 16px;"><a href="">#{forums.nm_forum}</a><br/>
+															<span style="font-size: 10px; color: #A1ADAF; padding-bottom: 3px; padding-left: 1px;"> #{forums.vl_discription} </span></td>
+														<td style="width: 75px; text-align: center;">0</td>
+														<td style="width: 77px; text-align: center;">0</td>
+													</tr>													
+												</p:dataGrid>
+											</table>
 										</p:dataGrid>
 							        </h:form>
-
-								</td>
-				        	</tr>
+						        </td>
+							</tr>
 				        </table>				        
 
 			        </div>

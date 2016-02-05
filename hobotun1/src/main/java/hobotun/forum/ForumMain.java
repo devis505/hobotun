@@ -1,6 +1,7 @@
 package hobotun.forum;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -15,20 +16,24 @@ import hobotun.db.forum.table.ForumSectionTbl;
 public class ForumMain implements Serializable {
 
 	private static final long serialVersionUID = 4207631485152406643L;
-	private List<ForumSectionTbl> forumSections;
+	private List<ForumSection> forumSections = new ArrayList<>();
 
 	public ForumMain() {
-
 		ForumDao forumDao = DBUtil.getInstance().getBean("forumDao", ForumDao.class);
-		forumSections = forumDao.getAllForumSection();
-
+		
+		List<ForumSectionTbl> section = forumDao.getAllForumSection();
+		
+		for (ForumSectionTbl forumSectionTbl : section) {
+			forumSections.add(new ForumSection(forumSectionTbl));
+		}
+		
 	}
 
-	public List<ForumSectionTbl> getForumSections() {
+	public List<ForumSection> getForumSections() {
 		return forumSections;
 	}
 
-	public void setForumSections(List<ForumSectionTbl> forumSections) {
+	public void setForumSections(List<ForumSection> forumSections) {
 		this.forumSections = forumSections;
 	}
 
