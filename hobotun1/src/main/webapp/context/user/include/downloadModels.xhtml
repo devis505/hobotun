@@ -138,9 +138,10 @@
 			        <p:tooltip id="toolTipTrack7" for="track7" value="#{saveModel.modeleHint.hint[7]}" trackMouse="true" />
 			    </h:outputLink>
 				<p:outputLabel for="countPoligons" value="Кол-во полигонов:" styleClass="Fs20" style="padding-right: 10px;" />
-				<p:inputMask id="countPoligons" value="#{saveModel.countPoligons.param}" label="countPoligons" size="40" mask="9999999999">
+				<p:inputText id="countPoligons" value="#{saveModel.countPoligons.param}" label="countPoligons" size="40" onkeydown="return isNumber(event);">
 					<p:ajax process="@this" update="greenPolingons itogo" />
-				</p:inputMask>
+				</p:inputText>
+				
 				<p:panel id="greenPolingons" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
 						<h:outputText id="polingonsGrinBox" value=" " styleClass="GreenBlick #{saveModel.countPoligons.opacity}" rendered="true" />

@@ -9,12 +9,14 @@ public class ForumTbl {
 	private String nm_forum;
 	private String vl_discription;
 	private Long id_forum_section;
+	private Integer cnt_them;
 
 	public ForumTbl(ResultSet rs) throws SQLException {
 		id_forum = rs.getLong("id_forum");
 		nm_forum = rs.getString("nm_forum");
 		vl_discription = rs.getString("vl_discription");
 		id_forum_section = rs.getLong("id_forum_section");
+		cnt_them = rs.getInt("cnt_them");
 	}
 
 	public Long getId_forum() {
@@ -47,6 +49,14 @@ public class ForumTbl {
 
 	public void setId_forum_section(Long id_forum_section) {
 		this.id_forum_section = id_forum_section;
+	}
+
+	public Integer getCnt_them() {
+		return cnt_them;
+	}
+
+	public void setCnt_them(Integer cnt_them) {
+		this.cnt_them = cnt_them;
 	}
 
 }

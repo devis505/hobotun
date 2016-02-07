@@ -13,7 +13,7 @@ import hobotun.db.forum.table.ForumTbl;
 
 public class SelectForumByIdSection extends MappingSqlQuery<ForumTbl>{
 	
-	private static final String SQL_SELECT_ALL_FORUM_SECTION = "SELECT * FROM hb_forum f WHERE f.id_forum_section = :id_forum_section";
+	private static final String SQL_SELECT_ALL_FORUM_SECTION = "SELECT f.*, (SELECT COUNT(*) FROM hb_thema t WHERE t.id_forum = f.id_forum) cnt_them FROM hb_forum f WHERE f.id_forum_section = :id_forum_section";
 
 	public SelectForumByIdSection(DataSource dataSource) {
 		super(dataSource, SQL_SELECT_ALL_FORUM_SECTION);

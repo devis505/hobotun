@@ -12,6 +12,8 @@ public class ThemaTbl {
 	private String nm_user;
 	private Integer nn_count_view;
 	private Integer isUp;
+	
+	private String classStyle;
 
 	public ThemaTbl(ResultSet rs) throws SQLException {
 		id_thema = rs.getLong("id_thema");
@@ -20,8 +22,10 @@ public class ThemaTbl {
 		id_user = rs.getLong("id_user");
 		nm_user = rs.getString("nm_user");
 		nn_count_view = rs.getInt("nn_count_view");
-		isUp = rs.getInt("nn_count_view");
+		isUp = rs.getInt("isUp");
 	}
+	
+	
 
 	public ThemaTbl() {
 
@@ -81,6 +85,20 @@ public class ThemaTbl {
 
 	public void setIsUp(Integer isUp) {
 		this.isUp = isUp;
+	}
+
+	public String getClassStyle() {
+		if (isUp.equals(1)) {
+			classStyle = "fa fa-exclamation-triangle";
+		} else {
+			classStyle = "padding_left18";
+		}
+		
+		return classStyle;
+	}
+
+	public void setClassStyle(String classStyle) {
+		this.classStyle = classStyle;
 	}
 
 }

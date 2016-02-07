@@ -62,30 +62,50 @@
 					<div class="Card">
 				        <div class="CardTopic"> 
 				        	<i class="fa fa-wechat"></i>
-				            Списко форумов - <br/><br/>
+				            Списко форумов - #{thema.forum.nm_forum}<br/><br/>
 				        </div>
 				        
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 				        
+				        <a class="HoverEffect Fs20" style="margin-left: 85px;" href="../forum/addForum.jsf">Добавить тему</a>
+				        
+				        <div class="EmptyBox10"></div>
+				        
 				        <table style="margin: auto; width: 85%; color:white; background-color: #455a64;">
 				        	<tr>
 				        		<td style="border-right-color: white; border-right-style: ridge; height: 35px;"><span style="padding-left: 15px;">Форум</span></td>
-				        		<td style="width:70px; border-right-color: white; border-right-style: ridge; text-align: center;">Темы</td>
-				        		<td style="width:90px; text-align: center;">Сообщения</td>
+				        		<td style="width:70px; border-right-color: white; border-right-style: ridge; text-align: center;">Ответов</td>
+				        		<td style="width:145px; border-right-color: white; border-right-style: ridge; text-align: center;">Автор</td>
+				        		<td style="width:84px; text-align: center;">Просмотров</td>
 				        	</tr>
 				        	<tr>
-								<td colspan="3" style="background-color: white;">
-									<h:form id="FormForumSection" enctype="multipart/form-data" style="padding-left: 0px;">
-										
+								<td colspan="4" style="background-color: white;">
+									<h:form id="FormThemas" enctype="multipart/form-data" style="padding-left: 0px;">
+										<table style="padding-left: 0px; margin-top: 0px; width: 100%;">
+											<p:dataGrid var="thema" value="#{thema.themas}" columns="1" paginator="false" id="fotumThemas" layout="grid" paginatorAlwaysVisible="false" >
+												<tr style="background: rgba(0, 0, 0, 0.06);">
+													<td style="font-size: 18px; height: 40px;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}"> <i class="#{thema.classStyle}" style="padding-right: 4px;"></i>#{thema.nm_thema}</a></td>
+													<td style="font-size: 18px; height: 40px; width: 75px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">0</a></td>
+													<td style="font-size: 18px; height: 40px; width: 145px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">#{thema.nm_user}</a></td>
+													<td style="font-size: 18px; height: 40px; width: 84px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">0</a></td>
+												</tr>													
+											</p:dataGrid>
+										</table>
 							        </h:form>
 						        </td>
 							</tr>
 				        </table>				        
-
+				        
 			        </div>
 			    </div>
 			</div>
 		</div>
+		
+		<script type="text/javascript">
+	    	$('.ui-datagrid.ui-widget').remove();
+	    	$('.ui-grid-row').remove();
+        </script>
+		
 	</h:form>
 </ui:composition>
