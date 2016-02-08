@@ -60,15 +60,15 @@
 			<div class="Container100 Responsive100">
 				<div class="ContainerIndent">
 					<div class="Card">
-				        <div class="CardTopic"> 
-				        	<i class="fa fa-wechat"></i>
-				            Списко форумов - #{thema.forum.nm_forum}<br/><br/>
+				        <div class="CardTopic" style="color: #666f77;"> 
+				        	<i class="fa fa-wechat" ></i>
+				            <a href="../../pages/forum/forumList.jsf">Списко форумов</a> - <a href="../../pages/forum/forum.jsf?id=#{thema.idForum}">#{thema.forum.nm_forum}</a><br/><br/>
 				        </div>
 				        
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 				        
-				        <a class="HoverEffect Fs20" style="margin-left: 85px;" href="../forum/addForum.jsf">Добавить тему</a>
+				        <a class="HoverEffect Fs20" style="margin-left: 85px;" href="../forum/addForum.jsf?id=#{thema.idForum}">Новая тема</a>
 				        
 				        <div class="EmptyBox10"></div>
 				        

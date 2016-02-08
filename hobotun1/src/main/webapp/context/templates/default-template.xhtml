@@ -20,8 +20,8 @@
 
         <ui:insert name="head" />
     </h:head>
-    
-    <h:body styleClass="dark" style="display:none;" >
+    <!-- style="display:none;" -->
+    <h:body styleClass="dark"  >
         
         <ui:include src="#{userSession.topMenu}" />
         <ui:include src="../common/layoutmenu.xhtml" />
@@ -51,12 +51,13 @@
         <h:outputStylesheet name="css/adamantium-layout.css" library="adamantium-layout" />
         <h:outputStylesheet name="css/style.css" library="adamantium-layout" />
         
+        <!-- 
         <script type="text/javascript">
 	        $(document).ready(function() {
 	            $('body').fadeIn();
 	        });
         </script> 
-               
+              -->  
     </h:body>
     
 </html>
