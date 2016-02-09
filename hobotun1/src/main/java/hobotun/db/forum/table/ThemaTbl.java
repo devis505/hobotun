@@ -25,7 +25,6 @@ public class ThemaTbl {
 		isUp = rs.getInt("isUp");
 	}
 	
-	
 
 	public ThemaTbl() {
 

@@ -1,5 +1,6 @@
 package hobotun.forum;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,9 @@ import hobotun.db.forum.table.ThemaTbl;
 
 @ManagedBean(name = "thema")
 @ViewScoped
-public class Forum {
+public class Forum implements Serializable {
 
+	private static final long serialVersionUID = -7069708338270113831L;
 	private String idForum;
 	private List<ThemaTbl> themas = new ArrayList<>();
 	private ForumTbl forum;

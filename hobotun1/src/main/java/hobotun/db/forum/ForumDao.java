@@ -6,6 +6,10 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+
+import hobotun.db.forum.action.InsertForum;
 import hobotun.db.forum.action.SelectAllForumSection;
 import hobotun.db.forum.action.SelectForumById;
 import hobotun.db.forum.action.SelectForumByIdSection;
@@ -22,6 +26,7 @@ public class ForumDao implements IForumDao {
 	private SelectForumByIdSection selectForumByIdSection;
 	private SelectThemaByIdForum selectThemaByIdForum;
 	private SelectForumById selectForumById;
+	private InsertForum insertForum;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -30,6 +35,7 @@ public class ForumDao implements IForumDao {
 		selectForumByIdSection = new SelectForumByIdSection(dataSource);
 		selectThemaByIdForum = new SelectThemaByIdForum(dataSource);
 		selectForumById = new SelectForumById(dataSource);
+		insertForum = new InsertForum(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -63,5 +69,18 @@ public class ForumDao implements IForumDao {
 		paramMap.put("id_forum", id);
 		
 		return selectForumById.executeByNamedParam(paramMap).get(0);
+	}
+	
+	public void InsertThema(ThemaTbl themaTbl) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id_forum", themaTbl.getId_forum());
+		paramMap.put("nm_thema", themaTbl.getNm_thema());
+		paramMap.put("id_user", themaTbl.getId_user());
+
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
+		insertForum.updateByNamedParam(paramMap, keyHolder);
+
+		themaTbl.setId_thema(keyHolder.getKey().longValue());
 	}
 }

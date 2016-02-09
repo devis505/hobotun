@@ -68,20 +68,18 @@
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 				        
-				        <h:form>
+				        <h:form id="main">
 					      	<h:panelGrid style="margin: auto;">
 					      		<p:row>
 					      			<h:column><p:outputLabel value="Тема:" style="padding-right: 15px;" /> </h:column>
-					      			<h:column><p:inputText value="" placeholder="Название темы" size="80" /></h:column>
+					      			<h:column><p:inputText value="#{addTopic.nm_topic}" placeholder="Название темы" size="80" /></h:column>
 					      		</p:row>
 					      		<p:row>
 					      			<h:column colspan="2">
-										<h:form>           
-										    <p:editor id="editor" widgetVar="editorWidget" value="#{addTopic.text}" width="635" style="padding-top: 30px;" />
-										 
-										    <p:commandButton value="Сохранить" actionListener="#{addTopic.onSave}" icon="ui-icon-disk" style="margin-top:20px;" />
-										</h:form> 
-
+									    <p:editor id="editor" widgetVar="editorWidget" value="#{addTopic.text}" width="635" style="padding-top: 30px;" />
+									    <p:commandButton value="Сохранить" icon="ui-icon-disk" style="margin-top:20px;" >
+									    	<p:ajax listener="#{addTopic.onSave}" process="@form" update="@form" />
+									    </p:commandButton>
 									</h:column>
 					      		</p:row>
 					      	</h:panelGrid>
