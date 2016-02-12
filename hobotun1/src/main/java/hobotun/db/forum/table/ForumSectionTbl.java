@@ -1,10 +1,12 @@
 package hobotun.db.forum.table;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ForumSectionTbl {
+public class ForumSectionTbl implements Serializable{
 
+	private static final long serialVersionUID = 4607633388283468982L;
 	private Long id_forum_section;
 	private String nm_forum_section;
 	private String vl_icon;

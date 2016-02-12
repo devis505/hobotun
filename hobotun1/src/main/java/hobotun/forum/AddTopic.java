@@ -41,8 +41,6 @@ public class AddTopic implements Serializable {
 		
 		ForumDao forumDao = DBUtil.getInstance().getBean("forumDao", ForumDao.class);
 		forumDao.InsertThema(themaTbl);
-		
-		Misc.redirect("/pages/forum/forum.jsf?id=" + id_forum);
 	}
 
 	public String getNm_topic() {

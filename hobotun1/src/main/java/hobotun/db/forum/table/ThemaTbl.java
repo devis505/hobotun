@@ -1,10 +1,12 @@
 package hobotun.db.forum.table;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ThemaTbl {
+public class ThemaTbl implements Serializable{
 
+	private static final long serialVersionUID = 3082486198387056600L;
 	private Long id_thema;
 	private Long id_forum;
 	private String nm_thema;
@@ -12,6 +14,8 @@ public class ThemaTbl {
 	private String nm_user;
 	private Integer nn_count_view;
 	private Integer isUp;
+	private Integer isBlock;
+	private Integer nn_count_otvet;
 	
 	private String classStyle;
 
@@ -22,13 +26,23 @@ public class ThemaTbl {
 		id_user = rs.getLong("id_user");
 		nm_user = rs.getString("nm_user");
 		nn_count_view = rs.getInt("nn_count_view");
+		nn_count_otvet = rs.getInt("nn_count_otvet");
 		isUp = rs.getInt("isUp");
+		isBlock = rs.getInt("isBlock");
 	}
 	
 
 	public ThemaTbl() {
 
 	}
+	
+	public Integer getNn_count_otvet() {
+		return nn_count_otvet;
+	}
+
+	public void setNn_count_otvet(Integer nn_count_otvet) {
+		this.nn_count_otvet = nn_count_otvet;
+	}	
 	
 	public Long getId_thema() {
 		return id_thema;
@@ -91,6 +105,10 @@ public class ThemaTbl {
 			classStyle = "fa fa-exclamation-triangle";
 		} else {
 			classStyle = "padding_left18";
+		}
+		
+		if (isBlock.equals(1)) {
+			classStyle = "fa fa-lock lock";
 		}
 		
 		return classStyle;

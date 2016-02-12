@@ -11,14 +11,14 @@ import org.springframework.jdbc.object.MappingSqlQuery;
 
 import hobotun.db.forum.table.ThemaTbl;
 
-public class SelectThemaByIdForum extends MappingSqlQuery<ThemaTbl> {
+public class SelectThemaById extends MappingSqlQuery<ThemaTbl> {
 
 	private static final String SQL_SELECT_THEMA_BY_FORUM = "SELECT t.*, (SELECT u.login FROM hb_user u WHERE u.id_user = t.id_user) nm_user, "
-			+ "(select count(*) from hb_forum_msg m where m.id_thema = t.id_thema) nn_count_otvet FROM hb_thema t WHERE t.id_forum = :id_forum ORDER BY t.isUp DESC";
+			+ "(select count(*) from hb_forum_msg m where m.id_thema = t.id_thema) nn_count_otvet FROM hb_thema t WHERE t.id_thema = :id_thema";
 
-	public SelectThemaByIdForum(DataSource dataSource) {
+	public SelectThemaById(DataSource dataSource) {
 		super(dataSource, SQL_SELECT_THEMA_BY_FORUM);
-		super.declareParameter(new SqlParameter("id_forum", Types.INTEGER));
+		super.declareParameter(new SqlParameter("id_thema", Types.INTEGER));
 	}
 
 	@Override

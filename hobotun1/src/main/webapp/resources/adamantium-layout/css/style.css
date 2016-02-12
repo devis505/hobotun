@@ -150,3 +150,8 @@ a {
 .padding_left18 {
 	padding-left: 18px;
 }
+
+.lock {
+	padding-right: 7px !important;
+    padding-left: 4px;
+}
