@@ -77,9 +77,8 @@
 					      		<p:row>
 					      			<h:column colspan="2">
 									    <p:editor id="editor" widgetVar="editorWidget" value="#{addTopic.text}" width="635" style="padding-top: 30px;" />
-									    <p:commandButton value="Сохранить" icon="ui-icon-disk" style="margin-top:20px;" >
-									    	<p:ajax listener="#{addTopic.onSave}" process="@form" update="@form" />
-									    </p:commandButton>
+									    <p:commandButton value="Сохранить" icon="ui-icon-disk" style="margin-top:20px; background-color: #455A64;" 
+									    	process="@form" update="@form" actionListener="#{addTopic.onSave}" />
 									</h:column>
 					      		</p:row>
 					      	</h:panelGrid>

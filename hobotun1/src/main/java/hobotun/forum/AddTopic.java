@@ -1,6 +1,7 @@
 package hobotun.forum;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -10,6 +11,7 @@ import hobotun.core.Misc;
 import hobotun.core.UserSession;
 import hobotun.db.DBUtil;
 import hobotun.db.forum.ForumDao;
+import hobotun.db.forum.table.ForumMsgTbl;
 import hobotun.db.forum.table.ThemaTbl;
 
 @ManagedBean (name="addTopic")
@@ -41,6 +43,17 @@ public class AddTopic implements Serializable {
 		
 		ForumDao forumDao = DBUtil.getInstance().getBean("forumDao", ForumDao.class);
 		forumDao.InsertThema(themaTbl);
+		
+		ForumMsgTbl forumMsgTbl = new ForumMsgTbl();
+		
+		forumMsgTbl.setDt_msg(new Date());
+		forumMsgTbl.setId_thema(themaTbl.getId_thema());
+		forumMsgTbl.setId_user(UserSession.getInstance().getUser().getUserTbl().getId_user());
+		forumMsgTbl.setVl_msg(text);
+		
+		forumDao.InsertForumMsg(forumMsgTbl);
+		
+		Misc.redirect("/pages/forum/topic.jsf?id=" + forumMsgTbl.getId_thema());
 	}
 
 	public String getNm_topic() {

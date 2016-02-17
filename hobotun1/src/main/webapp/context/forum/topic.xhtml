@@ -70,6 +70,11 @@
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 				        
+				        <p:commandButton value="Закрыть тему" icon="icon-lock-fill" style="margin-left:86px; background-color: #455A64;" 
+							process="@form" update="@form" actionListener="#{topic.onClose}" rendered="#{topic.visibleBlock}" />
+				        	
+				        <div class="EmptyBox10"></div>
+				        
 				        <table style="margin: auto; width: 85%; color:white; background-color: #455a64;">
 				        	<tr>
 				        		<td style="border-right-color: white; border-right-style: ridge; height: 35px;"><span style="padding-left: 15px;">Автор</span></td>
@@ -88,14 +93,25 @@
 														<tr><td><p:outputLabel value="На сайте c #{msg.dtReg}" /></td></tr>
 													</table>
 												</td>
-												<td style="font-size: 18px; height: 40px; width: 800px; color: black; vertical-align: top;"><span style="display: block; padding-left:5px; padding-top: 5px; padding-right:5px;">#{msg.vl_msg}</span></td>
+												<td style="font-size: 18px; height: 40px; width: 800px; color: black; vertical-align: top;">
+													<span style="display: block; padding-left:5px; padding-top: 5px; padding-right:5px;">
+														<h:outputText value="#{msg.vl_msg}" escape="false" />
+													</span>
+												</td>
 											</tr>													
 										</p:dataGrid>
 									</table>
 						        </td>
 							</tr>
-				        </table>				        
+				        </table>	
 				        
+				        <div class="EmptyBox10"></div>	
+				        
+				        	<div style="display: block; width: 85%; margin: auto; ">
+						        <p:editor id="editor" widgetVar="editorWidget" value="#{topic.text}" width="635" style="padding-top: 30px;" rendered="#{topic.visibleAdd}"/>
+								<p:commandButton value="Отправить" icon="ui-icon-disk" style="margin-top:20px; background-color: #455A64;"  rendered="#{topic.visibleAdd}"
+								    	process="@form" update="@form" actionListener="#{topic.onSaveText}" />
+							</div>			        
 			        </div>
 			    </div>
 			</div>

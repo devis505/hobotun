@@ -19,6 +19,16 @@ public class ThemaTbl implements Serializable{
 	
 	private String classStyle;
 
+	public Integer getIsBlock() {
+		return isBlock;
+	}
+
+
+	public void setIsBlock(Integer isBlock) {
+		this.isBlock = isBlock;
+	}
+
+
 	public ThemaTbl(ResultSet rs) throws SQLException {
 		id_thema = rs.getLong("id_thema");
 		id_forum = rs.getLong("id_forum");

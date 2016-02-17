@@ -18,7 +18,7 @@ public class SelectForumMsgByIdThema extends MappingSqlQuery<ForumMsgTbl> {
 			+ "  FROM hb_forum_msg fm "
 			+ " INNER JOIN hb_user u ON u.id_user = fm.id_user "
 			+ " WHERE fm.id_thema = :id_thema  "
-			+ " ORDER BY fm.id_forum_msg DESC ";
+			+ " ORDER BY fm.id_forum_msg ";
 
 	public SelectForumMsgByIdThema(DataSource dataSource) {
 		super(dataSource, SQL_SELECT_THEMA_BY_FORUM);
