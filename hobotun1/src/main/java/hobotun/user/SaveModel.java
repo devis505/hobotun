@@ -29,7 +29,6 @@ import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
 import hobotun.db.userModel.UserModelDao;
 import hobotun.db.userModel.table.UserModelTbl;
-import hobotun.user.modelParams.ModeleHints;
 import hobotun.util.SystemParams;
 
 @ManagedBean(name = "saveModel1")

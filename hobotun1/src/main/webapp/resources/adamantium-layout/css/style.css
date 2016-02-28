@@ -150,3 +150,28 @@ a {
 .padding_left18 {
 	padding-left: 18px;
 }
+
+.ui-paginator.ui-paginator-bottom.ui-widget-header.ui-corner-bottom {
+	background-color: #455A64;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-button-text-only {
+    background-color: #455A64 !important;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-corner-left.ui-state-active {
+    background-color: rgba(79, 105, 117, 0.78) !important;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-corner-left.ui-state-hover {
+    background-color: rgba(79, 105, 117, 0.78) !important;
+}
+
+
+.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-state-active{
+    background-color: rgba(79, 105, 117, 0.78) !important;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-state-hover {
+    background-color: rgba(79, 105, 117, 0.78) !important;
+}
