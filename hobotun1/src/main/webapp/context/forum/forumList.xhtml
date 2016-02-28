@@ -61,8 +61,8 @@
 				<div class="ContainerIndent">
 					<div class="Card">
 				        <div class="CardTopic"> 
-				        	<i class="fa fa-wechat"></i>
-				            Списко форумов<br/><br/>
+				        	<i class="fa fa-wechat" style="color: #666f77;"></i>
+				            <a href="../../pages/forum/forumList.jsf">Списко форумов</a><br/><br/>
 				        </div>
 				        
 				        <div class="SeparatorFull"></div>
@@ -88,7 +88,7 @@
 														<td style="font-size: 16px;"><a href="../../pages/forum/forum.jsf?id=#{forums.id_forum}">#{forums.nm_forum}</a><br/>
 															<span style="font-size: 10px; color: #A1ADAF; padding-bottom: 3px; padding-left: 1px;"> #{forums.vl_discription} </span></td>
 														<td style="width: 75px; text-align: center;">#{forums.cnt_them}</td>
-														<td style="width: 77px; text-align: center;">0</td>
+														<td style="width: 77px; text-align: center;">#{forums.cnt_msg}</td>
 													</tr>													
 												</p:dataGrid>
 											</table>

@@ -60,25 +60,34 @@
 			<div class="Container100 Responsive100">
 				<div class="ContainerIndent">
 					<div class="Card">
-				        <div class="CardTopic"> 
-				        	<i class="fa fa-wechat"></i>
-				            Списко форумов - <br/><br/>
+				        <div class="CardTopic" style="color: #666f77;"> 
+				        	<i class="fa fa-wechat" ></i>
+				            <a href="../../pages/forum/forumList.jsf">Списко форумов</a> - <a href="../../pages/forum/forum.jsf?id=#{thema.idForum}">#{thema.forum.nm_forum}</a> - Создать новую тему<br/><br/>
 				        </div>
 				        
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 				        
-				       			        
+				        <h:form id="main">
+					      	<h:panelGrid style="margin: auto;">
+					      		<p:row>
+					      			<h:column><p:outputLabel value="Тема:" style="padding-right: 15px;" /> </h:column>
+					      			<h:column><p:inputText value="#{addTopic.nm_topic}" placeholder="Название темы" size="80" /></h:column>
+					      		</p:row>
+					      		<p:row>
+					      			<h:column colspan="2">
+									    <p:editor id="editor" widgetVar="editorWidget" value="#{addTopic.text}" width="635" style="padding-top: 30px;" />
+									    <p:commandButton value="Сохранить" icon="ui-icon-disk" style="margin-top:20px; background-color: #455A64;" 
+									    	process="@form" update="@form" actionListener="#{addTopic.onSave}" />
+									</h:column>
+					      		</p:row>
+					      	</h:panelGrid>
+					    </h:form>
 
 			        </div>
 			    </div>
 			</div>
 		</div>
-		
-		<script type="text/javascript">
-	    	$('.ui-datagrid.ui-widget').remove();
-	    	$('.ui-grid-row').remove();
-        </script>
 		
 	</h:form>
 </ui:composition>

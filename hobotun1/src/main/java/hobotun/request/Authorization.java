@@ -13,61 +13,61 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class Authorization implements Serializable {
 
-    private static final long serialVersionUID = -5446991966815543455L;
+	private static final long serialVersionUID = -5446991966815543455L;
 
-    private String pass;
-    private String email;
-    
-    private boolean error = false;
+	private String pass;
+	private String email;
 
-    public void auth() {
-	
-	error = false;
+	private boolean error = false;
 
-	if (email.isEmpty()) {
-	    Misc.setMessageElement(ID_MSG_FOR_EMAIL_ELEMENT, FacesMessage.SEVERITY_ERROR, MSG_EMPTY_EMAIL);
-	    error = true;
+	public void auth() {
+
+		error = false;
+
+		if (email.isEmpty()) {
+			Misc.setMessageElement(ID_MSG_FOR_EMAIL_ELEMENT, FacesMessage.SEVERITY_ERROR, MSG_EMPTY_EMAIL);
+			error = true;
+		}
+
+		if (pass.isEmpty()) {
+			Misc.setMessageElement(ID_MSG_FOR_PASS_ELEMENT, FacesMessage.SEVERITY_ERROR, MSG_EMPTY_PASS);
+			error = true;
+		}
+
+		if (!UserSession.getInstance().authorization(email, pass)) {
+			Misc.setMessageElement(ID_MSG_FOR_EMAIL_ELEMENT, FacesMessage.SEVERITY_ERROR, MSG_ERROR_EMAIL);
+			error = true;
+		}
+
+		if (!error) {
+			Misc.redirect("/pages/common/main.jsf");
+		}
+
+		return;
+
 	}
 
-	if (pass.isEmpty()) {
-	    Misc.setMessageElement(ID_MSG_FOR_PASS_ELEMENT, FacesMessage.SEVERITY_ERROR, MSG_EMPTY_PASS);
-	    error = true;
-	}
-	
-	if (!UserSession.getInstance().authorization(email, pass)) {
-	    Misc.setMessageElement(ID_MSG_FOR_EMAIL_ELEMENT, FacesMessage.SEVERITY_ERROR, MSG_ERROR_EMAIL);
-	    error = true;
-	}
-	
-	if (!error) {
-	    Misc.redirect("/pages/common/main.jsf");
+	public String getEmail() {
+		return email;
 	}
 
-	return;
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    }
+	public String getPass() {
+		return pass;
+	}
 
-    public String getEmail() {
-	return email;
-    }
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
 
-    public void setEmail(String email) {
-	this.email = email;
-    }
+	private static final String ID_MSG_FOR_EMAIL_ELEMENT = "login-form:Email";
+	private static final String ID_MSG_FOR_PASS_ELEMENT = "login-form:password";
 
-    public String getPass() {
-	return pass;
-    }
-
-    public void setPass(String pass) {
-	this.pass = pass;
-    }
-
-    private static final String ID_MSG_FOR_EMAIL_ELEMENT = "login-form:Email";
-    private static final String ID_MSG_FOR_PASS_ELEMENT = "login-form:password";
-
-    private static final String MSG_EMPTY_EMAIL = "E-mail не может быть пустым!";
-    private static final String MSG_EMPTY_PASS = "Пароль не может быть пустым!";
-    private static final String MSG_ERROR_EMAIL = "Неправильный логин или пароль!";
+	private static final String MSG_EMPTY_EMAIL = "E-mail не может быть пустым!";
+	private static final String MSG_EMPTY_PASS = "Пароль не может быть пустым!";
+	private static final String MSG_ERROR_EMAIL = "Неправильный логин или пароль!";
 
 }

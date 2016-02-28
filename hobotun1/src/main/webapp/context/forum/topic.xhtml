@@ -62,43 +62,58 @@
 					<div class="Card">
 				        <div class="CardTopic" style="color: #666f77;"> 
 				        	<i class="fa fa-wechat" ></i>
-				            <a href="../../pages/forum/forumList.jsf">Списко форумов</a> - <a href="../../pages/forum/forum.jsf?id=#{thema.idForum}">#{thema.forum.nm_forum}</a><br/><br/>
+				            <a href="../../pages/forum/forumList.jsf">Списко форумов</a> - 
+				            	<a href="../../pages/forum/forum.jsf?id=#{topic.forumTbl.id_forum}">#{topic.forumTbl.nm_forum}</a> - 
+				            	<a href="../../pages/forum/topic.jsf?id=#{topic.themaTbl.id_thema}">#{topic.themaTbl.nm_thema}</a><br/><br/>
 				        </div>
 				        
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 				        
-				        
-				        <p:link rendered="#{userSession.user.authorization}" styleClass="HoverEffect Fs20" 
-				        	style="margin-left: 85px;" href="../forum/addForum.jsf?id=#{thema.idForum}" value="Новая тема"/>
-				       				        
+				        <p:commandButton value="Закрыть тему" icon="icon-lock-fill" style="margin-left:86px; background-color: #455A64;" 
+							process="@form" update="@form" actionListener="#{topic.onClose}" rendered="#{topic.visibleBlock}" />
+				        	
 				        <div class="EmptyBox10"></div>
 				        
 				        <table style="margin: auto; width: 85%; color:white; background-color: #455a64;">
 				        	<tr>
-				        		<td style="border-right-color: white; border-right-style: ridge; height: 35px;"><span style="padding-left: 15px;">Форум</span></td>
-				        		<td style="width:70px; border-right-color: white; border-right-style: ridge; text-align: center;">Ответов</td>
-				        		<td style="width:145px; border-right-color: white; border-right-style: ridge; text-align: center;">Автор</td>
-				        		<td style="width:84px; text-align: center;">Просмотров</td>
+				        		<td style="border-right-color: white; border-right-style: ridge; height: 35px;"><span style="padding-left: 15px;">Автор</span></td>
+				        		<td style="width: 800px; text-align: left;"><span style="padding-left: 15px;">Сообщение</span></td>
 				        	</tr>
 				        	<tr>
-								<td colspan="4" style="background-color: white;">
-									<h:form id="FormThemas" enctype="multipart/form-data" style="padding-left: 0px;">
+								<td colspan="2" style="background-color: white;">
+									<h:form>
 										<table style="padding-left: 0px; margin-top: 0px; width: 100%;">
-											<p:dataGrid var="thema" value="#{thema.themas}" columns="1" paginator="false" id="fotumThemas" layout="grid" paginatorAlwaysVisible="false" >
+											<p:dataGrid var="msg" value="#{topic.forumMsgTbl}" columns="1" paginator="false" id="fotumThemasMsg" layout="grid" paginatorAlwaysVisible="false" >
 												<tr style="background: rgba(0, 0, 0, 0.06);">
-													<td style="font-size: 18px; height: 40px;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}"> <i class="#{thema.classStyle}" style="padding-right: 4px;"></i>#{thema.nm_thema}</a></td>
-													<td style="font-size: 18px; height: 40px; width: 75px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">#{thema.nn_count_otvet}</a></td>
-													<td style="font-size: 18px; height: 40px; width: 145px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">#{thema.nm_user}</a></td>
-													<td style="font-size: 18px; height: 40px; width: 84px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">#{thema.nn_count_view}</a></td>
+													<td style="font-size: 18px; height: 40px; color: black; vertical-align: top;">
+													
+														<table style="width: 154px;">
+															<tr><td><p:outputLabel value="#{msg.login}" /></td></tr>
+															<tr><td style="text-align: center;"><h:graphicImage url="/GetImage?idImg=#{msg.idImage}" /></td></tr>
+															<tr><td><p:outputLabel value="На сайте c #{msg.dtReg}" /></td></tr>
+														</table>
+													</td>
+													<td style="font-size: 18px; height: 40px; width: 800px; color: black; vertical-align: top;">
+														<span style="display: block; padding-left:5px; padding-top: 5px; padding-right:5px;">
+															<h:outputText value="#{msg.vl_msg}" escape="false" />
+														</span>
+													</td>
 												</tr>													
 											</p:dataGrid>
 										</table>
-							        </h:form>
+									</h:form>
 						        </td>
 							</tr>
-				        </table>				        
+				        </table>	
 				        
+				        <div class="EmptyBox10"></div>	
+				        
+				        	<div style="display: block; width: 85%; margin: auto; ">
+						        <p:editor id="editor" widgetVar="editorWidget" value="#{topic.text}" width="635" style="padding-top: 30px;" rendered="#{topic.visibleAdd}"/>
+								<p:commandButton value="Отправить" icon="ui-icon-disk" style="margin-top:20px; background-color: #455A64;"  rendered="#{topic.visibleAdd}"
+								    	process="@form" update="@form" actionListener="#{topic.onSaveText}" />
+							</div>			        
 			        </div>
 			    </div>
 			</div>

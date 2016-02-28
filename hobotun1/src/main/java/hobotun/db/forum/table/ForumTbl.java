@@ -1,15 +1,18 @@
 package hobotun.db.forum.table;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ForumTbl {
+public class ForumTbl implements Serializable {
 
+	private static final long serialVersionUID = 4808851137997662454L;
 	private Long id_forum;
 	private String nm_forum;
 	private String vl_discription;
 	private Long id_forum_section;
 	private Integer cnt_them;
+	private Integer cnt_msg;
 
 	public ForumTbl(ResultSet rs) throws SQLException {
 		id_forum = rs.getLong("id_forum");
@@ -17,6 +20,15 @@ public class ForumTbl {
 		vl_discription = rs.getString("vl_discription");
 		id_forum_section = rs.getLong("id_forum_section");
 		cnt_them = rs.getInt("cnt_them");
+		cnt_msg = rs.getInt("cnt_msg");
+	}
+
+	public Integer getCnt_msg() {
+		return cnt_msg;
+	}
+
+	public void setCnt_msg(Integer cnt_msg) {
+		this.cnt_msg = cnt_msg;
 	}
 
 	public Long getId_forum() {

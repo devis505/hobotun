@@ -151,6 +151,11 @@ a {
 	padding-left: 18px;
 }
 
+.lock {
+	padding-right: 7px !important;
+    padding-left: 4px;
+}
+
 .ui-paginator.ui-paginator-bottom.ui-widget-header.ui-corner-bottom {
 	background-color: #455A64;
 }

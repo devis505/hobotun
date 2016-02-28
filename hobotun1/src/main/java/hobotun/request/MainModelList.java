@@ -1,5 +1,6 @@
 package hobotun.request;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,8 +14,9 @@ import hobotun.db.model.tbl.ModelTbl;
 
 @ManagedBean(name = "mainModelModer")
 @ViewScoped
-public class MainModelList {
+public class MainModelList implements Serializable {
 
+	private static final long serialVersionUID = 7919462944747329695L;
 	private List<ModelTbl> models;
 	private ModelDao modelDao;
 	private CountModelTbl count;
