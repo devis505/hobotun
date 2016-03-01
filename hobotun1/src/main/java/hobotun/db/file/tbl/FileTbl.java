@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class FileTbl {
 
 	private Long idFile;
-	private byte[] file;
+	private byte[] file = null;
 	private BigDecimal mb;
 
 	public FileTbl() {

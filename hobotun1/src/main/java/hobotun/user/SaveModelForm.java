@@ -21,7 +21,6 @@ import hobotun.core.UserSession;
 import hobotun.db.DBUtil;
 import hobotun.db.Image.ImageDao;
 import hobotun.db.Image.tbl.ImageTbl;
-import hobotun.db.SystemParam.SystemParamDao;
 import hobotun.db.file.FileDao;
 import hobotun.db.file.tbl.FileTbl;
 import hobotun.db.model.ModelDao;
@@ -33,6 +32,7 @@ import hobotun.user.modelParams.ModeleHints;
 import hobotun.user.modelParams.ModeleIntegerParam;
 import hobotun.user.modelParams.ModelePartParam;
 import hobotun.user.modelParams.ModeleStringParam;
+import hobotun.util.SystemParams;
 
 @ManagedBean(name = "saveModel")
 @ViewScoped
@@ -59,7 +59,7 @@ public class SaveModelForm {
 	private ModeleBooleanParam fbx = new ModeleBooleanParam();
 	private ModeleBooleanParam obj = new ModeleBooleanParam();
 	private ModeleBooleanParam booleanParams = new ModeleBooleanParam();
-	
+
 	private ModeleBooleanParam texture = new ModeleBooleanParam();
 	private ModeleBooleanParam booleanTexture = new ModeleBooleanParam();
 
@@ -86,7 +86,7 @@ public class SaveModelForm {
 	private ImageTbl imgTbl3 = new ImageTbl();
 	private ImageTbl imgTbl4 = new ImageTbl();
 	private ImageTbl imgTbl5 = new ImageTbl();
-	
+
 	private ModeleHints modeleHint = new ModeleHints();
 
 	public ModeleHints getModeleHint() {
@@ -104,12 +104,29 @@ public class SaveModelForm {
 	public void onSaveModel() {
 
 		boolean err = false;
-		String errText = "";
+		String msg = "";
 
-		if (err) {
-			errColor = "Red";
-			allErr = errText;
+		if (modelName.isEmpty()) {
+			err = true;
+			msg = SystemParams.getInstance().getParam(26);
+		}
+
+		if (file.getFile() != null) {
+			if (file.getFile().length == 0) {
+				err = true;
+				msg = SystemParams.getInstance().getParam(27);
+			}
 		} else {
+			err = true;
+			msg = SystemParams.getInstance().getParam(27);
+		}
+		
+		if (bigImg1.isEmpty()) {
+			err = true;
+			msg = SystemParams.getInstance().getParam(28);
+		}
+
+		if (!err) {
 			try {
 				saveImage(imgTbl1);
 				saveImage(imgTbl2);
@@ -159,19 +176,21 @@ public class SaveModelForm {
 				UserModelDao userModel = DBUtil.getInstance().getBean("userModelDao", UserModelDao.class);
 				userModel.insertUserModel(userEntity);
 
-				SystemParamDao systemParamDao = DBUtil.getInstance().getBean("systemParamDao", SystemParamDao.class);
-				String messageSuccess = systemParamDao.getParamById(ID_PARAM_SUCCESS_SAVE).get(0).getVlParam();
+				String messageSuccess = SystemParams.getInstance().getParam(ID_PARAM_SUCCESS_SAVE);
 
-				allErr = "РњРѕРґРµР»СЊ СѓРґР°С‡РЅРѕ Р·Р°РіСЂСѓР¶РµРЅР° РЅР° СЃРµСЂРІРµСЂ.";
 				Misc.setMessageElement(ID_MSG_FOR_SAVE_ELEMENT, FacesMessage.SEVERITY_INFO, messageSuccess);
 
 				errColor = "Green";
 				saveButtonEnable = true;
 			} catch (Exception e) {
 				e.printStackTrace();
+				err = true;
+				msg = "Произошла ошибка в момент сохранения модели, обратитесь к администратору";
 			}
-
+		} else {
+			Misc.setMessageElement(ID_MSG_FOR_SAVE_ELEMENT, FacesMessage.SEVERITY_ERROR, msg);
 		}
+
 	}
 
 	private void saveImage(ImageTbl img) {
@@ -180,7 +199,7 @@ public class SaveModelForm {
 			imageDao.Insert(img);
 		}
 	}
-	
+
 	public void onChangeTexture() {
 		if (texture.getParam()) {
 			texture.setOpacity100();
@@ -464,39 +483,39 @@ public class SaveModelForm {
 		if (!isAltruist) {
 
 			if (!modeleTegs.isEmpty()) {
-				cost += 5;
+				cost += new Integer(modeleHint.getHint().get(15));
 			}
 
 			if (!modeleDescription.isEmpty()) {
-				cost += 5;
+				cost += new Integer(modeleHint.getHint().get(16));
 			}
 
 			if (!formatGreenVisible.isEmpty()) {
-				cost += 5;
+				cost += new Integer(modeleHint.getHint().get(17));
 			}
 
 			if (!categoryGreenVisible.isEmpty()) {
-				cost += 5;
+				cost += new Integer(modeleHint.getHint().get(18));
 			}
 
 			if (!fbx.isEmpty() || !obj.isEmpty()) {
-				cost += 5;
+				cost += new Integer(modeleHint.getHint().get(19));
 			}
 
 			if (!texture.isEmpty()) {
-				cost += 5;
+				cost += new Integer(modeleHint.getHint().get(20));
 			}
 
 			if (!countPoligons.isEmpty()) {
-				cost += 5;
+				cost += new Integer(modeleHint.getHint().get(21));
 			}
 
 			if (!bigImg4.isEmpty()) {
-				cost += 10;
+				cost += new Integer(modeleHint.getHint().get(22));
 			}
 
 			if (!bigImg5.isEmpty()) {
-				cost += 20;
+				cost += new Integer(modeleHint.getHint().get(23));
 			}
 		}
 	}

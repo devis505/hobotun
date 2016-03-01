@@ -17,7 +17,7 @@
 			<p:dataGrid var="model" value="#{modelBay.models}" columns="4" paginator="false" id="modelsModeration" layout="grid">
 
 				<span style="width: 170px; height: 160px; padding-bottom: 20px;" class="Container100 ContainerIndent #{model.opacality}"> 
-					<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 
+					<h:graphicImage url="#{defValue.appPath}/GetImage?idImg=#{model.idImg1min}" /> 
 				</span>
 				
 			</p:dataGrid>

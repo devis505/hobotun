@@ -62,7 +62,7 @@
 					<div class="Card">
 				        <div class="CardTopic" style="color: #666f77;"> 
 				        	<i class="fa fa-wechat" ></i>
-				            <a href="../../pages/forum/forumList.jsf">Списко форумов</a> - <a href="../../pages/forum/forum.jsf?id=#{thema.idForum}">#{thema.forum.nm_forum}</a><br/><br/>
+				            <a href="#{defValue.appPath}/pages/forum/forumList.jsf">Списко форумов</a> - <a href="#{defValue.appPath}/pages/forum/forum.jsf?id=#{thema.idForum}">#{thema.forum.nm_forum}</a><br/><br/>
 				        </div>
 				        
 				        <div class="SeparatorFull"></div>
@@ -70,7 +70,7 @@
 				        
 				        
 				        <p:link rendered="#{userSession.user.authorization}" styleClass="HoverEffect Fs20" 
-				        	style="margin-left: 85px;" href="../forum/addForum.jsf?id=#{thema.idForum}" value="Новая тема"/>
+				        	style="margin-left: 85px;" href="#{defValue.appPath}/pages/forum/addForum.jsf?id=#{thema.idForum}" value="Новая тема"/>
 				       				        
 				        <div class="EmptyBox10"></div>
 				        
@@ -87,7 +87,7 @@
 										<table style="padding-left: 0px; margin-top: 0px; width: 100%;">
 											<p:dataGrid var="thema" value="#{thema.themas}" columns="1" paginator="false" id="fotumThemas" layout="grid" paginatorAlwaysVisible="false" >
 												<tr style="background: rgba(0, 0, 0, 0.06);">
-													<td style="font-size: 18px; height: 40px;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}"> <i class="#{thema.classStyle}" style="padding-right: 4px;"></i>#{thema.nm_thema}</a></td>
+													<td style="font-size: 18px; height: 40px;"><a href="#{defValue.appPath}/pages/forum/topic.jsf?id=#{thema.id_thema}"> <i class="#{thema.classStyle}" style="padding-right: 4px;"></i>#{thema.nm_thema}</a></td>
 													<td style="font-size: 18px; height: 40px; width: 75px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">#{thema.nn_count_otvet}</a></td>
 													<td style="font-size: 18px; height: 40px; width: 145px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">#{thema.nm_user}</a></td>
 													<td style="font-size: 18px; height: 40px; width: 84px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">#{thema.nn_count_view}</a></td>

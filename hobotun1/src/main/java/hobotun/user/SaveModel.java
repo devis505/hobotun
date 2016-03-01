@@ -29,14 +29,12 @@ import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
 import hobotun.db.userModel.UserModelDao;
 import hobotun.db.userModel.table.UserModelTbl;
-import hobotun.util.SystemParams;
 
 @ManagedBean(name = "saveModel1")
 @ViewScoped
 public class SaveModel implements Serializable {
 
 	private static final long serialVersionUID = 5823856868775631334L;
-	private Integer percent = 0;
 	private BigDecimal price = BigDecimal.valueOf(0);
 
 	private ImageDao imageDao;
@@ -128,8 +126,6 @@ public class SaveModel implements Serializable {
 		format = new Format();
 		format.init();
 
-		percent = Integer.valueOf(SystemParams.getInstance().getParam(new Long(1)));
-
 		imageDao = DBUtil.getInstance().getBean("imageDao", ImageDao.class);
 		fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
 		modelDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
@@ -213,12 +209,6 @@ public class SaveModel implements Serializable {
 		}
 
 		price = tmpPrice;
-
-		// BigDecimal sum =
-		// price.multiply(BigDecimal.valueOf(percent)).divide(BigDecimal.valueOf(100));
-		// return "Цена модели составляет: " + price +
-		// ". за каждое скачивание вы получите: " +
-		// sum;
 	}
 
 	public UploadedFile getImgFile1() {
@@ -515,10 +505,6 @@ public class SaveModel implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Integer getPercent() {
-		return percent;
 	}
 
 	public boolean isAltruist() {

@@ -41,7 +41,7 @@
 				<p:panel id="greenTags" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
 						<h:outputText id="tagsGrinBox" value=" " styleClass="GreenBlick #{saveModel.modeleTegs.opacity}" rendered="true" />
-						<h:outputText id="tagsCost" value="+5руб." styleClass="CostBlock #{saveModel.modeleTegs.opacity}" rendered="true" />
+						<h:outputText id="tagsCost" value="#{saveModel.modeleHint.hint[15]}руб." styleClass="CostBlock #{saveModel.modeleTegs.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>
 				
@@ -57,7 +57,7 @@
 				<p:panel id="greenDesc" styleClass="GreenPanel" style="height: 99px; width: 85px;">
 					<h:panelGrid columns="2">
 						<h:outputText id="descGrinBox" value=" " styleClass="GreenArea #{saveModel.modeleDescription.opacity}" rendered="true" />
-						<h:outputText id="descCost" value=" +5руб." styleClass="CostBlock #{saveModel.modeleDescription.opacity}" rendered="true" />
+						<h:outputText id="descCost" value="#{saveModel.modeleHint.hint[16]}руб." styleClass="CostBlock #{saveModel.modeleDescription.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>
 				
@@ -74,7 +74,7 @@
 				<p:panel id="greenFormats" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
 						<h:outputText id="formatGrinBox" value=" " styleClass="GreenBlick #{saveModel.formatGreenVisible.opacity}" rendered="true" />
-						<h:outputText id="formatCost" value=" +5руб." styleClass="CostBlock #{saveModel.formatGreenVisible.opacity}" rendered="true" />
+						<h:outputText id="formatCost" value="#{saveModel.modeleHint.hint[17]}руб." styleClass="CostBlock #{saveModel.formatGreenVisible.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>
 				
@@ -91,7 +91,7 @@
 				<p:panel id="greenCategory" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
 						<h:outputText id="categoryGrinBox" value=" " styleClass="GreenBlick #{saveModel.categoryGreenVisible.opacity}" rendered="true" />
-						<h:outputText id="categoryCost" value=" +5руб." styleClass="CostBlock #{saveModel.categoryGreenVisible.opacity}" rendered="true" />
+						<h:outputText id="categoryCost" value="#{saveModel.modeleHint.hint[18]}руб." styleClass="CostBlock #{saveModel.categoryGreenVisible.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>
 				
@@ -111,7 +111,7 @@
 				<p:panel id="greenFbx" styleClass="GreenPanel" style="height: 66px;">
 					<h:panelGrid columns="2">
 						<h:outputText id="fbxGrinBox" value=" " styleClass="GreenBlick #{saveModel.booleanParams.opacity}" rendered="true" />
-						<h:outputText id="fbxCost" value="+5руб." styleClass="CostBlock #{saveModel.booleanParams.opacity}" rendered="true" />
+						<h:outputText id="fbxCost" value="#{saveModel.modeleHint.hint[19]}руб." styleClass="CostBlock #{saveModel.booleanParams.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>
 				
@@ -128,7 +128,7 @@
 				<p:panel id="greenTexture" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
 						<h:outputText id="textureGrinBox" value=" " styleClass="GreenBlick #{saveModel.texture.opacity}" rendered="true" />
-						<h:outputText id="textureCost" value="+5руб." styleClass="CostBlock #{saveModel.texture.opacity}" rendered="true" />
+						<h:outputText id="textureCost" value="#{saveModel.modeleHint.hint[20]}руб." styleClass="CostBlock #{saveModel.texture.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>
 				
@@ -145,7 +145,7 @@
 				<p:panel id="greenPolingons" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
 						<h:outputText id="polingonsGrinBox" value=" " styleClass="GreenBlick #{saveModel.countPoligons.opacity}" rendered="true" />
-						<h:outputText id="polingonsCost" value="+5руб." styleClass="CostBlock #{saveModel.countPoligons.opacity}" rendered="true" />
+						<h:outputText id="polingonsCost" value="#{saveModel.modeleHint.hint[21]}руб." styleClass="CostBlock #{saveModel.countPoligons.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>
 				
@@ -255,7 +255,7 @@
 				<p:panel id="greenModeHiPoly" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
 						<h:outputText id="HiPolyGrinBox" value=" " styleClass="GreenBlick #{saveModel.bigImg4.opacity}" rendered="true" />
-						<h:outputText id="HiPolyCost" value="+10руб." styleClass="CostBlock #{saveModel.bigImg4.opacity}" rendered="true" />
+						<h:outputText id="HiPolyCost" value="#{saveModel.modeleHint.hint[22]}руб." styleClass="CostBlock #{saveModel.bigImg4.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>		
 				
@@ -277,7 +277,7 @@
 				<p:panel id="greenModelowPoly" styleClass="GreenPanel">
 					<h:panelGrid columns="2">
 						<h:outputText id="lowPolyGrinBox" value=" " styleClass="GreenBlick #{saveModel.bigImg5.opacity}" rendered="true" />
-						<h:outputText id="lowPolyCost" value="+20руб." styleClass="CostBlock #{saveModel.bigImg5.opacity}" rendered="true" />
+						<h:outputText id="lowPolyCost" value="#{saveModel.modeleHint.hint[23]}руб." styleClass="CostBlock #{saveModel.bigImg5.opacity}" rendered="true" />
 					</h:panelGrid>
 				</p:panel>				
 				
@@ -303,7 +303,7 @@
 		<h:form id="saveForm">,
 			<span>
 				<h:panelGrid columns="2" id="saveModel" style="float:right;">
-					<p:message for="save" />
+					<p:message for="save" style="padding: 9px !important;" />
 					<p:commandButton value="Сохранить" id="save" update="saveModel" actionListener="#{saveModel.onSaveModel}" disabled="#{saveModel.saveButtonEnable}" />
 				</h:panelGrid>
 			</span>

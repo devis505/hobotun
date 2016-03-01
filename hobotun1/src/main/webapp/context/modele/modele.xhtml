@@ -61,8 +61,8 @@
 				<div class="ContainerIndent">
 					<div class="Card" style="padding-top: 17px; padding-left: 6px;">
 				        <div class="CardTopic" style="padding-left: 10px;"> 
-				        	<a href="../user/userProfil.jsf?id=1">
-				        		<h:graphicImage style="border: 1px solid #8D9090;" styleClass="Fleft MarRight10" url="/GetImage?idImg=#{modele.user.idImage}"></h:graphicImage>
+				        	<a href="#{defValue.appPath}/pages/user/userProfil.jsf?id=1">
+				        		<h:graphicImage style="border: 1px solid #8D9090;" styleClass="Fleft MarRight10" url="#{defValue.appPath}/GetImage?idImg=#{modele.user.idImage}"></h:graphicImage>
 				        	</a>
 				            #{modele.modele.nmModel}<br/><br/>
 				        	<span class="CardSubTopic Fs12 Fleft">
@@ -77,33 +77,33 @@
 				        
 				        <div class="Container100 Responsive100">
 				        	<div class="ContainerIndent Fleft">
-				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic1Classes}" url="/GetImage?idImg=#{modele.modele.idImg1min}" rendered="#{modele.visibleImg1}">
+				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic1Classes}" url="#{defValue.appPath}/GetImage?idImg=#{modele.modele.idImg1min}" rendered="#{modele.visibleImg1}">
 				        			<p:ajax event="mouseup" update="main" process="@form" listener="#{modele.select1}" />
 				        		</h:graphicImage>
 				        	</div>
 				        	<div class="ContainerIndent Fleft">
-				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic2Classes}" url="/GetImage?idImg=#{modele.modele.idImg2min}" rendered="#{modele.visibleImg2}">
+				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic2Classes}" url="#{defValue.appPath}/GetImage?idImg=#{modele.modele.idImg2min}" rendered="#{modele.visibleImg2}">
 				        			<p:ajax event="mouseup" update="main" process="@form" listener="#{modele.select2}" />
 				        		</h:graphicImage>
 				        	</div>
 				        	<div class="ContainerIndent Fleft">
-				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic3Classes}" url="/GetImage?idImg=#{modele.modele.idImg3min}" rendered="#{modele.visibleImg3}">
+				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic3Classes}" url="#{defValue.appPath}/GetImage?idImg=#{modele.modele.idImg3min}" rendered="#{modele.visibleImg3}">
 				        			<p:ajax event="mouseup" update="main" process="@form" listener="#{modele.select3}" />
 				        		</h:graphicImage>
 				        	</div>		
 				        	<div class="ContainerIndent Fleft">
-				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic4Classes}" url="/GetImage?idImg=#{modele.modele.idImg4min}" rendered="#{modele.visibleImg4}">
+				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic4Classes}" url="#{defValue.appPath}/GetImage?idImg=#{modele.modele.idImg4min}" rendered="#{modele.visibleImg4}">
 				        			<p:ajax event="mouseup" update="main" process="@form" listener="#{modele.select4}" />
 				        		</h:graphicImage>
 				        	</div>	
 				        	<div class="ContainerIndent Fleft">
-				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic5Classes}" url="/GetImage?idImg=#{modele.modele.idImg5min}" rendered="#{modele.visibleImg5}">
+				        		<h:graphicImage style="cursor: pointer;" styleClass="Fleft MarRight10 #{modele.miniPic5Classes}" url="#{defValue.appPath}/GetImage?idImg=#{modele.modele.idImg5min}" rendered="#{modele.visibleImg5}">
 				        			<p:ajax event="mouseup" update="main" process="@form" listener="#{modele.select5}" />
 				        		</h:graphicImage>
 				        	</div>			        	
 				        </div>		
 				        
-				        <h:graphicImage id="img" width="660" styleClass="ContainerIndent Fleft MarRight10" url="/GetImage?idImg=#{modele.idBigImg}"></h:graphicImage>	
+				        <h:graphicImage id="img" width="660" styleClass="ContainerIndent Fleft MarRight10" url="#{defValue.appPath}/GetImage?idImg=#{modele.idBigImg}"></h:graphicImage>	
 				        
 				        <div class="ContainerIndent Fleft MarRight10">
 							<div>

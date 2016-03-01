@@ -72,9 +72,9 @@
 								<p:outputLabel value="Скриншот модели" style="padding-left:27px;" />
 								<p:outputLabel value="Скриншот модели" style="padding-left:27px;" />
 								
-								<p:graphicImage id="thisImage1" value="/GetImage?idImg=#{saveModel.img1min.idImage}" width="170" height="170" style="background:#f5f5f5;" />  
-								<p:graphicImage id="thisImage2" value="/GetImage?idImg=#{saveModel.img2min.idImage}" width="170" height="170" style="background:#f5f5f5;" />  
-								<p:graphicImage id="thisImage3" value="/GetImage?idImg=#{saveModel.img3min.idImage}" width="170" height="170" style="background:#f5f5f5;" />
+								<p:graphicImage id="thisImage1" value="#{defValue.appPath}/GetImage?idImg=#{saveModel.img1min.idImage}" width="170" height="170" style="background:#f5f5f5;" />  
+								<p:graphicImage id="thisImage2" value="#{defValue.appPath}/GetImage?idImg=#{saveModel.img2min.idImage}" width="170" height="170" style="background:#f5f5f5;" />  
+								<p:graphicImage id="thisImage3" value="#{defValue.appPath}/GetImage?idImg=#{saveModel.img3min.idImage}" width="170" height="170" style="background:#f5f5f5;" />
 								  
 								<p:fileUpload id="imageDownload1" update="thisImage1" label="Выбрать" style="width:170px !important;'" 
 									multiple="false" auto="true" fileUploadListener="#{saveModel.handleFile1Upload}" />
@@ -93,8 +93,8 @@
 								<p:outputLabel value="Картинка Hi-poly" style="padding-left:27px;" />
 								<p:outputLabel value="Картинка Low-poly" style="padding-left:27px;" />
 								
-								<p:graphicImage id="thisImage4" value="/GetImage?idImg=#{saveModel.img4min.idImage}" width="170" height="170" style="background:#f5f5f5;" />
-								<p:graphicImage id="thisImage5" value="/GetImage?idImg=#{saveModel.img5min.idImage}" width="170" height="170" style="background:#f5f5f5;" />
+								<p:graphicImage id="thisImage4" value="#{defValue.appPath}/GetImage?idImg=#{saveModel.img4min.idImage}" width="170" height="170" style="background:#f5f5f5;" />
+								<p:graphicImage id="thisImage5" value="#{defValue.appPath}/GetImage?idImg=#{saveModel.img5min.idImage}" width="170" height="170" style="background:#f5f5f5;" />
 								  
 								<p:fileUpload id="imageDownload4" update="thisImage4" label="Выбрать" style="width:170px !important;'" 
 									multiple="false" auto="true" fileUploadListener="#{saveModel.handleFile4Upload}" 

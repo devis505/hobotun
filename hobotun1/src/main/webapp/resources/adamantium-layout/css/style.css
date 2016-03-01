@@ -180,3 +180,7 @@ a {
 .ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-state-hover {
     background-color: rgba(79, 105, 117, 0.78) !important;
 }
+
+.ui-message.ui-message-info.ui-widget.ui-corner-all {
+	padding: 9px !important;
+}

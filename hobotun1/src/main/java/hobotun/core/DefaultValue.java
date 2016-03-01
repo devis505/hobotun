@@ -8,7 +8,7 @@ import javax.faces.bean.RequestScoped;
 public class DefaultValue {
 	
 	private String title = "HOBOTUN";
-
+	private final static String appPath = Misc.getAppPath();
 	
 	public String getTitle() {
 		return title;
@@ -16,6 +16,10 @@ public class DefaultValue {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public String getAppPath() {
+		return appPath;
 	}
 
 }

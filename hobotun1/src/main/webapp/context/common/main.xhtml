@@ -70,9 +70,9 @@
 			        
 			        <h:form id="notModeration" enctype="multipart/form-data" style="padding-left: 0px;">
 						<p:dataGrid var="model" value="#{mainModelModer.models}" columns="6" rows="12" paginator="false" id="modelsNotModeration" layout="grid" >
-							<a href="../../pages/modele/modele.jsf?id=#{model.idModel}">
+							<a href="#{defValue.appPath}/pages/modele/modele.jsf?id=#{model.idModel}">
 								<span style="width: 170px; height: 160px; padding-bottom: 20px;" class="Container100 ContainerIndent"> 
-									<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 
+									<h:graphicImage url="#{defValue.appPath}/GetImage?idImg=#{model.idImg1min}" /> 
 									
 									<span style="width: 170px;"> 
 										<i class="fa fa-rub Fs10 Fleft MarRight10">#{model.price}</i> 
@@ -247,7 +247,7 @@
 					        <div class="Fs12">До этого работал визуализатором интерьеров, и предложение поработать над мультфильмом показалось мне занятной идеей... 
 					          Как соберусь с мыслями – напишу небольшой рассказ о работе в студии, а пока просто хочу поделится результатами своей работы (кстати здесь 
 					          только часть того что мы успели за год, каждую неделю будем выкладывать новые серии) </div>
-					        <a href="../news/news.jsf?id=1">
+					        <a href="#{defValue.appPath}/pages/news/news.jsf?id=1">
 					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
 					        </a> 
 					    </div>
