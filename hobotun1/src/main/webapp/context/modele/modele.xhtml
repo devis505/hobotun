@@ -149,30 +149,32 @@
 								<div class="EmptyBox10"></div>
 								<div class="Separator"></div>
 								
-									<h:panelGrid columns="1" rendered="#{!modele.free}">
-										<h:column rendered="#{!userSession.user.authorization}">
-											<p:outputLabel value="Что бы скачать модель, требуется регистрация" styleClass="Red" />
-										</h:column>
-										<h:column rendered="#{userSession.user.authorization}">
-											<p:selectOneRadio id="console" value="#{modele.provider}">
-												<f:selectItem itemLabel="Деньгионлайн" itemValue="1" />
-												<f:selectItem itemLabel="Robokassa" itemValue="2" />
-											</p:selectOneRadio>
-										</h:column>
-										<h:column>
-											<p:button value="Купить" class="CyanButton" href="#" icon="fa fa-cart-arrow-down" disabled="#{!userSession.user.authorization}"/>
-										</h:column>
-									</h:panelGrid>
-									
-									<h:panelGrid columns="1" rendered="#{modele.free}">
-										<h:column rendered="#{!userSession.user.authorization}">
-											<p:outputLabel value="Что бы скачать модель, требуется регистрация" styleClass="Red" />
-										</h:column>
-										<h:column>
-											<p:button value="Загрузить" class="CyanButton" href="#" icon="fa fa-cloud-download" disabled="#{!userSession.user.authorization}"/>
-										</h:column>
-									</h:panelGrid>
-								
+									<h:form>
+										<h:panelGrid columns="1" rendered="#{!modele.free}">
+											<h:column rendered="#{!userSession.user.authorization}">
+												<p:outputLabel value="Что бы скачать модель, требуется регистрация" styleClass="Red" />
+											</h:column>
+											<h:column rendered="#{userSession.user.authorization}">
+												<p:selectOneRadio id="console" value="#{modele.provider}">
+													<f:selectItem itemLabel="Деньгионлайн" itemValue="1" />
+													<f:selectItem itemLabel="Robokassa" itemValue="2" />
+												</p:selectOneRadio>
+											</h:column>
+											<h:column>
+												<p:button value="Купить" class="CyanButton" href="#" icon="fa fa-cart-arrow-down" disabled="#{!userSession.user.authorization}"/>
+											</h:column>
+										</h:panelGrid>
+										
+										<h:panelGrid columns="1" rendered="#{modele.free}">
+											<h:column rendered="#{!userSession.user.authorization}">
+												<p:outputLabel value="Что бы скачать модель, требуется регистрация" styleClass="Red" />
+											</h:column>
+											<h:column>
+												<p:commandButton value="Загрузить" process="@form" update="@form" actionListener="#{modele.onAddFreeModel}"
+													class="CyanButton" href="#" icon="fa fa-cloud-download" disabled="#{modele.enableAdd}"/>
+											</h:column>
+										</h:panelGrid>
+									</h:form>								
 							</div>	
 							
 						</div>

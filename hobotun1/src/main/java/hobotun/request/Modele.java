@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import hobotun.core.Misc;
+import hobotun.core.UserSession;
 import hobotun.db.DBUtil;
 import hobotun.db.category.CategoryDao;
 import hobotun.db.category.table.CategoryTbl;
@@ -49,6 +50,8 @@ public class Modele implements Serializable {
 	private String miniPic3Classes = "Opac30";
 	private String miniPic4Classes = "Opac30";
 	private String miniPic5Classes = "Opac30";
+	
+	private boolean isEnableAdd = false;
 	
 	private Long idBigImg;
 	private Integer seceted = 1;
@@ -177,6 +180,20 @@ public class Modele implements Serializable {
 		}
 
 	}
+	
+	public void onAddFreeModel() {
+		
+		UserModelTbl userModel = new UserModelTbl();
+		
+		userModel.setIdEntityType(new Long(2));
+		userModel.setIdModel(new Long(modeleId));
+		userModel.setIdUser(UserSession.getInstance().getUser().getUserTbl().getId_user());
+		
+		UserModelDao userModelDao = DBUtil.getInstance().getBean("userModelDao", UserModelDao.class);	
+		userModelDao.insertUserModel(userModel);
+		
+		Misc.redirect("/pages/user/user.jsf?userPageId=5");
+	}
 
 	public Integer getRating() {
 		return rating;
@@ -268,6 +285,25 @@ public class Modele implements Serializable {
 
 	public void setFree(boolean free) {
 		this.free = free;
+	}
+
+	public boolean isEnableAdd() {
+		
+		if (UserSession.getInstance().getUser() != null) {
+			if (!UserSession.getInstance().getUser().isAuthorization()) {
+				isEnableAdd = true;
+			} else {
+				isEnableAdd = false;
+			}
+		} else {
+			isEnableAdd = true;
+		}
+		
+		return isEnableAdd;
+	}
+
+	public void setEnableAdd(boolean isEnableAdd) {
+		this.isEnableAdd = isEnableAdd;
 	}
 
 }
