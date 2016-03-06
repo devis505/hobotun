@@ -35,6 +35,8 @@ public class ModelTbl {
 	private Integer count_poligon;
 	private Integer texture;
 	private Integer is_moderation = 0;
+	private Integer rating = 0;
+	private Integer download = 0;
 
 	public Map<String, Object> getAllParam() {
 
@@ -94,6 +96,8 @@ public class ModelTbl {
 		count_poligon = rs.getInt("count_poligon");
 		texture = rs.getInt("texture");
 		is_moderation = rs.getInt("is_moderation");
+		rating = rs.getInt("rating");
+		download = rs.getInt("download");
 		
 		if(is_moderation.equals(1))
 			opacality = OPACITY_100;
@@ -287,6 +291,22 @@ public class ModelTbl {
 
 	public String getOpacality() {
 		return opacality;
+	}
+
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
+	public Integer getDownload() {
+		return download;
+	}
+
+	public void setDownload(Integer download) {
+		this.download = download;
 	}
 
 }

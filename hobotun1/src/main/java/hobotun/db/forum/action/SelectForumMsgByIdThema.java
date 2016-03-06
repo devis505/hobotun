@@ -14,7 +14,12 @@ import hobotun.db.forum.table.ForumMsgTbl;
 public class SelectForumMsgByIdThema extends MappingSqlQuery<ForumMsgTbl> {
 
 	private static final String SQL_SELECT_THEMA_BY_FORUM = 
-			  "SELECT fm.*, u.login, u.mail, u.dtReg, u.idImage "
+			  "SELECT fm.*, "
+			  + "     u.login, "
+			  + "     u.mail,"
+			  + "     u.dtReg, "
+			  + "     u.idImage,"
+			  + "     IFNULL((select sum(rm.vl_rating) from hb_user_model um inner join hb_rating_modele rm on rm.id_model = um.IdModel where um.idUser = u.id_user and um.idEntityType = 1), 0) rating_user "
 			+ "  FROM hb_forum_msg fm "
 			+ " INNER JOIN hb_user u ON u.id_user = fm.id_user "
 			+ " WHERE fm.id_thema = :id_thema  "

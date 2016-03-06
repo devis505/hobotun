@@ -71,7 +71,7 @@
 				        <div class="EmptyBox10"></div>
 				        
 				        <p:commandButton value="Закрыть тему" icon="icon-lock-fill" style="margin-left:86px; background-color: #455A64;" 
-							process="@form" update="@form" actionListener="#{topic.onClose}" rendered="#{topic.visibleBlock}" />
+							process="@form" update="@form" actionListener="#{topic.onClose}" rendered="false" />
 				        	
 				        <div class="EmptyBox10"></div>
 				        
@@ -92,6 +92,7 @@
 															<tr><td><p:outputLabel value="#{msg.login}" /></td></tr>
 															<tr><td style="text-align: center;"><h:graphicImage url="/GetImage?idImg=#{msg.idImage}" /></td></tr>
 															<tr><td><p:outputLabel value="На сайте c #{msg.dtReg}" /></td></tr>
+															<tr><td><p:outputLabel value="Рейтинг: #{msg.rating_user}" /></td></tr>
 														</table>
 													</td>
 													<td style="font-size: 18px; height: 40px; width: 800px; color: black; vertical-align: top;">

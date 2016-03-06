@@ -13,9 +13,15 @@ import org.springframework.jdbc.object.MappingSqlQuery;
 
 public class SelectModelByIdUser extends MappingSqlQuery<ModelTbl> {
 
-	private static final String SQL_SELECT_MODEL_BY_USER_ID = "SELECT m.* \n" + " FROM hb_model m\n"
-			+ " JOIN hb_user_model um \n" + " ON um.idModel = m.idModel and um.idEntityType = 1\n"
-			+ " WHERE um.idUser = :idUser \n" + "   AND m.is_moderation = :is_moderation ";
+	private static final String SQL_SELECT_MODEL_BY_USER_ID = 
+			  "SELECT m.*, "
+			+ "       IFNULL((select sum(rm.vl_rating) from hb_rating_modele rm where rm.id_model = m.idModel), 0) rating, \n"
+			+ "       (select count(*) from hb_user_model um where um.IdModel = m.idModel and um.idEntityType = 2) download \n"
+	        + "  FROM hb_model m\n"
+			+ "  JOIN hb_user_model um \n" 
+	        + "    ON um.idModel = m.idModel and um.idEntityType = 1\n"
+			+ " WHERE um.idUser = :idUser \n" 
+	        + "   AND m.is_moderation = :is_moderation ";
 
 	public SelectModelByIdUser(DataSource dataSource) {
 		super(dataSource, SQL_SELECT_MODEL_BY_USER_ID);

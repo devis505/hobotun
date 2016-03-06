@@ -86,7 +86,7 @@
 					        
 					        <h:panelGrid columns="1" cellpadding="5">
 					        	<p:outputLabel for="search" value="$" styleClass="White" />
-					        	<p:commandButton id="search" value="Поиск" styleClass="GreenButton" update="modelsFinded" actionListener="#{findModele.onClickFindButton}" />
+					        	<p:commandButton id="search" value="Поиск" styleClass="GreenButton" update="modelsFinded,countModel" actionListener="#{findModele.onClickFindButton}" />
 					        </h:panelGrid>
 					        
 					    </h:panelGrid>
@@ -98,7 +98,7 @@
 				        <h:panelGrid columns="1" cellpadding="5">
 					        <p:outputLabel for="cort" value="Сортировать по:" />
 	                        <p:selectOneButton id="cort" value="#{findModele.option}" style="border: 0;">
-	                        	<p:ajax update="modelsFinded" listener="#{findModele.onChangeOption}" /> 
+	                        	<p:ajax update="modelsFinded,countModel" listener="#{findModele.onChangeOption}" /> 
 	                        	<f:selectItem itemLabel="Дате" itemValue="1" />
 	                            <f:selectItem itemLabel="Популярности" itemValue="2" />
 	                            <f:selectItem itemLabel="Цене" itemValue="3" />
@@ -116,10 +116,10 @@
 									<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 
 									
 									<span style="width: 170px;"> 
-										<i class="fa fa-rub Fs10 Fleft MarRight10">#{model.price}</i> 
-										<i class="fa fa-star-o Fs10 Fleft MarRight10">0</i> 
-										<i class="fa fa-upload Fs10 Fleft MarRight10">0</i> 
-										<i class="fa fa-wechat Fs10 Fleft MarRight10">0</i>
+										<i class="fa fa-rub Fs10 Fleft MarRight10"><p:outputLabel value="#{model.price}" styleClass="Fs10" style="padding-left: 5px;" /></i> 
+										<i class="fa fa-star-o Fs10 Fleft MarRight10"><p:outputLabel value="#{model.rating}" styleClass="Fs10" style="padding-left: 5px;" /></i> 
+										<i class="fa fa-upload Fs10 Fleft MarRight10"><p:outputLabel value="#{model.download}" styleClass="Fs10" style="padding-left: 5px;" /></i> 
+										<i class="fa fa-wechat Fs10 Fleft MarRight10"><p:outputLabel value="0" styleClass="Fs10" style="padding-left: 5px;" /></i>
 									</span>
 								</span>
 							</a>
@@ -127,7 +127,9 @@
 				        
 				        <div class="EmptyBox10"></div>
 				        <div class="SeparatorFull"></div>
-				        <span class="Red FontAdamantiumBold Fs18">559</span><br/>
+				        <span class="Red FontAdamantiumBold Fs18">
+				        	<p:outputLabel  id="countModel" style="color: #E53935; font-size: 18px !important;" value="#{findModele.countModel}" />
+						</span><br/>
 				        <span class="Fs12 FontAdamantiumRegular">Всего моделей найдено</span>
 			        </div>
 			    </div>

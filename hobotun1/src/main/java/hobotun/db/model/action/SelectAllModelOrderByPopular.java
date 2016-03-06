@@ -14,14 +14,17 @@ import hobotun.db.model.tbl.ModelTbl;
 public class SelectAllModelOrderByPopular extends MappingSqlQuery<ModelTbl> {
 
 	private static final String SQL_SELECT_MODEL_BY_USER_ID = 
-			  "SELECT m.* \n"
-	        + "  FROM hb_model m\n"
-			+ "  JOIN hb_user_model um \n" 
-			+ "    ON um.idModel = m.idModel and um.idEntityType = 1\n"
-			+ " WHERE m.is_moderation = :is_moderation \n"
-			+ "   AND ((m.idCategory = :idCategory) or (:idCategory = 0)) \n"
-			+ "   AND ((upper(m.nmModel) like (upper(:keyWord))) or (upper(m.tegs) like (upper(:keyWord))))"
-			+ " ORDER by m.idModel DESC";
+			  "SELECT t.* \n"
+			+ "  FROM (SELECT m.*, "
+			+ "               IFNULL((select sum(rm.vl_rating) from hb_rating_modele rm where rm.id_model = m.idModel), 0) rating, \n"
+			+ "               (select count(*) from hb_user_model um where um.IdModel = m.idModel and um.idEntityType = 2) download \n"
+	        + "          FROM hb_model m\n"
+			+ "  		 JOIN hb_user_model um \n" 
+			+ "    		   ON um.idModel = m.idModel and um.idEntityType = 1\n"
+			+ " 		WHERE m.is_moderation = :is_moderation \n"
+			+ "   	      AND ((m.idCategory = :idCategory) or (:idCategory = 0)) \n"
+			+ "   		  AND ((upper(m.nmModel) like (upper(:keyWord))) or (upper(m.tegs) like (upper(:keyWord))))) t \n"
+			+ " ORDER by t.rating DESC, t.idModel DESC";
 
 	public SelectAllModelOrderByPopular(DataSource dataSource) {
 		super(dataSource, SQL_SELECT_MODEL_BY_USER_ID);

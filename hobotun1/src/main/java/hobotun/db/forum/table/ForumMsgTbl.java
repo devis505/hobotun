@@ -19,6 +19,8 @@ public class ForumMsgTbl implements Serializable {
 	private Date dtReg;
 	private Long idImage;
 	
+	private Integer rating_user = 0; 
+	
 	public ForumMsgTbl() {
 		
 	}
@@ -34,6 +36,8 @@ public class ForumMsgTbl implements Serializable {
 		mail = rs.getString("mail");
 		dtReg = rs.getDate("dtReg");
 		idImage = rs.getLong("idImage");
+		
+		rating_user = rs.getInt("rating_user");
 	}
 	
 	public String getLogin() {
@@ -97,6 +101,14 @@ public class ForumMsgTbl implements Serializable {
 	}
 	public void setId_thema(Long id_thema) {
 		this.id_thema = id_thema;
+	}
+
+	public Integer getRating_user() {
+		return rating_user;
+	}
+
+	public void setRating_user(Integer rating_user) {
+		this.rating_user = rating_user;
 	}
 	
 }

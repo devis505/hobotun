@@ -17,6 +17,7 @@ public class UserTbl {
 	private String fio;
 	private BigDecimal balance;
 	private Long idImage;
+	private Integer rating_user = 0;
 
 	public UserTbl(ResultSet rs) throws SQLException {
 		setId_user(rs.getLong("id_user"));
@@ -28,6 +29,7 @@ public class UserTbl {
 		setFio(rs.getString("FIO"));
 		setBalance(rs.getBigDecimal("balance"));
 		setIdImage(rs.getLong("idImage"));
+		setRating_user(rs.getInt("rating_user"));
 	}
 
 	public Map<String, Object> getAllParam() {
@@ -106,6 +108,14 @@ public class UserTbl {
 
 	public void setIdImage(Long idImage) {
 		this.idImage = idImage;
+	}
+
+	public Integer getRating_user() {
+		return rating_user;
+	}
+
+	public void setRating_user(Integer rating_user) {
+		this.rating_user = rating_user;
 	}
 
 }

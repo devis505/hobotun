@@ -3,6 +3,7 @@ package hobotun.request;
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.faces.bean.ManagedBean;
@@ -23,6 +24,8 @@ import hobotun.db.format.FormatDao;
 import hobotun.db.format.table.FormatTabl;
 import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
+import hobotun.db.rating.RatingDao;
+import hobotun.db.rating.table.RatingModeleTbl;
 import hobotun.db.user.UserDao;
 import hobotun.db.user.table.UserTbl;
 import hobotun.db.userModel.UserModelDao;
@@ -42,7 +45,6 @@ public class Modele implements Serializable {
 	private FormatTabl format;
 
 	private boolean isAllredyBay = false;
-	private boolean isOwner = false;
 
 	private Integer provider = 1;
 	private boolean free = false;
@@ -64,8 +66,20 @@ public class Modele implements Serializable {
 	private Long idBigImg;
 	private Integer seceted = 1;
 	private Integer rating = 0;
+	private boolean ratingReadOnly = false;
+	
+	private Integer allRatingModel = 0;
+	
+	private Long id_user_session = null;
+	
+	private RatingDao ratingDao;
 
 	private static final long serialVersionUID = -1726709996903225394L;
+	
+	private void loadUser(Long id_user) {
+		UserDao userDao = DBUtil.getInstance().getBean("userDao", UserDao.class);
+		user = userDao.getUserById(id_user).get(0);
+	}
 
 	public Modele() {
 		
@@ -73,12 +87,13 @@ public class Modele implements Serializable {
 
 		ModelDao modeleDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
 		modele = modeleDao.selectModelById(new Long(modeleId)).get(0);
+		
+		allRatingModel = modele.getRating();
 
 		UserModelDao userModelDao = DBUtil.getInstance().getBean("userModelDao", UserModelDao.class);
 		userModel = userModelDao.findUserModelByIdModel(new Long(modeleId)).get(0);
 
-		UserDao userDao = DBUtil.getInstance().getBean("userDao", UserDao.class);
-		user = userDao.getUserById(userModel.getIdUser()).get(0);
+		loadUser(userModel.getIdUser());
 				
 		FileDao fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
 		fileModele = fileDao.SelectFileById(modele.getIdFile()).get(0);
@@ -88,7 +103,7 @@ public class Modele implements Serializable {
 
 		FormatDao formatDao = DBUtil.getInstance().getBean("formatDao", FormatDao.class);
 		format = formatDao.getFormatById(modele.getIdFormat());
-
+		
 		visibleImg1 = (modele.getIdImg1min() != 0);
 		visibleImg2 = (modele.getIdImg2min() != 0);
 		visibleImg3 = (modele.getIdImg3min() != 0);
@@ -103,7 +118,16 @@ public class Modele implements Serializable {
 
 		if (UserSession.getInstance().getUser() != null) {
 			
-			Long id_user_session = UserSession.getInstance().getUser().getUserTbl().getId_user();
+			ratingDao = DBUtil.getInstance().getBean("ratingDao", RatingDao.class);
+					
+			id_user_session = UserSession.getInstance().getUser().getUserTbl().getId_user();
+			
+			List<RatingModeleTbl> ratingTbl = ratingDao.selectUserModelRatingForModel(id_user_session, new Long(modeleId));
+			if (!ratingTbl.isEmpty()) {
+				rating = ratingTbl.get(0).getVl_rating();
+				ratingReadOnly = true;
+			}
+			
 			
 			if (!userModelDao
 					.checkUserModel(id_user_session, new Long(modeleId))
@@ -116,6 +140,8 @@ public class Modele implements Serializable {
 				isAllredyBay = true;
 				free = true;
 			}
+		} else {
+			ratingReadOnly = true;
 		}
 		
 		idBigImg = modele.getIdImg1();
@@ -291,7 +317,18 @@ public class Modele implements Serializable {
 	}
 
 	public void onRate() {
-
+		allRatingModel += rating;
+		
+		ratingReadOnly = true;
+		
+		RatingModeleTbl ratinTbl = new RatingModeleTbl();
+		ratinTbl.setId_model(new Long(modeleId));
+		ratinTbl.setId_user(id_user_session);
+		ratinTbl.setVl_rating(rating);
+		
+		ratingDao.InsertModeleRating(ratinTbl);		
+		
+		loadUser(userModel.getIdUser());
 	}
 
 	public CategoryTbl getCategory() {
@@ -335,6 +372,22 @@ public class Modele implements Serializable {
 
 	public void setEnableAdd(boolean isEnableAdd) {
 		this.isEnableAdd = isEnableAdd;
+	}
+
+	public boolean isRatingReadOnly() {
+		return ratingReadOnly;
+	}
+
+	public void setRatingReadOnly(boolean ratingReadOnly) {
+		this.ratingReadOnly = ratingReadOnly;
+	}
+
+	public Integer getAllRatingModel() {
+		return allRatingModel;
+	}
+
+	public void setAllRatingModel(Integer allRatingModel) {
+		this.allRatingModel = allRatingModel;
 	}
 
 }

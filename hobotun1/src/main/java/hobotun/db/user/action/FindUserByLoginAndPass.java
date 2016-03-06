@@ -14,7 +14,7 @@ import org.springframework.jdbc.object.MappingSqlQuery;
 public class FindUserByLoginAndPass extends MappingSqlQuery<UserTbl> {
 
     private static final String SQL_FIND_USER_BY_LOGIN_AND_PASS = 
-	    "select * \n"
+	    "select u.*, 0 rating_user \n"
 	  + "  from hb_user u \n"
 	  + " where u.login = :login \n"
 	  + "   and u.password = :password";

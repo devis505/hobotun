@@ -22,6 +22,8 @@ public class FindModele implements Serializable{
 	private String keyWord = ""; 
 	private String option = "1";
 	
+	private Integer countModel;
+	
 	public FindModele() {
 		categoryes = new Category();
 		categoryes.init();
@@ -46,6 +48,8 @@ public class FindModele implements Serializable{
 		if ("4".equals(option)) {
 			setModels(modelDao.selectModelOrderByFree(1, Integer.valueOf(categoryes.getCategory()), "%" + keyWord + "%"));
 		}
+		
+		countModel = models.size();
 	}
 	
 	public void onClickFindButton() {
@@ -86,5 +90,13 @@ public class FindModele implements Serializable{
 
 	public void setModels(List<ModelTbl> models) {
 		this.models = models;
+	}
+
+	public Integer getCountModel() {
+		return countModel;
+	}
+
+	public void setCountModel(Integer countModel) {
+		this.countModel = countModel;
 	}
 }
