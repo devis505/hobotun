@@ -35,10 +35,12 @@ public class Misc {
 	public static String getAppPath() {
 
 		String addr = ApplicationProperties.getInstance().getPropertyValue("ru.abrr.currantPortal.site.addr");
-		Integer port = Integer
-				.valueOf(ApplicationProperties.getInstance().getPropertyValue("ru.abrr.currantPortal.site.port"));
+		String port = ApplicationProperties.getInstance().getPropertyValue("ru.abrr.currantPortal.site.port");
 
-		String appPath = addr + ":" + port;
+		String appPath = addr;
+		
+		if (port != null)
+			appPath += ":" + port;
 
 		String appName = ApplicationProperties.getInstance().getPropertyValue("ru.abrr.currantPortal.app.name");
 

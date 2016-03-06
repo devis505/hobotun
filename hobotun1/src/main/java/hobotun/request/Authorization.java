@@ -40,7 +40,7 @@ public class Authorization implements Serializable {
 		}
 
 		if (!error) {
-			Misc.redirect("/pages/common/main.jsf");
+			Misc.redirect("/index.jsf");
 		}
 
 		return;

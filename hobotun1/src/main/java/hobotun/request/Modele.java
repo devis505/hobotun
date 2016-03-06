@@ -1,11 +1,16 @@
 package hobotun.request;
 
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import hobotun.core.Misc;
 import hobotun.core.UserSession;
@@ -35,7 +40,10 @@ public class Modele implements Serializable {
 	private FileTbl fileModele;
 	private CategoryTbl category;
 	private FormatTabl format;
-	
+
+	private boolean isAllredyBay = false;
+	private boolean isOwner = false;
+
 	private Integer provider = 1;
 	private boolean free = false;
 
@@ -50,9 +58,9 @@ public class Modele implements Serializable {
 	private String miniPic3Classes = "Opac30";
 	private String miniPic4Classes = "Opac30";
 	private String miniPic5Classes = "Opac30";
-	
+
 	private boolean isEnableAdd = false;
-	
+
 	private Long idBigImg;
 	private Integer seceted = 1;
 	private Integer rating = 0;
@@ -60,6 +68,7 @@ public class Modele implements Serializable {
 	private static final long serialVersionUID = -1726709996903225394L;
 
 	public Modele() {
+		
 		modeleId = Misc.getRequestParam(FacesContext.getCurrentInstance(), "id");
 
 		ModelDao modeleDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
@@ -70,31 +79,48 @@ public class Modele implements Serializable {
 
 		UserDao userDao = DBUtil.getInstance().getBean("userDao", UserDao.class);
 		user = userDao.getUserById(userModel.getIdUser()).get(0);
-		
+				
 		FileDao fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
-		fileModele = fileDao.SelectFileById(userModel.getIdModel()).get(0);
-		
+		fileModele = fileDao.SelectFileById(modele.getIdFile()).get(0);
+
 		CategoryDao categoryDao = DBUtil.getInstance().getBean("categoryDao", CategoryDao.class);
 		category = categoryDao.getCategoryById(modele.getIdCategory());
-		
+
 		FormatDao formatDao = DBUtil.getInstance().getBean("formatDao", FormatDao.class);
 		format = formatDao.getFormatById(modele.getIdFormat());
-		
+
 		visibleImg1 = (modele.getIdImg1min() != 0);
 		visibleImg2 = (modele.getIdImg2min() != 0);
 		visibleImg3 = (modele.getIdImg3min() != 0);
 		visibleImg4 = (modele.getIdImg4min() != 0);
 		visibleImg5 = (modele.getIdImg5min() != 0);
-		
+
 		if (modele.getPrice().compareTo(BigDecimal.ZERO) > 0) {
 			free = false;
 		} else {
 			free = true;
 		}
+
+		if (UserSession.getInstance().getUser() != null) {
+			
+			Long id_user_session = UserSession.getInstance().getUser().getUserTbl().getId_user();
+			
+			if (!userModelDao
+					.checkUserModel(id_user_session, new Long(modeleId))
+					.isEmpty()) {
+				isAllredyBay = true;
+				free = true;
+			}
+			
+			if (!userModelDao.checkUserModelOwner(id_user_session, new Long(modeleId)).isEmpty()) {
+				isAllredyBay = true;
+				free = true;
+			}
+		}
 		
-		idBigImg = modele.getIdImg1(); 
+		idBigImg = modele.getIdImg1();
 	}
-		
+
 	public void select1() {
 		seceted = 1;
 		refreshComanents();
@@ -180,19 +206,24 @@ public class Modele implements Serializable {
 		}
 
 	}
-	
-	public void onAddFreeModel() {
-		
-		UserModelTbl userModel = new UserModelTbl();
-		
-		userModel.setIdEntityType(new Long(2));
-		userModel.setIdModel(new Long(modeleId));
-		userModel.setIdUser(UserSession.getInstance().getUser().getUserTbl().getId_user());
-		
-		UserModelDao userModelDao = DBUtil.getInstance().getBean("userModelDao", UserModelDao.class);	
-		userModelDao.insertUserModel(userModel);
-		
-		Misc.redirect("/pages/user/user.jsf?userPageId=5");
+
+	public StreamedContent getFile() {
+
+		if (!isAllredyBay) {
+			UserModelTbl userModel = new UserModelTbl();
+
+			userModel.setIdEntityType(new Long(2));
+			userModel.setIdModel(new Long(modeleId));
+			userModel.setIdUser(UserSession.getInstance().getUser().getUserTbl().getId_user());
+
+			UserModelDao userModelDao = DBUtil.getInstance().getBean("userModelDao", UserModelDao.class);
+			userModelDao.insertUserModel(userModel);
+		}
+
+		return new DefaultStreamedContent(new ByteArrayInputStream(fileModele.getFile()),
+				new MimetypesFileTypeMap().getContentType(fileModele.getNm_file()), fileModele.getNm_file());
+
+		// Misc.redirect("/pages/user/user.jsf?userPageId=5");
 	}
 
 	public Integer getRating() {
@@ -254,13 +285,13 @@ public class Modele implements Serializable {
 	public Long getIdBigImg() {
 		return idBigImg;
 	}
-	
+
 	public FileTbl getFileModele() {
 		return fileModele;
 	}
-	
+
 	public void onRate() {
-		
+
 	}
 
 	public CategoryTbl getCategory() {
@@ -288,7 +319,7 @@ public class Modele implements Serializable {
 	}
 
 	public boolean isEnableAdd() {
-		
+
 		if (UserSession.getInstance().getUser() != null) {
 			if (!UserSession.getInstance().getUser().isAuthorization()) {
 				isEnableAdd = true;
@@ -298,7 +329,7 @@ public class Modele implements Serializable {
 		} else {
 			isEnableAdd = true;
 		}
-		
+
 		return isEnableAdd;
 	}
 

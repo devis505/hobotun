@@ -60,10 +60,10 @@
 	    	<p:panelGrid style="background-color:#f7f5f3;">
 	    		<p:row>
 					<p:column style="background-color:#455a64; width:250px; vertical-align: top;">
-						<ui:include src="#{defValue.appPath}/context/user/include/userMenu.xhtml" />						
+						<ui:include src="include/userMenu.xhtml" />						
 					</p:column>
 					<p:column style="width:974px; vertical-align: top; background: white; vertical-align: top; ">
-						<ui:include src="#{defValue.appPath}/context/user/include/#{userSession.user.userPage}.xhtml" />	
+						<ui:include src="include/#{userSession.user.userPage}.xhtml" />	
 					</p:column>   		
 	    		</p:row>
 	    	</p:panelGrid>    

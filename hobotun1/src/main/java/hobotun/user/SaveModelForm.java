@@ -135,6 +135,7 @@ public class SaveModelForm {
 				saveImage(imgTbl5);
 
 				FileDao fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
+				file.setNm_file(fileModel.getText());
 				fileDao.Insert(file);
 
 				ModelTbl model = new ModelTbl();
@@ -185,7 +186,7 @@ public class SaveModelForm {
 			} catch (Exception e) {
 				e.printStackTrace();
 				err = true;
-				msg = "Произошла ошибка в момент сохранения модели, обратитесь к администратору";
+				msg = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 			}
 		} else {
 			Misc.setMessageElement(ID_MSG_FOR_SAVE_ELEMENT, FacesMessage.SEVERITY_ERROR, msg);

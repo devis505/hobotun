@@ -25,7 +25,11 @@ public class SelectModelByIdUser extends MappingSqlQuery<ModelTbl> {
 
 	@Override
 	protected ModelTbl mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return new ModelTbl(rs);
+		
+		ModelTbl mode = new ModelTbl(rs);
+		mode.setIdModel(rs.getLong("idModel"));
+		
+		return mode;
 	}
 
 }
