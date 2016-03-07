@@ -21,7 +21,7 @@
         <ui:insert name="head" />
     </h:head>
     <!-- style="display:none;" -->
-    <h:body styleClass="dark" style="display:none;">
+    <h:body styleClass="dark">
         
         <ui:include src="#{defValue.appPath}/context/common/topbar-not-sign.xhtml" />
         <ui:include src="#{defValue.appPath}/context/common/layoutmenu.xhtml" />
@@ -51,11 +51,11 @@
         <h:outputStylesheet name="css/adamantium-layout.css" library="adamantium-layout" />
         <h:outputStylesheet name="css/style.css" library="adamantium-layout" />
         
-        <script type="text/javascript">
+        <!-- script type="text/javascript">
 	        $(document).ready(function() {
 	            $('body').fadeIn("slow");
 	        });
-        </script>  
+        </script --> 
 
     </h:body>
     
