@@ -24,6 +24,7 @@ import hobotun.db.format.FormatDao;
 import hobotun.db.format.table.FormatTabl;
 import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
+import hobotun.db.model.tbl.ModeleMsgTbl;
 import hobotun.db.rating.RatingDao;
 import hobotun.db.rating.table.RatingModeleTbl;
 import hobotun.db.user.UserDao;
@@ -73,6 +74,8 @@ public class Modele implements Serializable {
 	private Long id_user_session = null;
 	
 	private RatingDao ratingDao;
+	
+	private List<ModeleMsgTbl> modeleMsg;
 
 	private static final long serialVersionUID = -1726709996903225394L;
 	
@@ -87,6 +90,7 @@ public class Modele implements Serializable {
 
 		ModelDao modeleDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
 		modele = modeleDao.selectModelById(new Long(modeleId)).get(0);
+		modeleMsg = modeleDao.selectModeleMsgByIdModele(new Long(modeleId));
 		
 		allRatingModel = modele.getRating();
 
@@ -103,6 +107,8 @@ public class Modele implements Serializable {
 
 		FormatDao formatDao = DBUtil.getInstance().getBean("formatDao", FormatDao.class);
 		format = formatDao.getFormatById(modele.getIdFormat());
+		
+		
 		
 		visibleImg1 = (modele.getIdImg1min() != 0);
 		visibleImg2 = (modele.getIdImg2min() != 0);
@@ -388,6 +394,14 @@ public class Modele implements Serializable {
 
 	public void setAllRatingModel(Integer allRatingModel) {
 		this.allRatingModel = allRatingModel;
+	}
+
+	public List<ModeleMsgTbl> getModeleMsg() {
+		return modeleMsg;
+	}
+
+	public void setModeleMsg(List<ModeleMsgTbl> modeleMsg) {
+		this.modeleMsg = modeleMsg;
 	}
 
 }

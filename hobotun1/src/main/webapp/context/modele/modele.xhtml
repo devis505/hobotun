@@ -194,7 +194,28 @@
 				        <div class="SeparatorFull" style="margin: 7px -6px 7px; width: 1148px; padding-top: 7px;"></div>
 				        <div class="EmptyBox10"></div>
 				         
-						
+						<h:form>
+							<table style="padding-left: 10px; margin-top: 0px; width: 100%;">
+								<p:dataGrid var="msg" value="#{modele.modeleMsg}" columns="1" paginator="false" id="modeleMsg" layout="grid" paginatorAlwaysVisible="false" >
+									<tr style="background: rgba(0, 0, 0, 0.06);">
+										<td style="font-size: 18px; height: 40px; color: black; vertical-align: top;">
+										
+											<table style="width: 154px;">
+												<tr><td><p:outputLabel value="#{msg.login}" /></td></tr>
+												<tr><td style="text-align: center;"><h:graphicImage url="/GetImage?idImg=#{msg.idImage}" /></td></tr>
+												<tr><td><p:outputLabel value="На сайте c #{msg.dtReg}" /></td></tr>
+												<tr><td><p:outputLabel value="Рейтинг: #{msg.rating_user}" /></td></tr>
+											</table>
+										</td>
+										<td style="font-size: 18px; height: 40px; width: 938px; color: black; vertical-align: top;">
+											<span style="display: block; padding-left:5px; padding-top: 5px; padding-right:5px;">
+												<h:outputText value="#{msg.vl_msg}" escape="false" />
+											</span>
+										</td>
+									</tr>													
+								</p:dataGrid>
+							</table>
+						</h:form>
 
 			        </div>
 			    </div>

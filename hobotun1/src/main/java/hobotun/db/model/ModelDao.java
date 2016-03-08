@@ -11,6 +11,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import hobotun.db.model.action.GetCountModel;
 import hobotun.db.model.action.InsertModelReturnId;
+import hobotun.db.model.action.InsertModeleMsg;
 import hobotun.db.model.action.SelectAllModelOrderByCost;
 import hobotun.db.model.action.SelectAllModelOrderByDate;
 import hobotun.db.model.action.SelectAllModelOrderByFree;
@@ -18,8 +19,10 @@ import hobotun.db.model.action.SelectAllModelOrderByPopular;
 import hobotun.db.model.action.SelectModelById;
 import hobotun.db.model.action.SelectModelByIdUser;
 import hobotun.db.model.action.SelectModelByIdUserBay;
+import hobotun.db.model.action.SelectModeleMsgByIdModele;
 import hobotun.db.model.tbl.CountModelTbl;
 import hobotun.db.model.tbl.ModelTbl;
+import hobotun.db.model.tbl.ModeleMsgTbl;
 
 public class ModelDao implements IModelDao {
 
@@ -34,6 +37,9 @@ public class ModelDao implements IModelDao {
 	private SelectAllModelOrderByPopular selectAllModelOrderByPopular;
 	private SelectAllModelOrderByCost selectAllModelOrderByCost;
 	private SelectAllModelOrderByFree selectAllModelOrderByFree;
+	
+	private InsertModeleMsg insertModeleMsg;
+	private SelectModeleMsgByIdModele selectModeleMsgByIdModele;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -47,6 +53,9 @@ public class ModelDao implements IModelDao {
 		selectAllModelOrderByCost = new SelectAllModelOrderByCost(dataSource);
 		selectAllModelOrderByFree = new SelectAllModelOrderByFree(dataSource);
 		selectModelByIdUserBay = new SelectModelByIdUserBay(dataSource);
+		
+		insertModeleMsg = new InsertModeleMsg(dataSource);
+		selectModeleMsgByIdModele = new SelectModeleMsgByIdModele(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -131,6 +140,30 @@ public class ModelDao implements IModelDao {
 		paramMap.put("keyWord", keyWord);
 
 		return selectAllModelOrderByFree.executeByNamedParam(paramMap);
+	}
+	
+	public void insertModeleMsg(ModeleMsgTbl modeleMsg) {
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("id_user", modeleMsg.getId_user());
+		paramMap.put("id_modele", modeleMsg.getId_modele());
+		paramMap.put("vl_msg", modeleMsg.getVl_msg());
+		paramMap.put("dt_msg", modeleMsg.getDt_msg());
+		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
+		insertModeleMsg.updateByNamedParam(paramMap, keyHolder);
+
+		modeleMsg.setId_modele(keyHolder.getKey().longValue());
+	}
+	
+	public List<ModeleMsgTbl> selectModeleMsgByIdModele (Long id_modele) {
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id_modele", id_modele);
+		
+		return selectModeleMsgByIdModele.executeByNamedParam(paramMap);
 	}
 
 }
