@@ -37,6 +37,9 @@ public class ModelTbl {
 	private Integer is_moderation = 0;
 	private Integer rating = 0;
 	private Integer download = 0;
+	private Integer msg = 0;
+	
+	private BigDecimal price_calc = BigDecimal.ZERO;
 
 	public Map<String, Object> getAllParam() {
 
@@ -93,11 +96,13 @@ public class ModelTbl {
 		idImg5min = rs.getLong("idImg5min");
 		tegs = rs.getString("tegs");
 		price = rs.getBigDecimal("price");
+		price_calc = rs.getBigDecimal("price_calc");
 		count_poligon = rs.getInt("count_poligon");
 		texture = rs.getInt("texture");
 		is_moderation = rs.getInt("is_moderation");
 		rating = rs.getInt("rating");
 		download = rs.getInt("download");
+		msg = rs.getInt("msg");
 		
 		if(is_moderation.equals(1))
 			opacality = OPACITY_100;
@@ -307,6 +312,22 @@ public class ModelTbl {
 
 	public void setDownload(Integer download) {
 		this.download = download;
+	}
+
+	public Integer getMsg() {
+		return msg;
+	}
+
+	public void setMsg(Integer msg) {
+		this.msg = msg;
+	}
+
+	public BigDecimal getPrice_calc() {
+		return price_calc;
+	}
+
+	public void setPrice_calc(BigDecimal price_calc) {
+		this.price_calc = price_calc;
 	}
 
 }

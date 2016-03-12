@@ -3,6 +3,7 @@ package hobotun.request;
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.activation.MimetypesFileTypeMap;
@@ -22,6 +23,7 @@ import hobotun.db.file.FileDao;
 import hobotun.db.file.tbl.FileTbl;
 import hobotun.db.format.FormatDao;
 import hobotun.db.format.table.FormatTabl;
+import hobotun.db.forum.table.ForumMsgTbl;
 import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
 import hobotun.db.model.tbl.ModeleMsgTbl;
@@ -68,37 +70,40 @@ public class Modele implements Serializable {
 	private Integer seceted = 1;
 	private Integer rating = 0;
 	private boolean ratingReadOnly = false;
-	
+
 	private Integer allRatingModel = 0;
-	
+
 	private Long id_user_session = null;
-	
+
 	private RatingDao ratingDao;
-	
+	private ModelDao modeleDao;
+
 	private List<ModeleMsgTbl> modeleMsg;
 
+	private String text;
+
 	private static final long serialVersionUID = -1726709996903225394L;
-	
+
 	private void loadUser(Long id_user) {
 		UserDao userDao = DBUtil.getInstance().getBean("userDao", UserDao.class);
 		user = userDao.getUserById(id_user).get(0);
 	}
 
 	public Modele() {
-		
+
 		modeleId = Misc.getRequestParam(FacesContext.getCurrentInstance(), "id");
 
-		ModelDao modeleDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
+		modeleDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
 		modele = modeleDao.selectModelById(new Long(modeleId)).get(0);
 		modeleMsg = modeleDao.selectModeleMsgByIdModele(new Long(modeleId));
-		
+
 		allRatingModel = modele.getRating();
 
 		UserModelDao userModelDao = DBUtil.getInstance().getBean("userModelDao", UserModelDao.class);
 		userModel = userModelDao.findUserModelByIdModel(new Long(modeleId)).get(0);
 
 		loadUser(userModel.getIdUser());
-				
+
 		FileDao fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
 		fileModele = fileDao.SelectFileById(modele.getIdFile()).get(0);
 
@@ -107,9 +112,7 @@ public class Modele implements Serializable {
 
 		FormatDao formatDao = DBUtil.getInstance().getBean("formatDao", FormatDao.class);
 		format = formatDao.getFormatById(modele.getIdFormat());
-		
-		
-		
+
 		visibleImg1 = (modele.getIdImg1min() != 0);
 		visibleImg2 = (modele.getIdImg2min() != 0);
 		visibleImg3 = (modele.getIdImg3min() != 0);
@@ -123,25 +126,23 @@ public class Modele implements Serializable {
 		}
 
 		if (UserSession.getInstance().getUser() != null) {
-			
+
 			ratingDao = DBUtil.getInstance().getBean("ratingDao", RatingDao.class);
-					
+
 			id_user_session = UserSession.getInstance().getUser().getUserTbl().getId_user();
-			
-			List<RatingModeleTbl> ratingTbl = ratingDao.selectUserModelRatingForModel(id_user_session, new Long(modeleId));
+
+			List<RatingModeleTbl> ratingTbl = ratingDao.selectUserModelRatingForModel(id_user_session,
+					new Long(modeleId));
 			if (!ratingTbl.isEmpty()) {
 				rating = ratingTbl.get(0).getVl_rating();
 				ratingReadOnly = true;
 			}
-			
-			
-			if (!userModelDao
-					.checkUserModel(id_user_session, new Long(modeleId))
-					.isEmpty()) {
+
+			if (!userModelDao.checkUserModel(id_user_session, new Long(modeleId)).isEmpty()) {
 				isAllredyBay = true;
 				free = true;
 			}
-			
+
 			if (!userModelDao.checkUserModelOwner(id_user_session, new Long(modeleId)).isEmpty()) {
 				isAllredyBay = true;
 				free = true;
@@ -149,8 +150,22 @@ public class Modele implements Serializable {
 		} else {
 			ratingReadOnly = true;
 		}
-		
+
 		idBigImg = modele.getIdImg1();
+	}
+
+	public void onSaveText() {
+
+		ModeleMsgTbl modeleMsgTbl = new ModeleMsgTbl();
+
+		modeleMsgTbl.setDt_msg(new Date());
+		modeleMsgTbl.setId_modele(new Long(modeleId));
+		modeleMsgTbl.setId_user(UserSession.getInstance().getUser().getUserTbl().getId_user());
+		modeleMsgTbl.setVl_msg(text);
+		
+		modeleDao.insertModeleMsg(modeleMsgTbl);
+
+		Misc.redirect("/pages/modele/modele.jsf?id=" + modeleId);
 	}
 
 	public void select1() {
@@ -324,16 +339,16 @@ public class Modele implements Serializable {
 
 	public void onRate() {
 		allRatingModel += rating;
-		
+
 		ratingReadOnly = true;
-		
+
 		RatingModeleTbl ratinTbl = new RatingModeleTbl();
 		ratinTbl.setId_model(new Long(modeleId));
 		ratinTbl.setId_user(id_user_session);
 		ratinTbl.setVl_rating(rating);
-		
-		ratingDao.InsertModeleRating(ratinTbl);		
-		
+
+		ratingDao.InsertModeleRating(ratinTbl);
+
 		loadUser(userModel.getIdUser());
 	}
 
@@ -402,6 +417,14 @@ public class Modele implements Serializable {
 
 	public void setModeleMsg(List<ModeleMsgTbl> modeleMsg) {
 		this.modeleMsg = modeleMsg;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 }

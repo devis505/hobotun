@@ -152,7 +152,7 @@
 									</TR>
 									<TR>
 										<TD style="vertical-align: top;"><i class="fa fa-rub"></i></TD>
-										<TD><p:outputLabel value="#{modele.modele.price}" /></TD>
+										<TD><p:outputLabel value="#{modele.modele.price_calc}" /></TD>
 									</TR>
 								</TABLE>
 
@@ -215,6 +215,12 @@
 									</tr>													
 								</p:dataGrid>
 							</table>
+							<div style="display:block; padding-left:13px;">
+								<p:editor id="editor" widgetVar="editorWidget" value="#{modele.text}" width="635" style="padding-top: 30px;" rendered="#{userSession.user.authorization}" />
+								<p:commandButton value="Отправить" icon="ui-icon-disk" style="margin-top:20px; background-color: #455A64;"  rendered="#{userSession.user.authorization}"
+								    	process="@form" update="@form" actionListener="#{modele.onSaveText}" />
+							</div>
+						    
 						</h:form>
 
 			        </div>
