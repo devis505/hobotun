@@ -236,7 +236,7 @@
 			        <div class="Container100 Responsive100">
 			        
 			        	<h:form id="newsForm" enctype="multipart/form-data" style="padding-left: 0px;">
-							<p:dataGrid var="newss" value="#{news.newses}" columns="1" paginator="false" id="news" layout="grid" >
+							<p:dataGrid var="newss" value="#{newsMain.newses}" columns="1" paginator="false" id="news" layout="grid" >
 					        	<div class="ContainerIndent">
 							        <div class="CardTopicMini">
 							        	<i class="fa fa-newspaper-o Fs30 Fleft MarRight10 Orange"></i> 
@@ -259,7 +259,7 @@
 			        <div class="EmptyBox10"></div>
 			        <div class="SeparatorFull"></div>
 			        <p:button value="Показать все" class="CyanButton Fright" href="../news/newslist.jsf" />
-			        <span><p:outputLabel value="#{news.count_news}" styleClass="Red FontAdamantiumBold Fs18" /> </span><br/>
+			        <span><p:outputLabel value="#{newsMain.count_news}" styleClass="Red FontAdamantiumBold Fs18" /> </span><br/>
 			        <span class="Fs12 FontAdamantiumRegular">Всего новостей</span>
 		        </div>
 		    </div>

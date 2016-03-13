@@ -10,7 +10,7 @@ import hobotun.db.DBUtil;
 import hobotun.db.news.NewsDao;
 import hobotun.db.news.table.NewsTbl;
 
-@ManagedBean(name = "news")
+@ManagedBean(name = "newsMain")
 @ViewScoped
 public class NewsMain implements Serializable {
 

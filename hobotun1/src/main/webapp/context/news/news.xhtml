@@ -61,25 +61,14 @@
 				<div class="Card">
 			        <div class="CardTopic"> 
 			        	<i class="fa fa-newspaper-o Fleft MarRight10 Orange"></i> 
-			        	<div class="Fright TexAlCenter">
-                            <p:rating stars="5" cancel="false" onRate="alert('Вы поставили рейтинг ' + value)" />
-                            <div class="Fs10 FNone">Оцените новость</div>
-						</div>
-			            <div class="Fleft Orange">Вышла новая версия 3d max </div><br/><br/>
-			            <span class="CardSubTopic Fs11 Fleft">
-			        		<i class="fa fa-star-o Fs11 Fleft MarRight10"> 234</i>
-			        		<i class="fa fa-upload Fs11 Fleft MarRight10"> 444</i>
-			        		<i class="fa fa-wechat Fs11 Fleft MarRight10"> 554</i>
-						</span>
+			            <div class="Fleft"><p:outputLabel value="#{newsViev.newsTbl.vl_topic}" styleClass="Orange" /> </div><br/><br/>
 			        </div>
 			        <div class="SeparatorFull"></div>
 			        <div class="EmptyBox10"></div>
 			        			        			        
 			        <div class="Container100 Responsive100">
 			        	<div class="ContainerIndent">
-					        <div class="Fs18">До этого работал визуализатором интерьеров, и предложение поработать над мультфильмом показалось мне занятной идеей... 
-					          Как соберусь с мыслями – напишу небольшой рассказ о работе в студии, а пока просто хочу поделится результатами своей работы (кстати здесь 
-					          только часть того что мы успели за год, каждую неделю будем выкладывать новые серии) </div>
+					        <div class="Fs18"><p:outputLabel value="#{newsViev.newsTbl.vl_news}" /> </div>
 					    </div>
 			        </div>
 		        </div>
