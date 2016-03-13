@@ -24,6 +24,7 @@
 	<bean id="userModelDao" class="hobotun.db.userModel.UserModelDao" p:dataSource-ref="dataSource" />
 	<bean id="forumDao" class="hobotun.db.forum.ForumDao" p:dataSource-ref="dataSource" /> 
 	<bean id="ratingDao" class="hobotun.db.rating.RatingDao" p:dataSource-ref="dataSource" /> 
+	<bean id="newsDao" class="hobotun.db.news.NewsDao" p:dataSource-ref="dataSource" />
 		
 	<context:property-placeholder location="classpath:META-INF/application.properties"/>
 	
