@@ -155,7 +155,7 @@ public class ModelDao implements IModelDao {
 
 		insertModeleMsg.updateByNamedParam(paramMap, keyHolder);
 
-		modeleMsg.setId_modele(keyHolder.getKey().longValue());
+		modeleMsg.setId_modele_msg(keyHolder.getKey().longValue());
 	}
 	
 	public List<ModeleMsgTbl> selectModeleMsgByIdModele (Long id_modele) {

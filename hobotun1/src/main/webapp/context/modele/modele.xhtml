@@ -193,8 +193,22 @@
 
 				        <div class="SeparatorFull" style="margin: 7px -6px 7px; width: 1148px; padding-top: 7px;"></div>
 				        <div class="EmptyBox10"></div>
-				         
-						<h:form>
+			        </div>
+			    </div>
+			</div>
+			
+			<div class="Container100 Responsive100">
+				<div class="ContainerIndent">
+					<div class="Card">
+						<div class="CardTopic"> 
+				        	<i class="icon-chat2 Fleft MarRight10"></i> 
+							<div class="Fleft">Оставляйте своим коментарии</div>
+							<div class="EmptyBox10"></div>
+				        </div>
+				        <div class="SeparatorFull"></div>
+				        <div class="EmptyBox10"></div>
+				        
+				        <h:form>
 							<table style="padding-left: 10px; margin-top: 0px; width: 100%;">
 								<p:dataGrid var="msg" value="#{modele.modeleMsg}" columns="1" paginator="false" id="modeleMsg" layout="grid" paginatorAlwaysVisible="false" >
 									<tr style="background: rgba(0, 0, 0, 0.06);">
@@ -221,11 +235,11 @@
 								    	process="@form" update="@form" actionListener="#{modele.onSaveText}" />
 							</div>
 						    
-						</h:form>
-
-			        </div>
-			    </div>
+						</h:form>		        
+					</div>
+				</div>
 			</div>
+			
 		</div>
 	</h:form>
 </ui:composition>

@@ -67,62 +67,30 @@
 			        <div class="SeparatorFull"></div>
 			        <div class="EmptyBox10"></div>
 			        
-			        <h:panelGrid columns="1" cellpadding="5">
-					        <p:outputLabel for="cort" value="Сортировать по:" />
-	                        <p:selectOneButton id="cort">
-	                            <f:selectItem itemLabel="Популярности" itemValue="Популярности" />
-	                            <f:selectItem itemLabel="Дате" itemValue="Дате" />
-	                        </p:selectOneButton>
-                        </h:panelGrid>
-				        			        
-				        <div class="EmptyBox10"></div>
-				        <div class="SeparatorFull"></div>
-				        <div class="EmptyBox10"></div>
-			        
 			        <div class="Container100 Responsive100">
-			        	<div class="ContainerIndent">
-					        <div class="CardTopicMini">
-					        	<i class="fa fa-newspaper-o Fs30 Fleft MarRight10 Orange"></i> 
-					        	<div class="Fleft Orange">Вышла новая версия 3d max</div><br/>
-					        	<span class="CardSubTopic Fs10 Fleft">
-					        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 234</i>
-					        		<i class="fa fa-upload Fs10 Fleft MarRight10"> 444</i>
-					        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 554</i>
-								</span>
-					        </div><br/>
-					        <div class="Fs12">До этого работал визуализатором интерьеров, и предложение поработать над мультфильмом показалось мне занятной идеей... 
-					          Как соберусь с мыслями – напишу небольшой рассказ о работе в студии, а пока просто хочу поделится результатами своей работы (кстати здесь 
-					          только часть того что мы успели за год, каждую неделю будем выкладывать новые серии) </div>
-					        <a href="news.jsf?id=1">
-					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
-					        </a> 
-					    </div>
-			        </div>
-			        
-			        <div class="Container100 Responsive100">
-			        	<div class="ContainerIndent">
-					        <div class="CardTopicMini">
-					        	<i class="fa fa-file-image-o Fs30 Fleft MarRight10 Green"></i> 
-					        	<div class="Fleft Green">CORONA Renderer alpha6</div><br/>
-					        	<span class="CardSubTopic Fs10 Fleft">
-					        		<i class="fa fa-star-o Fs10 Fleft MarRight10"> 234</i>
-					        		<i class="fa fa-upload Fs10 Fleft MarRight10"> 444</i>
-					        		<i class="fa fa-wechat Fs10 Fleft MarRight10"> 554</i>
-								</span>
-					        </div><br/>
-					        <div class="Fs12">Здравствуйте коллеги!<br/>
-								Так как corona является unbiased рендером профессионалу, который работает в вирее, переход на корону особой трудности не вызовет. 
-								Но начинающему специалисту всегда нужны базовые знания. Поэтому решил выложить несколько уроков по короне а6. Уроки записывал год 
-								назад со своей ученицей. Надеюсь многим будет полезен.  </div>
-					        <a href="news.jsf?id=1">
-					        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
-					        </a> 
-					    </div>
+			        	<h:form id="newsAll" enctype="multipart/form-data" style="padding-left: 0px;">
+							<p:dataGrid var="newss" value="#{newsMain.newses}" columns="1" paginator="false" id="news" layout="grid" >
+					        	<div class="ContainerIndent">
+							        <div class="CardTopicMini">
+							        	<i class="fa fa-newspaper-o Fs30 Fleft MarRight10 Orange"></i> 
+							        	<div><p:outputLabel value="#{newss.vl_topic}" styleClass="Fleft Orange" /></div><br/>
+							        	<span class="CardSubTopic Fs10 Fleft">
+							        		<i class="fa fa-eye Fs10 Fleft MarRight10"><p:outputLabel value="#{newss.nn_count_view}" /></i>
+							        		<i class="fa fa-wechat Fs10 Fleft MarRight10"><p:outputLabel value="#{newss.msg}" /></i>
+										</span>
+							        </div><br/>
+							        <div class="Fs12"><p:outputLabel value="#{newss.vl_news_short}" /></div>
+							        <a href="../news/news.jsf?id=#{newss.id_news}">
+							        	<i class="fa fa-angle-double-right Fs15 Fright"></i>
+							        </a> 
+							    </div>
+							</p:dataGrid>
+						</h:form>
 			        </div>		        
 			        
 			        <div class="EmptyBox10"></div>
 			        <div class="SeparatorFull"></div>
-			        <span class="Red FontAdamantiumBold Fs18">18</span><br/>
+			        <span><p:outputLabel value="#{newsAll.count_news}" styleClass="Red FontAdamantiumBold Fs18" /> </span><br/>
 			        <span class="Fs12 FontAdamantiumRegular">Всего новостей</span>
 		        </div>
 		    </div>

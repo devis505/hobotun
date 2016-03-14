@@ -6,11 +6,17 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+
 import hobotun.db.news.action.CountNews;
+import hobotun.db.news.action.InsertNewsMsg;
 import hobotun.db.news.action.SelectAllNews;
 import hobotun.db.news.action.SelectFirst3News;
 import hobotun.db.news.action.SelectNewsById;
+import hobotun.db.news.action.SelectNewsMsgByIdNews;
 import hobotun.db.news.action.UpdateCountView;
+import hobotun.db.news.table.NewsMsgTbl;
 import hobotun.db.news.table.NewsTbl;
 
 public class NewsDao {
@@ -21,6 +27,8 @@ public class NewsDao {
 	private CountNews countNews;
 	private SelectNewsById selectNewsById;
 	private UpdateCountView updateCountView;
+	private SelectNewsMsgByIdNews selectNewsMsgByIdNews;
+	private InsertNewsMsg insertNewsMsg;
 	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -30,6 +38,8 @@ public class NewsDao {
 		countNews = new CountNews(dataSource);
 		selectNewsById = new SelectNewsById(dataSource);
 		updateCountView = new UpdateCountView(dataSource);
+		selectNewsMsgByIdNews = new SelectNewsMsgByIdNews(dataSource);
+		insertNewsMsg = new InsertNewsMsg(dataSource);
 	}
 	
 	public List<NewsTbl> selectAllNews() {
@@ -60,6 +70,29 @@ public class NewsDao {
 		paramMap.put("id_news", id);
 		
 		updateCountView.updateByNamedParam(paramMap);
+	}
+	
+	public List<NewsMsgTbl> selectModeleMsgByIdModele (Long id_news) {
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id_news", id_news);
+		
+		return selectNewsMsgByIdNews.executeByNamedParam(paramMap);
+	}
+	
+	public void insertNewsMsg(NewsMsgTbl newsMsg) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("id_user", newsMsg.getId_user());
+		paramMap.put("id_news", newsMsg.getId_news());
+		paramMap.put("vl_msg", newsMsg.getVl_msg());
+		paramMap.put("dt_news_msg", newsMsg.getDt_news_msg());
+		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
+		insertNewsMsg.updateByNamedParam(paramMap, keyHolder);
+
+		newsMsg.setId_news_msg(keyHolder.getKey().longValue());
 	}
 	
 }
