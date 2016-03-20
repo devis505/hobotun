@@ -1,6 +1,7 @@
 package hobotun.db.user;
 
 import hobotun.db.user.action.*;
+import hobotun.db.user.table.ForgetPassTbl;
 import hobotun.db.user.table.OutUserBalanceTbl;
 import hobotun.db.user.table.UserTbl;
 
@@ -25,6 +26,8 @@ public class UserDao implements IUserDao, Serializable {
 	private UpdateUserMinusBalanceById updateUserMinusBalanceById;
 	private InsertOutBalanc insertOutBalanc;
 	private FindUserById findUserById;
+	private InsertForgetPass insertForgetPass;
+	private FindForgetPass findForgetPass;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -37,6 +40,8 @@ public class UserDao implements IUserDao, Serializable {
 		this.updateUserMinusBalanceById = new UpdateUserMinusBalanceById(dataSource);
 		this.insertOutBalanc = new InsertOutBalanc(dataSource);
 		this.findUserById = new FindUserById(dataSource);
+		this.insertForgetPass = new InsertForgetPass(dataSource);
+		this.findForgetPass = new FindForgetPass(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -95,5 +100,12 @@ public class UserDao implements IUserDao, Serializable {
 		
 		return findUserById.executeByNamedParam(params);
 	}
+	
+	public void InsertForgetPass(Map<String, Object> params) {
+		insertForgetPass.updateByNamedParam(params);
+	}
 
+	public List<ForgetPassTbl> findForgetPass(Map<String, Object> params) {
+ 		return findForgetPass.executeByNamedParam(params);
+	}
 }

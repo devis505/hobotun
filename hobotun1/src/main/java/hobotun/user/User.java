@@ -1,5 +1,6 @@
 package hobotun.user;
 
+import hobotun.core.Misc;
 import hobotun.db.DBUtil;
 import hobotun.db.user.UserDao;
 import hobotun.db.user.table.OutUserBalanceTbl;
@@ -30,7 +31,7 @@ public class User implements Serializable {
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put("mail", email);
-		params.put("password", password);
+		params.put("password", Misc.md5Custom(password));
 
 		List<UserTbl> users = userDao.getUserByMailAndPass(params);
 

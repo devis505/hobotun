@@ -23,8 +23,8 @@
     <!-- style="display:none;" -->
     <h:body styleClass="dark">
         
-        <ui:include src="#{defValue.appPath}/context/common/topbar-not-sign.xhtml" />
-        <ui:include src="#{defValue.appPath}/context/common/layoutmenu.xhtml" />
+        <ui:include src="../common/topbar-not-sign.xhtml" />
+        <ui:include src="../common/layoutmenu.xhtml" />
         
         <div id="layout-portlets-cover">
             <ui:insert name="content">
@@ -34,7 +34,7 @@
 
         <p:ajaxStatus style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
             <f:facet name="start">
-                <p:graphicImage url="#{defValue.appPath}/resources/adamantium-layout/images/preloader.gif"/>
+                <p:graphicImage url="/resources/adamantium-layout/images/preloader.gif"/>
             </f:facet>
 
             <f:facet name="complete">
@@ -42,14 +42,14 @@
             </f:facet>
         </p:ajaxStatus>
 
-        <h:outputStylesheet name="css/core-layout.css" library="adamantium-layout" />
-        <h:outputStylesheet name="css/animate.css" library="adamantium-layout" />
-        <h:outputStylesheet name="css/adamantium-font.css" library="adamantium-layout" />
-        <h:outputStylesheet name="css/ripple-effect.css" library="adamantium-layout" />
-        <h:outputStylesheet name="css/perfect-scrollbar.css" library="adamantium-layout" />
-        <h:outputStylesheet name="css/font-awesome.css" library="adamantium-layout" />
-        <h:outputStylesheet name="css/adamantium-layout.css" library="adamantium-layout" />
-        <h:outputStylesheet name="css/style.css" library="adamantium-layout" />
+        <h:outputStylesheet name="/css/core-layout.css" library="adamantium-layout" />
+        <h:outputStylesheet name="/css/animate.css" library="adamantium-layout" />
+        <h:outputStylesheet name="/css/adamantium-font.css" library="adamantium-layout" />
+        <h:outputStylesheet name="/css/ripple-effect.css" library="adamantium-layout" />
+        <h:outputStylesheet name="/css/perfect-scrollbar.css" library="adamantium-layout" />
+        <h:outputStylesheet name="/css/font-awesome.css" library="adamantium-layout" />
+        <h:outputStylesheet name="/css/adamantium-layout.css" library="adamantium-layout" />
+        <h:outputStylesheet name="/css/style.css" library="adamantium-layout" />
         
         <!-- script type="text/javascript">
 	        $(document).ready(function() {

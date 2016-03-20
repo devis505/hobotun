@@ -15,11 +15,11 @@ public class UpdateUserById extends SqlUpdate {
 	  + " WHERE u.id_user = :id_user";
 
     public UpdateUserById(DataSource dataSource) {
-	super(dataSource, SQL_UPDATE_USER);
+    	super(dataSource, SQL_UPDATE_USER);
 	
-	super.declareParameter(new SqlParameter("mail", Types.VARCHAR));
-	super.declareParameter(new SqlParameter("password", Types.VARCHAR));
-	super.declareParameter(new SqlParameter("fio", Types.VARCHAR));
-	super.declareParameter(new SqlParameter("id_user", Types.INTEGER));
+    	super.declareParameter(new SqlParameter("mail", Types.VARCHAR));
+    	super.declareParameter(new SqlParameter("password", Types.VARCHAR));
+    	super.declareParameter(new SqlParameter("fio", Types.VARCHAR));
+    	super.declareParameter(new SqlParameter("id_user", Types.INTEGER));
     }
 }
