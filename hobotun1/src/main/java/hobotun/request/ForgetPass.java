@@ -43,7 +43,7 @@ public class ForgetPass implements Serializable {
 			paramForgetPass.put("dt_create", new Date());
 
 			String path = Misc.getAppPath() + "/pages/user/recover.jsf?e=" + email + "&c="
-					+ paramForgetPass.get("vl_hash") + "&i=" + paramForgetPass.get("id_user");
+					+ paramForgetPass.get("vl_hash") + "&i=" + paramForgetPass.get("id_user") + "&u=1";
 			
 			userDao.InsertForgetPass(paramForgetPass);
 			

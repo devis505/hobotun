@@ -19,19 +19,19 @@
 	                    
 	                    <h:form id="login-form">
 							<h:panelGrid id="grid" columns="1" styleClass="MarAuto Wid90" >
-								<p:inputText id="login" placeholder="Логин" styleClass="Wid90 TexAlCenter" />
+								<p:inputText id="login" placeholder="Логин" styleClass="Wid90 TexAlCenter" value="#{reg.login}" />
 		                		<p:message for="login" id="loginlErr" />
-		                		<p:inputText id="Email" placeholder="Email" styleClass="Wid90 TexAlCenter" />
+		                		<p:inputText id="Email" placeholder="Email" styleClass="Wid90 TexAlCenter" value="#{reg.email}" />
 		                		<p:message for="Email" id="EmailErr" />
-		                		<p:inputText id="password" type="password" placeholder="Пароль" styleClass="Wid90 TexAlCenter" />
-		                		<p:message for="password" />
-		                		<p:inputText id="password2" type="password" placeholder="Пароль ещё раз" styleClass="Wid90 TexAlCenter" />
-		                		<p:message for="password2" />
-		                	</h:panelGrid>
+		                		<p:inputText id="password" type="password" placeholder="Пароль" styleClass="Wid90 TexAlCenter" value="#{reg.pass}" />
+		                		<p:message for="password" id="PasswordErr" />
+		                		<p:inputText id="password2" type="password" placeholder="Пароль ещё раз" styleClass="Wid90 TexAlCenter" value="#{reg.pass2}"/>
+		                		<p:message for="password2" id="Password2Err" />
+    	                	</h:panelGrid>
 		                	
 		                    <div class="EmptyBox30"></div>
-		                    <!-- p:commandButton id="submitButton" value="Войти" actionListener="#{messagesView.growlMessage()}" update="grid" styleClass="CyanButton/ -->
-		                    <p:commandButton id="enterUser" value="Зарегистрироваться" icon="fa fa-sign-in" styleClass="CyanButton" update="grid" process="@form"/>
+		                    <p:commandButton actionListener="#{reg.onSaveUser}" id="enterUser" value="Зарегистрироваться" 
+		                    	icon="fa fa-sign-in" styleClass="CyanButton" update="grid" process="@form"/>
 		                    <div class="EmptyBox10 ShowOnMobile"></div>
 		            	</h:form>
 	                </div>

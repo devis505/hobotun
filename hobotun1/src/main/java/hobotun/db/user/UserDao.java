@@ -28,6 +28,8 @@ public class UserDao implements IUserDao, Serializable {
 	private FindUserById findUserById;
 	private InsertForgetPass insertForgetPass;
 	private FindForgetPass findForgetPass;
+	private FindUserByLogin findUserByLogin;
+	private InsertUser insertUser;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -42,6 +44,8 @@ public class UserDao implements IUserDao, Serializable {
 		this.findUserById = new FindUserById(dataSource);
 		this.insertForgetPass = new InsertForgetPass(dataSource);
 		this.findForgetPass = new FindForgetPass(dataSource);
+		this.findUserByLogin = new FindUserByLogin(dataSource);
+		this.insertUser = new InsertUser(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -107,5 +111,13 @@ public class UserDao implements IUserDao, Serializable {
 
 	public List<ForgetPassTbl> findForgetPass(Map<String, Object> params) {
  		return findForgetPass.executeByNamedParam(params);
+	}
+	
+	public List<UserTbl> findUserByLogin(Map<String, Object> params) {
+		return findUserByLogin.executeByNamedParam(params);
+	}
+	
+	public void insertUser(Map<String, Object> params){
+		insertUser.updateByNamedParam(params);
 	}
 }
