@@ -9,7 +9,7 @@ import org.springframework.jdbc.object.SqlUpdate;
 
 public class InsertUser extends SqlUpdate {
 
-	private static final String SQL_INSERT_FORGET_PASS = "INSERT INTO hb_user (login, mail, password, dtReg, FIO, balance, idImage) VALUE (:login, :mail, :password, :dtReg, '', 0, null)";
+	private static final String SQL_INSERT_FORGET_PASS = "INSERT INTO hb_user (login, mail, password, dtReg, FIO, balance, idImage) VALUE (:login, :mail, :password, :dtReg, '', 0, 0)";
 
 	public InsertUser(DataSource dataSource) {
 		super(dataSource, SQL_INSERT_FORGET_PASS);

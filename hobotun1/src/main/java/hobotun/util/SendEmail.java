@@ -49,6 +49,7 @@ public class SendEmail {
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.host", host);
 		properties.put("mail.smtp.port", port);
+		properties.put("mail.smtp.charset", "UTF-8");
 
 		// Get the default Session object.
 		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
@@ -71,7 +72,7 @@ public class SendEmail {
 			message.setSubject(title);
 
 			// Send the actual HTML message, as big as you like
-			message.setContent(body, "text/html");
+			message.setContent(body, "text/html; charset=UTF-8");
 
 			// Send message
 			Transport.send(message);

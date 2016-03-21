@@ -78,18 +78,20 @@ public class Registration implements Serializable{
 					
 					userDao.InsertForgetPass(paramForgetPass);
 					
-					SendEmail.getInstance().SendMail(email, "Подтверждение почты для HOBOTUN", body);
+					SendEmail.getInstance().SendMail(email, "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РїРѕС‡С‚С‹ РґР»СЏ HOBOTUN", body);
+					
+					Misc.redirect("/pages/user/recover.jsf?e=" + email + "&c=&i=&u=3");
 					
 				} else {
-					Misc.setMessageElement(ID_MSG_FOR_PASS2_ELEMENT, FacesMessage.SEVERITY_ERROR, "Пароли не совпадают");
+					Misc.setMessageElement(ID_MSG_FOR_PASS2_ELEMENT, FacesMessage.SEVERITY_ERROR, "РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚");
 				}
 				
 			} else {
-				Misc.setMessageElement(ID_MSG_FOR_MAIL_ELEMENT, FacesMessage.SEVERITY_ERROR, "Пользователь с таким e-mail уже существует");
+				Misc.setMessageElement(ID_MSG_FOR_MAIL_ELEMENT, FacesMessage.SEVERITY_ERROR, "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ С‚Р°РєРёРј e-mail СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 			}
 			
 		} else {
-			Misc.setMessageElement(ID_MSG_FOR_LOGIN_ELEMENT, FacesMessage.SEVERITY_ERROR, "Пользователь с таким логином уже существует");
+			Misc.setMessageElement(ID_MSG_FOR_LOGIN_ELEMENT, FacesMessage.SEVERITY_ERROR, "РўР°РєРѕР№ Р»РѕРіРёРЅ СѓР¶Рµ Р·Р°РЅСЏС‚ РґСЂСѓРіРёРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј");
 		}
 	}
 	
@@ -134,8 +136,8 @@ public class Registration implements Serializable{
 	private static final String ID_MSG_FOR_PASS2_ELEMENT = "login-form:password2";
 	
 	private static final String bodyMsg = 
-			"<p>Приветствуем, %s!</p> " +
-			"<p>Для подтверждения электронной почты и завершения процесса регистрации, пройдите, пожалуйста, по ссылке:</p><br/>" +
+			"<p>РџСЂРёРІРµС‚СЃС‚РІСѓРµРј, %s!</p> " +
+			"<p>Р”Р»СЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹ Рё Р·Р°РІРµСЂС€РµРЅРёСЏ РїСЂРѕС†РµСЃСЃР° СЂРµРіРёСЃС‚СЂР°С†РёРё, РїСЂРѕР№РґРёС‚Рµ, РїРѕР¶Р°Р»СѓР№СЃС‚Р°, РїРѕ СЃСЃС‹Р»РєРµ:</p><br/>" +
 			"<a href=\"%s\">%s</a><br/>" +
-			"<p>Если вы получили это письмо по ошибке, просто игнорируйте его.</p>";	
+			"<p>Р•СЃР»Рё РІС‹ РїРѕР»СѓС‡РёР»Рё СЌС‚Рѕ РїРёСЃСЊРјРѕ РїРѕ РѕС€РёР±РєРµ, РїСЂРѕСЃС‚Рѕ РёРіРЅРѕСЂРёСЂСѓР№С‚Рµ РµРіРѕ.</p>";	
 }

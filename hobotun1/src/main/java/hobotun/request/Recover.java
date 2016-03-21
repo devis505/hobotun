@@ -32,45 +32,52 @@ public class Recover implements Serializable {
 		String id_user = Misc.getRequestParam(FacesContext.getCurrentInstance(), "i");
 		String u = Misc.getRequestParam(FacesContext.getCurrentInstance(), "u");
 		String c = Misc.getRequestParam(FacesContext.getCurrentInstance(), "c");
+		String e = Misc.getRequestParam(FacesContext.getCurrentInstance(), "e");
 
-		params.put("id_user", id_user);
-		params.put("vl_hash", c);
-		params.put("dt_create", new Date());
-
-		List<ForgetPassTbl> forgetPass = userDao.findForgetPass(params);
-		List<UserTbl> userTbl = userDao.getUserById(new Long(id_user));
-
-		if (!forgetPass.isEmpty()) {
-
-			String newPass = "";
+		if (!"3".equals(u)) {
 			
-			if ("1".equals(u)) {
-				msg = "На вашу почту <b>" + userTbl.get(0).getMail() + "</b> отправлен новый пароль!";
-				newPass = Misc.getUnicValue(8);
+			params.put("id_user", id_user);
+			params.put("vl_hash", c);
+			params.put("dt_create", new Date());
+
+			List<ForgetPassTbl> forgetPass = userDao.findForgetPass(params);
+			List<UserTbl> userTbl = userDao.getUserById(new Long(id_user));
+			
+			if (!forgetPass.isEmpty()) {
+
+				String newPass = "";
+
+				if ("1".equals(u)) {
+					msg = "Р’Р°Рј РЅР° РїРѕС‡С‚Сѓ <b>" + userTbl.get(0).getMail() + "</b> Р±С‹Р» РѕС‚РїСЂР°РІР»РµРЅ РЅРѕРІС‹Р№ РїР°СЂРѕР»СЊ!";
+					newPass = Misc.getUnicValue(8);
+
+				} else if ("2".equals(u)) {
+					msg = "РџРѕР·РґСЂР°РІР»СЏРµРј <b>" + userTbl.get(0).getLogin()
+							+ "</b>, РІС‹ СѓСЃРїРµС€РЅРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°Р»РёСЃСЊ РЅР° HOBOTUN.COM!";
+					newPass = c;
+				}
 				
+				String mail = userTbl.get(0).getMail();
+				String body = String.format(msgToMail, mail, newPass);
+
+				Map<String, Object> userParams = userTbl.get(0).getAllParam();
+				if ("1".equals(u)) {
+					userParams.put("password", Misc.md5Custom(newPass));
+				} else {
+					userParams.put("password", newPass);
+				}
+
+				userDao.UpdateUserById(userParams);
+
+				if ("1".equals(u)) {
+					SendEmail.getInstance().SendMail(mail, "Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂРѕР»СЏ", body);
+				}
+
 			} else {
-				msg = "Добро пожаловаться <b>" + userTbl.get(0).getLogin() + "</b>, вы успешно зарегистрированы!";
-				newPass = c;
+				msg = "";
 			}
-
-			String mail = userTbl.get(0).getMail();
-			String body = String.format(msgToMail, mail, newPass);
-
-			Map<String, Object> userParams = userTbl.get(0).getAllParam();
-			if ("1".equals(u)) {
-				userParams.put("password", Misc.md5Custom(newPass));
-			} else {
-				userParams.put("password", newPass);
-			}
-
-			userDao.UpdateUserById(userParams);
-
-			if ("1".equals(u)) {
-				SendEmail.getInstance().SendMail(mail, "Восстановление пароля", body);
-			}
-
 		} else {
-			msg = "Запрос на восстановление пароля не найден";
+			msg = "Р—Р°Р№РґРёС‚Рµ РЅР° РІР°С€Сѓ РїРѕС‡С‚Сѓ <b>" + e + "</b>, РґР»СЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ СЂРµРіРёСЃС‚СЂР°С†РёРё!";
 		}
 	}
 
@@ -82,11 +89,11 @@ public class Recover implements Serializable {
 		this.msg = msg;
 	}
 
-	private final static String msgToMail = "<p>Так как Вы забыли пароль и запросили его восстановление, генератор"
-			+ "паролей, не побоимся этого слова, сгенерировал (!) Вам новый,"
-			+ "несложный, легкозапоминающийся пароль.</p>"
-			+ "<p>Собственно теперь информация, необходимая для доступа к нам на сайт"
-			+ "выглядит следующим образом:</p><br/>" + "<b>Логин:</b> %s<br/>" + "<b>Пароль:</b> %s<br/><br/>"
-			+ "<p>Добро пожаловать обратно на <a href=\"https://www.hobotun.com\">https://www.hobotun.com</a></p>";
+	private final static String msgToMail = "<p>РўР°Рє РєР°Рє Р’С‹ Р·Р°Р±С‹Р»Рё РїР°СЂРѕР»СЊ Рё Р·Р°РїСЂРѕСЃРёР»Рё РµРіРѕ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ, РіРµРЅРµСЂР°С‚РѕСЂ"
+			+ "РїР°СЂРѕР»РµР№, РЅРµ РїРѕР±РѕРёРјСЃСЏ СЌС‚РѕРіРѕ СЃР»РѕРІР°, СЃРіРµРЅРµСЂРёСЂРѕРІР°Р» (!) Р’Р°Рј РЅРѕРІС‹Р№,"
+			+ "РЅРµСЃР»РѕР¶РЅС‹Р№, Р»РµРіРєРѕР·Р°РїРѕРјРёРЅР°СЋС‰РёР№СЃСЏ РїР°СЂРѕР»СЊ.</p>"
+			+ "<p>РЎРѕР±СЃС‚РІРµРЅРЅРѕ С‚РµРїРµСЂСЊ РёРЅС„РѕСЂРјР°С†РёСЏ, РЅРµРѕР±С…РѕРґРёРјР°СЏ РґР»СЏ РґРѕСЃС‚СѓРїР° Рє РЅР°Рј РЅР° СЃР°Р№С‚"
+			+ "РІС‹РіР»СЏРґРёС‚ СЃР»РµРґСѓСЋС‰РёРј РѕР±СЂР°Р·РѕРј:</p><br/>" + "<b>Р›РѕРіРёРЅ:</b> %s<br/>" + "<b>РџР°СЂРѕР»СЊ:</b> %s<br/><br/>"
+			+ "<p>Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РѕР±СЂР°С‚РЅРѕ РЅР° <a href=\"https://www.hobotun.com\">https://www.hobotun.com</a></p>";
 
 }
