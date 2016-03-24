@@ -5,22 +5,37 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 	<h:form id="info">
-		<h:panelGrid columns="2" cellpadding="10" id="infoPanel">
-			<p:outputLabel styleClass="Fs18" value="ФИО:" />
-			<p:outputLabel styleClass="Fs18"  style="padding-top: 9px !important; padding-bottom:9px !important;" value="#{userSession.user.userTbl.fio}" rendered="#{!userSession.user.editMode}"/>
-			<p:inputText styleClass="Fs18" style="padding-left:0px !important;" value="#{userSession.user.userTbl.fio}" rendered="#{userSession.user.editMode}"/>
-			
-			<p:outputLabel styleClass="Fs18" value="Дата регистрации:" />
-			<p:outputLabel styleClass="Fs18" value="#{userSession.user.userTbl.dtReg}" />
-							
-			<p:commandButton value="Редактировать" class="CyanButton Fleft" rendered="#{!userSession.user.editMode}"
-				icon="fa fa-pencil" update="infoPanel" action="#{userSession.user.changeEditMode}" >
-			</p:commandButton>
-			
-			<p:commandButton value="Сохранить" class="CyanButton Fleft" rendered="#{userSession.user.editMode}"
-				icon="fa fa-pencil" update="infoPanel" action="#{userSession.user.changeEditMode}">
-			</p:commandButton>
-		</h:panelGrid>
+		<div class="Container50 Responsive100" style="margin: auto; float: none !important;">
+			<div class="ContainerIndent">
+	
+				<h:panelGrid columns="2" cellpadding="10" id="infoPanel">
+				
+					<p:outputLabel value="ФИО:" styleClass="Fs18"  id="fio" />
+					<p:outputLabel value="#{userSession.user.userTbl.fio}" styleClass="Fs18"  style="padding-top: 9px !important; padding-bottom:9px !important;" />
+					
+					<p:outputLabel value="Дата регистрации:" styleClass="Fs18"  />
+					<p:outputLabel value="#{userSession.user.userTbl.dtReg}" styleClass="Fs18"  />
+					
+					<p:outputLabel value="Логин:" styleClass="Fs18"  />
+					<p:outputLabel value="#{userSession.user.userTbl.login}" styleClass="Fs18"  />
+					
+					<p:outputLabel value="Почта:" styleClass="Fs18"  />
+					<p:outputLabel value="#{userSession.user.userTbl.mail}" styleClass="Fs18"  />
+					
+					<p:outputLabel value="Описание:" styleClass="Fs18"  />
+					<p:outputLabel value="#{userSession.user.userTbl.desc}" styleClass="Fs18"  />
+									
+				</h:panelGrid>
+				
+				<div class="EmptyBox10"></div>
+				<div class="SeparatorFull"></div>
+			    <div class="EmptyBox10"></div>
+			        
+				<p:button value="Редактировать" icon="fa fa-edit (alias)" outcome="user">
+					<f:param value="10" name="userPageId"></f:param>
+				</p:button>
+			</div>
+		</div>
 	</h:form>
 	
 </ui:composition>

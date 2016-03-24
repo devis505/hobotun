@@ -50,6 +50,7 @@ public class ForgetPass implements Serializable {
 			String body = String.format(text, email, path, path);
 
 			SendEmail.getInstance().SendMail(email, "Восстановление пароля", body);
+			Misc.redirect("/pages/user/recover.jsf?e=" + email + "&c=&i=&u=4");
 		}
 	}
 

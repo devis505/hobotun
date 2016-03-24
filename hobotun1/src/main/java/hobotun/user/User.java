@@ -92,11 +92,7 @@ public class User implements Serializable {
 	}
 
 	public void changeEditMode() {
-		editMode = !editMode;
-
-		if (!editMode) {
-			userDao.UpdateUserById(userTbl.getAllParam());
-		}
+		userDao.UpdateUserById(userTbl.getAllParam());
 	}
 
 	public static User getUser() {
@@ -150,6 +146,17 @@ public class User implements Serializable {
 		}
 		if (userPageId.equals(9)) {
 			return "downloadModels";
+		} 
+		if (userPageId.equals(10)) {
+			return "editInfo";
+		} 
+		
+		if (userPageId.equals(11)) {
+			return "editPic";
+		}
+		
+		if (userPageId.equals(12)) {
+			return "editPass";
 		} else {
 			return "emtyPage";
 		}

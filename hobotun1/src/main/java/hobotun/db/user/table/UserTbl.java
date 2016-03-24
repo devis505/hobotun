@@ -18,6 +18,7 @@ public class UserTbl {
 	private BigDecimal balance;
 	private Long idImage;
 	private Integer rating_user = 0;
+	private String desc;
 
 	public UserTbl(ResultSet rs) throws SQLException {
 		setId_user(rs.getLong("id_user"));
@@ -30,6 +31,7 @@ public class UserTbl {
 		setBalance(rs.getBigDecimal("balance"));
 		setIdImage(rs.getLong("idImage"));
 		setRating_user(rs.getInt("rating_user"));
+		setDesc(rs.getString("desc"));
 	}
 
 	public Map<String, Object> getAllParam() {
@@ -42,6 +44,7 @@ public class UserTbl {
 		param.put("password", password);
 		// param.put("dtReg", dtReg);
 		param.put("fio", fio);
+		param.put("desc", desc);
 
 		return param;
 	}
@@ -116,6 +119,14 @@ public class UserTbl {
 
 	public void setRating_user(Integer rating_user) {
 		this.rating_user = rating_user;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 }

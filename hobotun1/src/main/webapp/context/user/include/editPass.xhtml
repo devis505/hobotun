@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:form id="info-form">
+		<div class="Container50 Responsive100" style="margin: auto; float: none !important;">
+			<div class="ContainerIndent">
+	
+				<h:panelGrid columns="3" cellpadding="10" id="infoPanel">
+				
+					<p:outputLabel value="Старый пароль:" styleClass="Fs18"  id="fio" />
+					<p:password value="#{editPass.passOld}" id="pass" styleClass="Fs18"  style="padding-top: 9px !important; padding-bottom:9px !important;" />
+					<p:message for="pass" />
+					
+					<p:outputLabel value="Новый пароль:" styleClass="Fs18"  />
+					<p:password value="#{editPass.passNew}" id="passNew" styleClass="Fs18"  style="padding-top: 9px !important; padding-bottom:9px !important;" />
+					<p:message for="passNew" />
+					
+					<p:outputLabel value="Повторите пароль:" styleClass="Fs18"  />
+					<p:password value="#{editPass.passNew2}" id="passNew2" styleClass="Fs18"  style="padding-top: 9px !important; padding-bottom:9px !important;" />
+					<p:message for="passNew2" />
+					
+				</h:panelGrid>
+				
+				<div class="EmptyBox10"></div>
+				<div class="SeparatorFull"></div>
+			    <div class="EmptyBox10"></div>
+			        
+				<p:commandButton value="Сохранить" icon="fa fa-save (alias)" actionListener="#{editPass.onSave}" />
+			</div>
+		</div>
+	</h:form>
+	
+</ui:composition>

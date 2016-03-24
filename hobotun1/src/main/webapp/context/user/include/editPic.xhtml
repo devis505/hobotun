@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	
+	<div class="Container50 Responsive100" style="margin: auto; float: none !important;">
+		<div class="ContainerIndent">
+			<h:form id="info" enctype="multipart/form-data">
+				<p:panel styleClass="HiddenBorder">
+					<span style="display: block; cursor: pointer;">
+						<p:button value="Загрузить" style="padding-left: 0px; margin-left: -7px; z-index: 0;"/>
+						<h:inputFile id="modelHiPoly" value="#{editPic.img.param}" required="true" 
+						   style="z-index: 100; height: 38px; opacity: 0; margin-left: -108px; width: 315px; cursor: pointer; position: absolute;">
+							<f:ajax listener="#{editPic.onSaveImg}" render="modelHiPolyText greenModeHiPoly itogo" />
+						</h:inputFile> 
+						<p:inputText id="modelHiPolyText" value="#{editPic.img.text}" placeholder="Размер до 1Мб. Формат .jpeg" style="height: 18px; width: 280px; z-index: 0;" />
+					</span>
+				</p:panel>
+			</h:form>
+		</div>
+	</div>
+	
+	<div class="Container50 Responsive100" style="margin: auto; float: none !important;">
+		<div class="ContainerIndent">
+			<h:form>
+				<p:commandButton value="Сохранить" icon="fa fa-save (alias)" actionListener="#{editPic.onSave}" />
+			</h:form>
+		</div>
+	</div>	
+</ui:composition>

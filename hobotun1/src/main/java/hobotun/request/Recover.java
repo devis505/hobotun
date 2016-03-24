@@ -34,50 +34,54 @@ public class Recover implements Serializable {
 		String c = Misc.getRequestParam(FacesContext.getCurrentInstance(), "c");
 		String e = Misc.getRequestParam(FacesContext.getCurrentInstance(), "e");
 
-		if (!"3".equals(u)) {
-			
-			params.put("id_user", id_user);
-			params.put("vl_hash", c);
-			params.put("dt_create", new Date());
+		if (!"4".equals(u)) {
+			if (!"3".equals(u)) {
 
-			List<ForgetPassTbl> forgetPass = userDao.findForgetPass(params);
-			List<UserTbl> userTbl = userDao.getUserById(new Long(id_user));
-			
-			if (!forgetPass.isEmpty()) {
+				params.put("id_user", id_user);
+				params.put("vl_hash", c);
+				params.put("dt_create", new Date());
 
-				String newPass = "";
+				List<ForgetPassTbl> forgetPass = userDao.findForgetPass(params);
+				List<UserTbl> userTbl = userDao.getUserById(new Long(id_user));
 
-				if ("1".equals(u)) {
-					msg = "Вам на почту <b>" + userTbl.get(0).getMail() + "</b> был отправлен новый пароль!";
-					newPass = Misc.getUnicValue(8);
+				if (!forgetPass.isEmpty()) {
 
-				} else if ("2".equals(u)) {
-					msg = "Поздравляем <b>" + userTbl.get(0).getLogin()
-							+ "</b>, вы успешно зарегистрировались на HOBOTUN.COM!";
-					newPass = c;
-				}
-				
-				String mail = userTbl.get(0).getMail();
-				String body = String.format(msgToMail, mail, newPass);
+					String newPass = "";
 
-				Map<String, Object> userParams = userTbl.get(0).getAllParam();
-				if ("1".equals(u)) {
-					userParams.put("password", Misc.md5Custom(newPass));
+					if ("1".equals(u)) {
+						msg = "Вам на почту <b>" + userTbl.get(0).getMail() + "</b> был отправлен новый пароль!";
+						newPass = Misc.getUnicValue(8);
+
+					} else if ("2".equals(u)) {
+						msg = "Поздравляем <b>" + userTbl.get(0).getLogin()
+								+ "</b>, вы успешно зарегистрировались на HOBOTUN.COM!";
+						newPass = c;
+					}
+
+					String mail = userTbl.get(0).getMail();
+					String body = String.format(msgToMail, mail, newPass);
+
+					Map<String, Object> userParams = userTbl.get(0).getAllParam();
+					if ("1".equals(u)) {
+						userParams.put("password", Misc.md5Custom(newPass));
+					} else {
+						userParams.put("password", newPass);
+					}
+
+					userDao.UpdateUserById(userParams);
+
+					if ("1".equals(u)) {
+						SendEmail.getInstance().SendMail(mail, "Восстановление пароля", body);
+					}
+
 				} else {
-					userParams.put("password", newPass);
+					msg = "";
 				}
-
-				userDao.UpdateUserById(userParams);
-
-				if ("1".equals(u)) {
-					SendEmail.getInstance().SendMail(mail, "Восстановление пароля", body);
-				}
-
 			} else {
-				msg = "";
+				msg = "Зайдите на вашу почту <b>" + e + "</b>, для подтверждения регистрации!";
 			}
 		} else {
-			msg = "Зайдите на вашу почту <b>" + e + "</b>, для подтверждения регистрации!";
+			msg = "На вашу почту <b>" + e + "</b>, отпралена инструкция!";
 		}
 	}
 

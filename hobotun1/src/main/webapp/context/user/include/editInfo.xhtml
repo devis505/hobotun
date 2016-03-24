@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:form id="info">
+		<div class="Container50 Responsive100" style="margin: auto; float: none !important;">
+			<div class="ContainerIndent">
+	
+				<h:panelGrid columns="3" cellpadding="10" style="border-color:green;">
+					<h:graphicImage style="border-radius: 100px;" url="/GetImage?idImg=${editInfo.userTbl.idImage}"  />
+					<p:link value="Изменить картинку" icon="fa fa-edit (alias)" outcome="user">
+						<f:param value="11" name="userPageId"></f:param>
+					</p:link>
+					<p:link value="Изменить пароль" icon="fa fa-edit (alias)" outcome="user">
+						<f:param value="12" name="userPageId"></f:param>
+					</p:link>
+				</h:panelGrid>
+	
+				<div class="SeparatorFull"></div>
+			    <div class="EmptyBox10"></div>
+	
+				<h:panelGrid columns="2" cellpadding="10" id="infoPanel">
+				
+					<p:outputLabel value="ФИО:" styleClass="Fs18"  id="fio" />
+					<p:inputText value="#{editInfo.userTbl.fio}" styleClass="Fs18"  style="padding-top: 9px !important; padding-bottom:9px !important; width:280px;" />
+					
+					<p:outputLabel value="Дата регистрации:" styleClass="Fs18"  />
+					<p:outputLabel value="#{editInfo.userTbl.dtReg}" styleClass="Fs18"  />
+					
+					<p:outputLabel value="Логин:" styleClass="Fs18"  />
+					<p:outputLabel value="#{editInfo.userTbl.login}" styleClass="Fs18"  />
+					
+					<p:outputLabel value="Почта:" styleClass="Fs18"  />
+					<p:inputText value="#{editInfo.userTbl.mail}" styleClass="Fs18" style="width:280px;"  />
+					
+					<p:outputLabel value="Описание:" styleClass="Fs18"  />
+					<p:inputTextarea value="#{editInfo.userTbl.desc}" maxlength="320" rows="5" autoResize="true" styleClass="Fs18" style="width:280px;"  />
+									
+				</h:panelGrid>
+				
+				<div class="EmptyBox10"></div>
+				<div class="SeparatorFull"></div>
+			    <div class="EmptyBox10"></div>
+			        
+				<p:commandButton value="Сохранить" icon="fa fa-save (alias)" actionListener="#{editInfo.onSave}" />
+			</div>
+		</div>
+	</h:form>
+	
+</ui:composition>
