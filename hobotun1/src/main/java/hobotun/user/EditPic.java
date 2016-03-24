@@ -34,10 +34,16 @@ public class EditPic implements Serializable {
 	private ModelePartParam img = new ModelePartParam();
 
 	public void onSaveImg() {
-		
+
 		try {
-			
+
 			BufferedImage imgTmp = ImageIO.read(this.img.getParam().getInputStream());
+
+			if (imgTmp.getWidth() > imgTmp.getHeight()) {
+				imgTmp = imgTmp.getSubimage(0, 0, imgTmp.getHeight(), imgTmp.getHeight());
+			} else {
+				imgTmp = imgTmp.getSubimage(0, 0, imgTmp.getWidth(), imgTmp.getWidth());
+			}
 
 			BufferedImage scaled = new BufferedImage(80, 80, BufferedImage.TYPE_INT_RGB);
 			Graphics2D g = scaled.createGraphics();
@@ -58,22 +64,22 @@ public class EditPic implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void onSave() {
-		
+
 		ImageDao imageDao = DBUtil.getInstance().getBean("imageDao", ImageDao.class);
 		imageDao.Insert(imageTbl);
-		
+
 		userTbl.setIdImage(imageTbl.getIdImage());
-		
+
 		UserDao userDao = DBUtil.getInstance().getBean("userDao", UserDao.class);
 		userDao.UpdateUserById(userTbl.getAllParam());
-		
+
 		Misc.redirect("/pages/user/user.jsf?userPageId=1");
 	}
-	
+
 	public byte[] getByteByStreem(Part file) {
 		try (InputStream input = file.getInputStream()) {
 
@@ -99,6 +105,7 @@ public class EditPic implements Serializable {
 	public ModelePartParam getImg() {
 		return img;
 	}
+
 	public void setImg(ModelePartParam img) {
 		this.img = img;
 	}

@@ -259,6 +259,12 @@ public class SaveModelForm {
 		try {
 			BufferedImage img = ImageIO.read(stream);
 
+			if (img.getWidth() > img.getHeight()) {
+				img = img.getSubimage(0, 0, img.getHeight(), img.getHeight());
+			} else {
+				img = img.getSubimage(0, 0, img.getWidth(), img.getWidth());
+			}
+			
 			BufferedImage scaled = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 			Graphics2D g = scaled.createGraphics();
 
