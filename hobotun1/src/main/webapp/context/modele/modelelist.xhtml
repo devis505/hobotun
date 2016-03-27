@@ -101,6 +101,7 @@
 	                        	<p:ajax update="modelsFinded,countModel" listener="#{findModele.onChangeOption}" /> 
 	                        	<f:selectItem itemLabel="Дате" itemValue="1" />
 	                            <f:selectItem itemLabel="Рейтинг" itemValue="2" />
+	                            <f:selectItem itemLabel="Популярность" itemValue="5" />
 	                            <f:selectItem itemLabel="Цене" itemValue="3" />
 	                            <f:selectItem itemLabel="Только бесплатные" itemValue="4" />
 	                        </p:selectOneButton>
@@ -110,7 +111,7 @@
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 				        
-			        	<p:dataGrid var="model" value="#{findModele.models}" columns="6" rows="12" paginator="true" id="modelsFinded" layout="grid" paginatorPosition="bottom" >
+			        	<p:dataGrid var="model" value="#{findModele.models}" columns="6" rows="18" paginator="true" id="modelsFinded" layout="grid" paginatorPosition="bottom" >
 							<a href="../../pages/modele/modele.jsf?id=#{model.idModel}">
 								<span style="width: 170px; height: 160px; padding-bottom: 20px;" class="Container100 ContainerIndent"> 
 									<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 

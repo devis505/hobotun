@@ -45,6 +45,7 @@ public class UserTbl {
 		// param.put("dtReg", dtReg);
 		param.put("fio", fio);
 		param.put("desc", desc);
+		param.put("idImage", idImage);
 
 		return param;
 	}

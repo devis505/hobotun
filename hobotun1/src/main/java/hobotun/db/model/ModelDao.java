@@ -15,6 +15,7 @@ import hobotun.db.model.action.InsertModeleMsg;
 import hobotun.db.model.action.SelectAllModelOrderByCost;
 import hobotun.db.model.action.SelectAllModelOrderByDate;
 import hobotun.db.model.action.SelectAllModelOrderByFree;
+import hobotun.db.model.action.SelectAllModelOrderByPop;
 import hobotun.db.model.action.SelectAllModelOrderByPopular;
 import hobotun.db.model.action.SelectModelById;
 import hobotun.db.model.action.SelectModelByIdUser;
@@ -37,6 +38,7 @@ public class ModelDao implements IModelDao {
 	private SelectAllModelOrderByPopular selectAllModelOrderByPopular;
 	private SelectAllModelOrderByCost selectAllModelOrderByCost;
 	private SelectAllModelOrderByFree selectAllModelOrderByFree;
+	private SelectAllModelOrderByPop selectAllModelOrderByPop;
 	
 	private InsertModeleMsg insertModeleMsg;
 	private SelectModeleMsgByIdModele selectModeleMsgByIdModele;
@@ -53,6 +55,7 @@ public class ModelDao implements IModelDao {
 		selectAllModelOrderByCost = new SelectAllModelOrderByCost(dataSource);
 		selectAllModelOrderByFree = new SelectAllModelOrderByFree(dataSource);
 		selectModelByIdUserBay = new SelectModelByIdUserBay(dataSource);
+		selectAllModelOrderByPop = new SelectAllModelOrderByPop(dataSource);
 		
 		insertModeleMsg = new InsertModeleMsg(dataSource);
 		selectModeleMsgByIdModele = new SelectModeleMsgByIdModele(dataSource);
@@ -120,6 +123,15 @@ public class ModelDao implements IModelDao {
 		paramMap.put("keyWord", keyWord);
 
 		return selectAllModelOrderByPopular.executeByNamedParam(paramMap);
+	}
+	
+	public List<ModelTbl> selectModelOrderByPop(Integer isModeration, Integer idCategory, String keyWord) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("is_moderation", isModeration);
+		paramMap.put("idCategory", idCategory);
+		paramMap.put("keyWord", keyWord);
+
+		return selectAllModelOrderByPop.executeByNamedParam(paramMap);
 	}
 
 	@Override

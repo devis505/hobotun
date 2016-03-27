@@ -49,6 +49,10 @@ public class FindModele implements Serializable{
 			setModels(modelDao.selectModelOrderByFree(1, Integer.valueOf(categoryes.getCategory()), "%" + keyWord + "%"));
 		}
 		
+		if ("5".equals(option)) {
+			setModels(modelDao.selectModelOrderByPop(1, Integer.valueOf(categoryes.getCategory()), "%" + keyWord + "%"));
+		}
+		
 		countModel = models.size();
 	}
 	

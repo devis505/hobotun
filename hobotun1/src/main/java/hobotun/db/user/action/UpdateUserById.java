@@ -11,7 +11,7 @@ public class UpdateUserById extends SqlUpdate {
     
     private static final String SQL_UPDATE_USER = 
 	    "UPDATE hb_user u "
-	  + "   SET u.mail=:mail, u.password=:password, u.FIO=:fio, u.desc=:desc"
+	  + "   SET u.mail=:mail, u.password=:password, u.FIO=:fio, u.desc=:desc, u.idImage = :idImage"
 	  + " WHERE u.id_user = :id_user";
 
     public UpdateUserById(DataSource dataSource) {
@@ -22,5 +22,6 @@ public class UpdateUserById extends SqlUpdate {
     	super.declareParameter(new SqlParameter("fio", Types.VARCHAR));
     	super.declareParameter(new SqlParameter("id_user", Types.INTEGER));
     	super.declareParameter(new SqlParameter("desc", Types.VARCHAR));
+    	super.declareParameter(new SqlParameter("idImage", Types.INTEGER));
     }
 }
