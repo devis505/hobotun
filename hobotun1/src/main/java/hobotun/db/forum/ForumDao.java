@@ -11,6 +11,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import hobotun.db.forum.action.InsertForum;
 import hobotun.db.forum.action.InsertForumMsg;
+import hobotun.db.forum.action.InsertForumSection;
 import hobotun.db.forum.action.SelectAllForumSection;
 import hobotun.db.forum.action.SelectForumById;
 import hobotun.db.forum.action.SelectForumByIdSection;
@@ -38,6 +39,7 @@ public class ForumDao implements IForumDao {
 	private InsertForumMsg insertForumMsg;
 	private UpdateCountView updateCountView;
 	private UpdateLock updateLock;
+	private InsertForumSection insertForumSection;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -52,6 +54,7 @@ public class ForumDao implements IForumDao {
 		insertForumMsg = new InsertForumMsg(dataSource);
 		updateCountView = new UpdateCountView(dataSource);
 		updateLock = new UpdateLock(dataSource);
+		insertForumSection = new InsertForumSection(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -143,5 +146,18 @@ public class ForumDao implements IForumDao {
 		insertForumMsg.updateByNamedParam(paramMap, keyHolder);
 
 		forumMsg.setId_forum_msg(keyHolder.getKey().longValue());
+	}
+	
+	public void InsertForumSection(ForumSectionTbl forumSection) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+
+		paramMap.put("nm_forum_section", forumSection.getNm_forum_section());
+		paramMap.put("vl_icon", forumSection.getVl_icon());
+
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
+		insertForumSection.updateByNamedParam(paramMap, keyHolder);
+
+		forumSection.setId_forum_section(keyHolder.getKey().longValue());
 	}
 }

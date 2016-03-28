@@ -62,21 +62,39 @@
 					<div class="Card">
 				        <div class="CardTopic"> 
 				        	<i class="fa fa-wechat" style="color: #666f77;"></i>
-				            <a href="../../pages/forum/forumList.jsf">Списко форумов</a><br/><br/>
+				            <a href="../../pages/forum/forumList.jsf">Удалени/Добавление группы</a><br/><br/>
 				        </div>
 				        
+				        <div class="SeparatorFull"></div>
+				        <div class="EmptyBox10"></div>
+				        
+				        <h:form id="FormForumSection" enctype="multipart/form-data" style="padding-left: 0px;">
+							<p:dataGrid var="section" value="#{addSection.forumsSections}" columns="2" paginator="false" id="forumSection" layout="grid" >
+								
+									<i class="fa #{section.vl_icon} Fs20"></i>
+									<p:outputLabel value="#{section.nm_forum_section}" style="padding-left: 10px;" />
+									<p:link value="Удалить" style="padding-left: 10px;">
+										<f:param value="#{section.id_forum_section}" name="idSection" />
+									</p:link>
+								
+							</p:dataGrid>
+				        </h:form>
+				        
+				        <div class="EmptyBox10"></div>
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 				        
 				        <h:panelGrid columns="2">
 				        
 				        	<p:outputLabel value="Название" />			
-				        	<p:inputText value=""/>		
+				        	<p:inputText value="#{addSection.forumSection.nm_forum_section}"/>		
 				        	
 				        	<p:outputLabel value="Картинка" />			
-				        	<p:inputText value=""/>			        
+				        	<p:inputText value="#{addSection.forumSection.vl_icon}"/>			        
 				        		        
 				        </h:panelGrid>
+				        <br/>
+				        <p:commandButton value="Добавить группу" actionListener="#{addSection.onSave}" />
 				        
 			        </div>
 			    </div>
