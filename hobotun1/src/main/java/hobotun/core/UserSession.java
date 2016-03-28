@@ -14,6 +14,8 @@ public class UserSession implements Serializable {
 
 	private static final long serialVersionUID = 5714777107983472870L;
 	private User user = null;
+	private String admin = ApplicationProperties.getInstance().getPropertyValue("ru.hobotun.admin");
+	private boolean iaAdmin;
 
 	public UserSession() {
 
@@ -54,5 +56,19 @@ public class UserSession implements Serializable {
 
 		return true;
 	}
+
+	// Проверяем одминл ли это
+	public boolean isIaAdmin() {
+		
+		if (user != null) {
+			if (admin.equals(user.getUserTbl().getId_user().toString())) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	
 
 }
