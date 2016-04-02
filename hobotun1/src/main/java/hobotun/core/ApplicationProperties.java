@@ -12,7 +12,7 @@ public class ApplicationProperties implements Serializable {
 	private volatile static ApplicationProperties applicationProperties;
 
 	private ApplicationProperties() {
-
+ 
 		properties = new Properties(System.getProperties());
 
 		try {
