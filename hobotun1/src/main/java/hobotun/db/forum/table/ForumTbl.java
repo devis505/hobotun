@@ -14,6 +14,14 @@ public class ForumTbl implements Serializable {
 	private Integer cnt_them;
 	private Integer cnt_msg;
 
+	public ForumTbl() {
+		
+	}
+	
+	public void onDelete() {
+		
+	}
+	
 	public ForumTbl(ResultSet rs) throws SQLException {
 		id_forum = rs.getLong("id_forum");
 		nm_forum = rs.getString("nm_forum");

@@ -13,7 +13,7 @@ public class ThemaTbl implements Serializable{
 	private Long id_user;
 	private String nm_user;
 	private Integer nn_count_view;
-	private Integer isUp;
+	private Integer isUp = 0;
 	private Integer isBlock;
 	private Integer nn_count_otvet;
 	

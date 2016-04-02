@@ -4,15 +4,30 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import hobotun.core.Misc;
+import hobotun.core.ParamsForQuery;
+import hobotun.db.DBUtil;
+import hobotun.db.forum.ForumDao;
+
 public class ForumSectionTbl implements Serializable{
 
 	private static final long serialVersionUID = 4607633388283468982L;
 	private Long id_forum_section;
 	private String nm_forum_section;
 	private String vl_icon;
-
+	
 	public ForumSectionTbl() {
 
+	}
+	
+	public void onDelete() {
+		ParamsForQuery inParams = new ParamsForQuery();
+		inParams.setParam("id_forum_section", id_forum_section);
+		
+		ForumDao forum = DBUtil.getInstance().getBean("forumDao", ForumDao.class);
+		forum.deleteForumSection(inParams.getAllParam());
+		
+		Misc.redirect("/pages/forum/addGroup.jsf");
 	}
 
 	public ForumSectionTbl(ResultSet rs) throws SQLException {

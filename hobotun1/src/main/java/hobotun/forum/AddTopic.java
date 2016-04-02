@@ -23,6 +23,8 @@ public class AddTopic implements Serializable {
 	private String id_forum;
 	private String nm_topic;
 	
+	private boolean important = false;
+	
 	public AddTopic() {
 		id_forum = Misc.getRequestParam(FacesContext.getCurrentInstance(), "id");
 	}
@@ -39,6 +41,13 @@ public class AddTopic implements Serializable {
 		ThemaTbl themaTbl = new ThemaTbl();
 		themaTbl.setId_forum(new Long(id_forum));
 		themaTbl.setNm_thema(nm_topic);
+		
+		if (important) {
+			themaTbl.setIsUp(1);
+		} else {
+			themaTbl.setIsUp(0);
+		}
+		
 		themaTbl.setId_user(UserSession.getInstance().getUser().getUserTbl().getId_user());		
 		
 		ForumDao forumDao = DBUtil.getInstance().getBean("forumDao", ForumDao.class);
@@ -62,6 +71,14 @@ public class AddTopic implements Serializable {
 
 	public void setNm_topic(String nm_topic) {
 		this.nm_topic = nm_topic;
+	}
+
+	public boolean isImportant() {
+		return important;
+	}
+
+	public void setImportant(boolean important) {
+		this.important = important;
 	}
 	 
 }

@@ -70,7 +70,7 @@
 				        
 				        <h:panelGrid rendered="#{userSession.iaAdmin}" columns="2" style="margin-left: 83px;">
 				        	<p:button value="Добавить/Удалить группу" outcome="addGroup" rendered="#{userSession.iaAdmin}" />
-				        	<p:button value="Добавить/Удалить форум" rendered="#{userSession.iaAdmin}" />
+				        	<p:button value="Добавить/Удалить форум" outcome="addGroupForum" rendered="#{userSession.iaAdmin}" />
 			        	</h:panelGrid>
 			        
 				        <table style="margin: auto; width: 85%; color:white; background-color: #455a64;">

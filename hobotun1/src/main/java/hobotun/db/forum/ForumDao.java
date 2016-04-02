@@ -9,7 +9,9 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import hobotun.db.forum.action.DeleteForumSection;
 import hobotun.db.forum.action.InsertForum;
+import hobotun.db.forum.action.InsertForumForSection;
 import hobotun.db.forum.action.InsertForumMsg;
 import hobotun.db.forum.action.InsertForumSection;
 import hobotun.db.forum.action.SelectAllForumSection;
@@ -40,7 +42,9 @@ public class ForumDao implements IForumDao {
 	private UpdateCountView updateCountView;
 	private UpdateLock updateLock;
 	private InsertForumSection insertForumSection;
-
+	private DeleteForumSection deleteForumSection;
+	private InsertForumForSection insertForumForSection;
+	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 
@@ -55,6 +59,8 @@ public class ForumDao implements IForumDao {
 		updateCountView = new UpdateCountView(dataSource);
 		updateLock = new UpdateLock(dataSource);
 		insertForumSection = new InsertForumSection(dataSource);
+		deleteForumSection = new DeleteForumSection(dataSource);
+		insertForumForSection = new InsertForumForSection(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -125,6 +131,7 @@ public class ForumDao implements IForumDao {
 		paramMap.put("id_forum", themaTbl.getId_forum());
 		paramMap.put("nm_thema", themaTbl.getNm_thema());
 		paramMap.put("id_user", themaTbl.getId_user());
+		paramMap.put("isUp", themaTbl.getIsUp());
 
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -159,5 +166,23 @@ public class ForumDao implements IForumDao {
 		insertForumSection.updateByNamedParam(paramMap, keyHolder);
 
 		forumSection.setId_forum_section(keyHolder.getKey().longValue());
+	}
+	
+	public void deleteForumSection(Map<String, Object> inParams) {
+		deleteForumSection.updateByNamedParam(inParams);
+	}
+	
+	public void insertForumForSection(ForumTbl forumSection) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+
+		paramMap.put("nm_forum", forumSection.getNm_forum());
+		paramMap.put("vl_discription", forumSection.getVl_discription());
+		paramMap.put("id_forum_section", forumSection.getId_forum_section());
+
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
+		insertForumForSection.updateByNamedParam(paramMap, keyHolder);
+
+		forumSection.setId_forum(keyHolder.getKey().longValue());
 	}
 }

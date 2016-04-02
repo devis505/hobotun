@@ -31,7 +31,7 @@ public class AddForumSection implements Serializable{
 		forumDao.InsertForumSection(forumSection);
 		Misc.redirect("/pages/forum/addGroup.jsf");
 	}
-
+	
 	public ForumSectionTbl getForumSection() {
 		return forumSection;
 	}

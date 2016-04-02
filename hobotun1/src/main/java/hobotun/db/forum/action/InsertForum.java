@@ -9,7 +9,7 @@ import org.springframework.jdbc.object.SqlUpdate;
 
 public class InsertForum extends SqlUpdate  {
 
-	private static final String SQL_INSERT_FORUM = "INSERT INTO hb_thema(id_forum, nm_thema, id_user, nn_count_view, isUp, isBlock) VALUES (:id_forum, :nm_thema, :id_user, 0, 0, 0)";
+	private static final String SQL_INSERT_FORUM = "INSERT INTO hb_thema(id_forum, nm_thema, id_user, nn_count_view, isUp, isBlock) VALUES (:id_forum, :nm_thema, :id_user, 0, :isUp, 0)";
 	
 	public InsertForum(DataSource dataSource) {
 		super(dataSource, SQL_INSERT_FORUM);
@@ -17,6 +17,7 @@ public class InsertForum extends SqlUpdate  {
 		super.declareParameter(new SqlParameter("id_forum", Types.INTEGER));
 		super.declareParameter(new SqlParameter("nm_thema", Types.VARCHAR));
 		super.declareParameter(new SqlParameter("id_user", Types.INTEGER));
+		super.declareParameter(new SqlParameter("isUp", Types.INTEGER));
 		
 		super.setGeneratedKeysColumnNames(new String[] { "id_thema" });
 		super.setReturnGeneratedKeys(true);
