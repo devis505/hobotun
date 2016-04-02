@@ -68,15 +68,11 @@
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 				        
-				        <h:form id="FormForumSection" enctype="multipart/form-data" style="padding-left: 0px;">
+				        <h:form id="FormForumSection" style="padding-left: 0px;">
 							<p:dataGrid var="section" value="#{addSection.forumsSections}" columns="2" paginator="false" id="forumSection" layout="grid" >
-								
 									<i class="fa #{section.vl_icon} Fs20"></i>
 									<p:outputLabel value="#{section.nm_forum_section}" style="padding-left: 10px;" />
-									<p:link value="Удалить" style="padding-left: 10px;">
-										<f:param value="#{section.id_forum_section}" name="idSection" />
-									</p:link>
-								
+									<p:commandLink actionListener="#{section.onDelete}" value="Удалить"  style="padding-left: 10px;" update="forumSection" />
 							</p:dataGrid>
 				        </h:form>
 				        
