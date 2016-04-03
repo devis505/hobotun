@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import hobotun.core.Misc;
+import hobotun.core.ParamsForQuery;
+import hobotun.db.DBUtil;
+import hobotun.db.forum.ForumDao;
+
 public class ForumTbl implements Serializable {
 
 	private static final long serialVersionUID = 4808851137997662454L;
@@ -19,7 +24,13 @@ public class ForumTbl implements Serializable {
 	}
 	
 	public void onDelete() {
+		ParamsForQuery inParams = new ParamsForQuery();
+		inParams.setParam("id_forum", id_forum);
 		
+		ForumDao forum = DBUtil.getInstance().getBean("forumDao", ForumDao.class);
+		forum.deleteForumForSection(inParams.getAllParam());
+		
+		Misc.redirect("/pages/forum/addGroupForum.jsf");
 	}
 	
 	public ForumTbl(ResultSet rs) throws SQLException {

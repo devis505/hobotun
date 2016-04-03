@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import hobotun.db.forum.action.DeleteForumForSection;
 import hobotun.db.forum.action.DeleteForumSection;
 import hobotun.db.forum.action.InsertForum;
 import hobotun.db.forum.action.InsertForumForSection;
@@ -43,6 +44,7 @@ public class ForumDao implements IForumDao {
 	private UpdateLock updateLock;
 	private InsertForumSection insertForumSection;
 	private DeleteForumSection deleteForumSection;
+	private DeleteForumForSection deleteForumForSection;
 	private InsertForumForSection insertForumForSection;
 	
 	public void setDataSource(DataSource dataSource) {
@@ -61,6 +63,7 @@ public class ForumDao implements IForumDao {
 		insertForumSection = new InsertForumSection(dataSource);
 		deleteForumSection = new DeleteForumSection(dataSource);
 		insertForumForSection = new InsertForumForSection(dataSource);
+		deleteForumForSection = new DeleteForumForSection(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -170,6 +173,10 @@ public class ForumDao implements IForumDao {
 	
 	public void deleteForumSection(Map<String, Object> inParams) {
 		deleteForumSection.updateByNamedParam(inParams);
+	}
+	
+	public void deleteForumForSection(Map<String, Object> inParams) {
+		deleteForumForSection.updateByNamedParam(inParams);
 	}
 	
 	public void insertForumForSection(ForumTbl forumSection) {

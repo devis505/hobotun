@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import hobotun.db.format.action.DeleteFormat;
+import hobotun.db.format.action.InsertFormat;
 import hobotun.db.format.action.SelectAllFormat;
 import hobotun.db.format.action.SelectFormatById;
 import hobotun.db.format.table.FormatTabl;
@@ -17,11 +19,17 @@ public class FormatDao implements IFormat, Serializable {
 	private DataSource dataSource;
 	private SelectAllFormat selectAllFormat;
 	private SelectFormatById selectFormatById;
+	
+	private DeleteFormat deleteFormat;
+	private InsertFormat insertFormat;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 		selectAllFormat = new SelectAllFormat(dataSource);
 		selectFormatById = new SelectFormatById(dataSource);
+		
+		deleteFormat = new DeleteFormat(dataSource);
+		insertFormat = new InsertFormat(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -49,8 +57,15 @@ public class FormatDao implements IFormat, Serializable {
 
 	@Override
 	public void insertFormat(FormatTabl format) {
-		// TODO Auto-generated method stub
-
+		
+	}
+	
+	public void deleteFormat(Map<String, Object> paramMap) {
+		deleteFormat.updateByNamedParam(paramMap);
+	}
+	
+	public void insertFormat(Map<String, Object> paramMap) {
+		insertFormat.updateByNamedParam(paramMap);
 	}
 
 }

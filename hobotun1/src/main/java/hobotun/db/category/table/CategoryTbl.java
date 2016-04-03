@@ -3,6 +3,11 @@ package hobotun.db.category.table;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import hobotun.core.Misc;
+import hobotun.core.ParamsForQuery;
+import hobotun.db.DBUtil;
+import hobotun.db.category.CategoryDao;
+
 public class CategoryTbl {
 
 	private Integer idCategory;
@@ -29,4 +34,13 @@ public class CategoryTbl {
 		this.nmCategory = nmCategory;
 	}
 
+	public void onDelete() {
+		CategoryDao categoryDao = DBUtil.getInstance().getBean("categoryDao", CategoryDao.class);
+		
+		ParamsForQuery inParams = new ParamsForQuery();
+		inParams.setParam("idCategory", idCategory);
+		
+		categoryDao.deleteCategory(inParams.getAllParam());
+		Misc.redirect("/pages/admin/directoryes.jsf");
+	}
 }

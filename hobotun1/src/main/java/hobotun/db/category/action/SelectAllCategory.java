@@ -11,7 +11,7 @@ import org.springframework.jdbc.object.MappingSqlQuery;
 
 public class SelectAllCategory extends MappingSqlQuery<CategoryTbl> {
 
-	private static final String SQL_SELECT_ALL_CATEGORY = "SELECT * FROM hb_category c where c.idCategory <> 0";
+	private static final String SQL_SELECT_ALL_CATEGORY = "SELECT * FROM hb_category c where c.idCategory <> 0 order by nmCategory";
 
 	public SelectAllCategory(DataSource dataSource) {
 		super(dataSource, SQL_SELECT_ALL_CATEGORY);

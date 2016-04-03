@@ -12,6 +12,8 @@
                 <p:menuitem id="rm_modeles" value="Модели" icon="fa fa-connectdevelop" url="modele/modelelist.jsf"/>
                 <p:menuitem id="rm_work" value="Работа" icon="fa fa-briefcase" url="work/worklist.jsf"/>
                 <p:menuitem id="rm_forum" value="форум" icon="fa fa-wechat" url="forum/forumList.jsf"/>
+                
+                <p:menuitem id="directoryes" value="Справочники" icon="fa fa-list" url="forum/forumList.jsf" rendered="#{userSession.iaAdmin}" />
             </pm:menu>
         </h:form>
     </div>
