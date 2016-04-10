@@ -93,6 +93,7 @@
 															<tr><td style="text-align: center;"><h:graphicImage url="/GetImage?idImg=#{msg.idImage}" /></td></tr>
 															<tr><td><p:outputLabel value="На сайте c #{msg.dtReg}" /></td></tr>
 															<tr><td><p:outputLabel value="Рейтинг: #{msg.rating_user}" /></td></tr>
+															<tr><p:commandLink value="Удалить" rendered="#{userSession.iaAdmin}" actionListener="#{msg.onDelete}" /></tr>
 														</table>
 													</td>
 													<td style="font-size: 18px; height: 40px; width: 800px; color: black; vertical-align: top;">

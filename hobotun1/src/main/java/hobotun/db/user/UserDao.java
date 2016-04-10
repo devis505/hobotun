@@ -20,6 +20,7 @@ public class UserDao implements IUserDao, Serializable {
 	private FindUserByLoginAndPass findUserByLoginPass;
 	private FindUserByMailAndPass findUserByMailPass;
 	private FindUserByMail finUserByMail;
+	private FindUserByMailBlock finUserByMailBlock;
 	private UpdateUserById updateUserById;
 	private UpdateUserBalanceById updateUserBalanceById;
 	private FindUserOutBalance findUserOutBalance;
@@ -30,12 +31,14 @@ public class UserDao implements IUserDao, Serializable {
 	private FindForgetPass findForgetPass;
 	private FindUserByLogin findUserByLogin;
 	private InsertUser insertUser;
+	private AllUsers allUsers;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 		this.findUserByLoginPass = new FindUserByLoginAndPass(dataSource);
 		this.findUserByMailPass = new FindUserByMailAndPass(dataSource);
 		this.finUserByMail = new FindUserByMail(dataSource);
+		this.finUserByMailBlock = new FindUserByMailBlock(dataSource);
 		this.updateUserById = new UpdateUserById(dataSource);
 		this.updateUserBalanceById = new UpdateUserBalanceById(dataSource);
 		this.findUserOutBalance = new FindUserOutBalance(dataSource);
@@ -46,6 +49,7 @@ public class UserDao implements IUserDao, Serializable {
 		this.findForgetPass = new FindForgetPass(dataSource);
 		this.findUserByLogin = new FindUserByLogin(dataSource);
 		this.insertUser = new InsertUser(dataSource);
+		this.allUsers = new AllUsers(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -65,6 +69,10 @@ public class UserDao implements IUserDao, Serializable {
 	@Override
 	public List<UserTbl> getUserByMail(Map<String, Object> params) {
 		return finUserByMail.executeByNamedParam(params);
+	}
+	
+	public List<UserTbl> getUserByMailBlock(Map<String, Object> params) {
+		return finUserByMailBlock.executeByNamedParam(params);
 	}
 
 	@Override
@@ -119,5 +127,9 @@ public class UserDao implements IUserDao, Serializable {
 	
 	public void insertUser(Map<String, Object> params){
 		insertUser.updateByNamedParam(params);
+	}
+	
+	public List<UserTbl> allUsers () {
+		return allUsers.execute();
 	}
 }

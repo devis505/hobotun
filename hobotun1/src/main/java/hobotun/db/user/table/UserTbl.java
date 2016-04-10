@@ -20,6 +20,9 @@ public class UserTbl {
 	private Integer rating_user = 0;
 	private String desc;
 
+	private Integer is_block;
+	private Integer is_block_forum;
+
 	public UserTbl(ResultSet rs) throws SQLException {
 		setId_user(rs.getLong("id_user"));
 		setLogin(rs.getString("login"));
@@ -32,6 +35,14 @@ public class UserTbl {
 		setIdImage(rs.getLong("idImage"));
 		setRating_user(rs.getInt("rating_user"));
 		setDesc(rs.getString("desc"));
+
+		try {
+			is_block = rs.getInt("is_block");
+			is_block_forum = rs.getInt("is_block_forum");
+		} catch (Exception e) {
+			is_block = 0;
+			is_block_forum = 0;
+		}
 	}
 
 	public Map<String, Object> getAllParam() {
@@ -128,6 +139,22 @@ public class UserTbl {
 
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+
+	public Integer getIs_block() {
+		return is_block;
+	}
+
+	public void setIs_block(Integer is_block) {
+		this.is_block = is_block;
+	}
+
+	public Integer getIs_block_forum() {
+		return is_block_forum;
+	}
+
+	public void setIs_block_forum(Integer is_block_forum) {
+		this.is_block_forum = is_block_forum;
 	}
 
 }

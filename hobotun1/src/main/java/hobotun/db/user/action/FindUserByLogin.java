@@ -16,7 +16,7 @@ public class FindUserByLogin extends MappingSqlQuery<UserTbl> {
     private static final String SQL_FIND_USER_BY_LOGIN_AND_PASS = 
 	    "select u.*, 0 rating_user \n"
 	  + "  from hb_user u \n"
-	  + " where u.login = :login \n";
+	  + " where u.login = :login and u.is_block = 0 \n";
 
     public FindUserByLogin(DataSource dataSource) {
     	super(dataSource, SQL_FIND_USER_BY_LOGIN_AND_PASS);

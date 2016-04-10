@@ -17,7 +17,7 @@ public class FindUserByMailAndPass extends MappingSqlQuery<UserTbl> {
 	    "select u.*, 0 rating_user \n"
 	  + "  from hb_user u \n"
 	  + " where u.mail = :mail \n"
-	  + "   and u.password = :password \n";
+	  + "   and u.password = :password and u.is_block = 0 \n";
 
     public FindUserByMailAndPass(DataSource dataSource) {
 	super(dataSource, SQL_FIND_USER_BY_MAIL_AND_PASS);

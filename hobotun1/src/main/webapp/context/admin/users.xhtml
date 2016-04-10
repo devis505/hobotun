@@ -1,0 +1,111 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title = '';
+                this.cfg.seriesColors = ['#FF4081', '#FB8C00', '#43A047', '#8E24AA'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#F5F5F5',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#666F77'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    lineWidth:1,
+                    markerOptions: {
+                        shadow: false,
+                        size:7,
+                        style:'circle'
+                    }
+                }
+            }
+
+            function skinPie() {
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1', '#33ccff', '#9fadb5'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#eaeaea',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false,
+                    borderWidth: 0
+                };
+                this.cfg.seriesDefaults.shadow = false;
+            }
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #546E7A;
+            }
+        </style>
+
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+    </ui:define>
+    
+    <h:form id="main" rendered="#{userSession.iaAdmin}">
+	    <div style="width: 1224px; margin: auto;">
+			<div class="Container100 Responsive100">
+				<div class="ContainerIndent">
+					<div class="Card">
+				        <div class="CardTopic"> 
+				        	<i class="fa fa-users" style="color: #666f77;">Пользователи</i>
+				        </div>
+				        
+				        <div class="SeparatorFull"></div>
+				        <div class="EmptyBox10"></div>
+			
+				        <p:dataTable var="user" value="#{allUsers.users}" id="users" paginator="true" rows="20" paginatorPosition="top">			        
+						    <p:column headerText="Код" width="44" sortBy="#{user.id_user}">
+						        <h:outputText value="#{user.id_user}" />
+						    </p:column>
+						    <p:column headerText="Логин" sortBy="#{user.login}">
+						        <h:outputText value="#{user.login}" />
+						    </p:column>
+						    <p:column headerText="e-mail" sortBy="#{user.mail}">
+						        <h:outputText value="#{user.mail}" />
+						    </p:column>
+						    <p:column headerText="Дата рег." width="76" sortBy="#{user.dtReg}">
+						        <h:outputText value="#{user.dtReg}" />
+						    </p:column>
+						    <p:column headerText="ФИО" sortBy="#{user.fio}">
+						        <h:outputText value="#{user.fio}" />
+						    </p:column>
+						    <p:column headerText="Баланс" width="64" sortBy="#{user.balance}">
+						        <h:outputText value="#{user.balance}" />
+						    </p:column>
+						    
+						    <p:column headerText="Блок." width="55" sortBy="#{user.is_block}">
+						        <h:outputText value="#{user.is_block}" />
+						    </p:column>
+						    
+						    <p:column headerText="Блок Форум" width="96" sortBy="#{user.is_block_forum}">
+						        <h:outputText value="#{user.is_block_forum}" />
+						    </p:column>
+						    
+						    <p:column headerText="Действия" width="135">
+						        <p:link href="../../pages/user/user.jsf?userPageId=#{user.id_user}" value="Просмотреть" /><br/>
+						        <p:link href="../../pages/user/user.jsf?userPageId=#{user.id_user}" value="Заблокировать форум" /><br/>
+						        <p:link href="../../pages/user/user.jsf?userPageId=#{user.id_user}" value="Заблокировать" />
+						    </p:column>
+						    
+						</p:dataTable>
+				        
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</h:form>
+</ui:composition>

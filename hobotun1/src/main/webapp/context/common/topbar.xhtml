@@ -13,7 +13,7 @@
             <span id="menuline2" class="Animated05"></span>
             <span id="menuline3" class="Animated05"></span>
         </a-->
-        <a href="../../index.jsf"><h:graphicImage name="images/logo.svg" library="adamantium-layout" style="float:left;" /></a>
+        <a href="../../index.jsf"><h:graphicImage name="images/#{defValue.randomLogo}-02.svg" library="adamantium-layout" style="float:left; width: 200px; padding-top: 5px; padding-left: 40px;" /></a>
         
         <a id="topmenu-button" class="Animated1">
             <i class="icon-list2"></i>
@@ -46,6 +46,11 @@
         	<p:link id="directoryes" rendered="#{userSession.iaAdmin}" href="../admin/directoryes.jsf" >
         		<i class="fa fa-list"></i> 
         		<span style="font-family: Calibri !important;">Справочники</span>
+        	</p:link>
+        	
+        	<p:link id="users" rendered="#{userSession.iaAdmin}" href="../admin/users.jsf" >
+        		<i class="fa fa-users"></i> 
+        		<span style="font-family: Calibri !important;">Пользователи</span>
         	</p:link>
         	
 		</div>

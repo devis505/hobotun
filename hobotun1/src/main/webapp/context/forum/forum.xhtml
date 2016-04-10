@@ -85,12 +85,18 @@
 								<td colspan="4" style="background-color: white;">
 									<h:form id="FormThemas" enctype="multipart/form-data" style="padding-left: 0px;">
 										<table style="padding-left: 0px; margin-top: 0px; width: 100%;">
-											<p:dataGrid var="thema" value="#{thema.themas}" columns="1" paginator="false" id="fotumThemas" layout="grid" paginatorAlwaysVisible="false" >
+											<p:dataGrid var="thema1" value="#{thema.themas}" columns="1" paginator="false" id="fotumThemas" layout="grid" paginatorAlwaysVisible="false" >
 												<tr style="background: rgba(0, 0, 0, 0.06);">
-													<td style="font-size: 18px; height: 40px;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}"> <i class="#{thema.classStyle}" style="padding-right: 4px;"></i>#{thema.nm_thema}</a></td>
-													<td style="font-size: 18px; height: 40px; width: 75px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">#{thema.nn_count_otvet}</a></td>
-													<td style="font-size: 18px; height: 40px; width: 145px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">#{thema.nm_user}</a></td>
-													<td style="font-size: 18px; height: 40px; width: 84px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema.id_thema}">#{thema.nn_count_view}</a></td>
+													<td style="font-size: 18px; height: 40px;">
+														<a href="../../pages/forum/topic.jsf?id=#{thema1.id_thema}">
+															<i class="#{thema1.classStyle}" style="padding-right: 4px;"></i>
+																#{thema1.nm_thema}
+																<p:commandLink value="Удалить" rendered="#{userSession.iaAdmin}" actionListener="#{thema1.onDelete}" />
+														</a>
+													</td>
+													<td style="font-size: 18px; height: 40px; width: 75px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema1.id_thema}">#{thema1.nn_count_otvet}</a></td>
+													<td style="font-size: 18px; height: 40px; width: 145px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema1.id_thema}">#{thema1.nm_user}</a></td>
+													<td style="font-size: 18px; height: 40px; width: 84px; text-align: center;"><a href="../../pages/forum/topic.jsf?id=#{thema1.id_thema}">#{thema1.nn_count_view}</a></td>
 												</tr>													
 											</p:dataGrid>
 										</table>

@@ -10,7 +10,9 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import hobotun.db.forum.action.DeleteForumForSection;
+import hobotun.db.forum.action.DeleteForumMsg;
 import hobotun.db.forum.action.DeleteForumSection;
+import hobotun.db.forum.action.DeleteThema;
 import hobotun.db.forum.action.InsertForum;
 import hobotun.db.forum.action.InsertForumForSection;
 import hobotun.db.forum.action.InsertForumMsg;
@@ -46,6 +48,8 @@ public class ForumDao implements IForumDao {
 	private DeleteForumSection deleteForumSection;
 	private DeleteForumForSection deleteForumForSection;
 	private InsertForumForSection insertForumForSection;
+	private DeleteThema deleteThema;
+	private DeleteForumMsg deleteForumMsg;
 	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -64,6 +68,8 @@ public class ForumDao implements IForumDao {
 		deleteForumSection = new DeleteForumSection(dataSource);
 		insertForumForSection = new InsertForumForSection(dataSource);
 		deleteForumForSection = new DeleteForumForSection(dataSource);
+		deleteThema = new DeleteThema(dataSource);
+		deleteForumMsg = new DeleteForumMsg(dataSource);
 	}
 
 	public DataSource getDataSource() {
@@ -177,6 +183,14 @@ public class ForumDao implements IForumDao {
 	
 	public void deleteForumForSection(Map<String, Object> inParams) {
 		deleteForumForSection.updateByNamedParam(inParams);
+	}
+	
+	public void deleteThema(Map<String, Object> inParams) {
+		deleteThema.updateByNamedParam(inParams);
+	}
+	
+	public void deleteForumMsg(Map<String, Object> inParams) {
+		deleteForumMsg.updateByNamedParam(inParams);
 	}
 	
 	public void insertForumForSection(ForumTbl forumSection) {
