@@ -59,7 +59,9 @@ public class Topic implements Serializable {
 		
 		if (themaTbl.getIsBlock().equals(0)) {
 			if (UserSession.getInstance().getUser() != null) {
-				isVisibleAdd = true;
+				if (UserSession.getInstance().getUser().isAuthorizationForum()){
+					isVisibleAdd = true;
+				}
 			}
 		}
 

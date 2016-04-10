@@ -1,0 +1,116 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title = '';
+                this.cfg.seriesColors = ['#FF4081', '#FB8C00', '#43A047', '#8E24AA'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#F5F5F5',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#666F77'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    lineWidth:1,
+                    markerOptions: {
+                        shadow: false,
+                        size:7,
+                        style:'circle'
+                    }
+                }
+            }
+
+            function skinPie() {
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1', '#33ccff', '#9fadb5'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#eaeaea',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false,
+                    borderWidth: 0
+                };
+                this.cfg.seriesDefaults.shadow = false;
+            }
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #546E7A;
+            }
+        </style>
+
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+    </ui:define>
+    
+    <div id="MainDiv" Class="MarginAuto" style="width: 1224px; ">
+    	<div class="Container100 Responsive100">
+			<div class="ContainerIndent">
+				<div class="Card">
+					<div class="CardTopic" style="padding-left: 10px;"> 
+			        	<h:graphicImage style="border: 1px solid #8D9090;" styleClass="Fleft MarRight10" url="/GetImage?idImg=#{userProfil.user.idImage}"></h:graphicImage>
+			        	<span class="CardSubTopic Fleft">
+			        		<i class="fa fa-user Fs25 Fleft MarRight10"><p:outputLabel value="#{userProfil.user.login}" styleClass="Fs25" style="padding-left: 10px" /></i>
+			        		<i class="fa fa-star-o Fs25 Fleft MarRight10"><p:outputLabel value="#{userProfil.user.rating_user}" styleClass="Fs25" style="padding-left: 10px" /></i>
+						</span>
+			            <div class="EmptyBox10"></div>
+			        </div>
+			        
+			        <div class="EmptyBox10"></div>
+			        
+			        <p:outputLabel value="Профиль:" styleClass="Fs20" style="padding-left: 10px;" />
+			        
+			        <div class="Separator"></div>
+			        
+				    <h:panelGrid columns="2" cellpadding="10" id="infoPanel" style="padding-left:20px;">
+					
+						<p:outputLabel value="ФИО:" styleClass="Fs16"  id="fio" />
+						<p:outputLabel value="#{userProfil.user.fio}" styleClass="Fs16"  style="padding-top: 9px !important; padding-bottom:9px !important; width:280px;" />
+						
+						<p:outputLabel value="Дата регистрации:" styleClass="Fs16"  />
+						<p:outputLabel value="#{userProfil.user.dtReg}" styleClass="Fs16"  />
+						
+						<p:outputLabel value="Описание:" styleClass="Fs16"  />
+						<p:outputLabel value="#{userProfil.user.desc}" maxlength="320" rows="5" autoResize="true" styleClass="Fs16" style="width:280px;"  />
+										
+					</h:panelGrid>
+					
+					<div class="EmptyBox20"></div>
+			        
+			        <p:outputLabel value="Модели:" styleClass="Fs20" style="padding-left: 10px;" />
+			        
+			        <div class="Separator"></div>
+			        
+			        <h:form id="notModeration" enctype="multipart/form-data" style="padding-left: 20px;">
+						<p:dataGrid var="model" value="#{userProfil.modeles}" columns="6" paginator="false" layout="grid" >
+							<a href="../modele/modele.jsf?id=#{model.idModel}">
+								<span style="width: 170px; height: 160px; padding-bottom: 20px;" class="Container100 ContainerIndent"> 
+									<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 
+									
+									<span style="width: 170px;"> 
+										<i class="fa fa-rub Fs10 Fleft MarRight10"><p:outputLabel value="#{model.price_calc}" styleClass="Fs10" style="padding-left: 5px;" /></i> 
+										<i class="fa fa-star-o Fs10 Fleft MarRight10"><p:outputLabel value="#{model.rating}" styleClass="Fs10" style="padding-left: 5px;" /></i> 
+										<i class="fa fa-upload Fs10 Fleft MarRight10"><p:outputLabel value="#{model.download}" styleClass="Fs10" style="padding-left: 5px;" /></i> 
+										<i class="fa fa-wechat Fs10 Fleft MarRight10"><p:outputLabel value="#{model.msg}" styleClass="Fs10" style="padding-left: 5px;" /></i>
+									</span>
+								</span>
+							</a>
+						</p:dataGrid>
+			        </h:form>		        
+				</div>
+			</div>
+		</div>
+	</div>
+</ui:composition>

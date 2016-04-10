@@ -23,7 +23,6 @@ import hobotun.db.file.FileDao;
 import hobotun.db.file.tbl.FileTbl;
 import hobotun.db.format.FormatDao;
 import hobotun.db.format.table.FormatTabl;
-import hobotun.db.forum.table.ForumMsgTbl;
 import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
 import hobotun.db.model.tbl.ModeleMsgTbl;

@@ -22,6 +22,7 @@ public class UserDao implements IUserDao, Serializable {
 	private FindUserByMail finUserByMail;
 	private FindUserByMailBlock finUserByMailBlock;
 	private UpdateUserById updateUserById;
+	private UpdateUserByIdBlock updateUserByIdBlock;
 	private UpdateUserBalanceById updateUserBalanceById;
 	private FindUserOutBalance findUserOutBalance;
 	private UpdateUserMinusBalanceById updateUserMinusBalanceById;
@@ -40,6 +41,7 @@ public class UserDao implements IUserDao, Serializable {
 		this.finUserByMail = new FindUserByMail(dataSource);
 		this.finUserByMailBlock = new FindUserByMailBlock(dataSource);
 		this.updateUserById = new UpdateUserById(dataSource);
+		this.updateUserByIdBlock = new UpdateUserByIdBlock(dataSource);
 		this.updateUserBalanceById = new UpdateUserBalanceById(dataSource);
 		this.findUserOutBalance = new FindUserOutBalance(dataSource);
 		this.updateUserMinusBalanceById = new UpdateUserMinusBalanceById(dataSource);
@@ -78,6 +80,10 @@ public class UserDao implements IUserDao, Serializable {
 	@Override
 	public void UpdateUserById(Map<String, Object> params) {
 		updateUserById.updateByNamedParam(params);
+	}
+	
+	public void UpdateUserByIdBlock(Map<String, Object> params) {
+		updateUserByIdBlock.updateByNamedParam(params);
 	}
 
 	@Override

@@ -118,6 +118,16 @@ public class User implements Serializable {
 	public boolean isAuthorization() {
 		return userTbl != null;
 	}
+	
+	public boolean isAuthorizationForum() {
+		if (userTbl != null) {
+			if (userTbl.getIs_block_forum() != 1) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 
 	public Integer getUserPageId() {
 		return userPageId;
@@ -177,6 +187,10 @@ public class User implements Serializable {
 
 	public void setOutBalance(BigDecimal outBalance) {
 		this.outBalance = outBalance;
+	}
+	
+	public void onClear() {
+		userTbl = null;
 	}
 
 }

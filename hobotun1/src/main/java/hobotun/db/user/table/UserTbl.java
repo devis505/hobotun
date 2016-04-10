@@ -7,6 +7,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import hobotun.core.Misc;
+import hobotun.core.ParamsForQuery;
+import hobotun.db.DBUtil;
+import hobotun.db.user.UserDao;
+
 public class UserTbl {
 
 	private Long id_user;
@@ -43,6 +48,54 @@ public class UserTbl {
 			is_block = 0;
 			is_block_forum = 0;
 		}
+	}
+	
+	public void onBlockForum() {
+		UserDao userDao = DBUtil.getInstance().getBean("userDao", UserDao.class);
+		
+		ParamsForQuery inParam = new ParamsForQuery();
+		inParam.setParam("id_user", id_user);
+		inParam.setParam("is_block", is_block);
+		inParam.setParam("is_block_forum", 1);
+		
+		userDao.UpdateUserByIdBlock(inParam.getAllParam());
+		Misc.redirect("/pages/admin/users.jsf");
+	}
+	
+	public void onUnBlockForum() {
+		UserDao userDao = DBUtil.getInstance().getBean("userDao", UserDao.class);
+		
+		ParamsForQuery inParam = new ParamsForQuery();
+		inParam.setParam("id_user", id_user);
+		inParam.setParam("is_block", is_block);
+		inParam.setParam("is_block_forum", 0);
+		
+		userDao.UpdateUserByIdBlock(inParam.getAllParam());
+		Misc.redirect("/pages/admin/users.jsf");
+	}
+	
+	public void onBlock() {
+		UserDao userDao = DBUtil.getInstance().getBean("userDao", UserDao.class);
+		
+		ParamsForQuery inParam = new ParamsForQuery();
+		inParam.setParam("id_user", id_user);
+		inParam.setParam("is_block", 1);
+		inParam.setParam("is_block_forum", is_block_forum);
+		
+		userDao.UpdateUserByIdBlock(inParam.getAllParam());
+		Misc.redirect("/pages/admin/users.jsf");
+	}
+	
+	public void onUnBlock() {
+		UserDao userDao = DBUtil.getInstance().getBean("userDao", UserDao.class);
+		
+		ParamsForQuery inParam = new ParamsForQuery();
+		inParam.setParam("id_user", id_user);
+		inParam.setParam("is_block", 0);
+		inParam.setParam("is_block_forum", is_block_forum);
+		
+		userDao.UpdateUserByIdBlock(inParam.getAllParam());
+		Misc.redirect("/pages/admin/users.jsf");
 	}
 
 	public Map<String, Object> getAllParam() {

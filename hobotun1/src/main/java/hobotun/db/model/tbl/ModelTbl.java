@@ -6,6 +6,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import hobotun.core.Misc;
+import hobotun.core.ParamsForQuery;
+import hobotun.db.DBUtil;
+import hobotun.db.model.ModelDao;
+
 public class ModelTbl {
 	
 	private static String OPACITY_50 = "opacity50";
@@ -73,6 +78,27 @@ public class ModelTbl {
 
 	public ModelTbl() {
 
+	}
+	
+	public void onModerator() {
+		ParamsForQuery inParam = new ParamsForQuery();
+		inParam.setParam("idModel", idModel);
+		
+		ModelDao modelDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
+		modelDao.updateModeration(inParam.getAllParam());	
+		
+		Misc.redirect("/pages/admin/modeleNotModer.jsf");
+	}
+	
+	public void onDelete() {
+		ParamsForQuery inParam = new ParamsForQuery();
+		inParam.setParam("idModel", idModel);
+		
+		ModelDao modelDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
+		modelDao.deleteModeleLink(inParam.getAllParam());	
+		modelDao.deleteModele(inParam.getAllParam());		
+		
+		Misc.redirect("/pages/admin/modeleNotModer.jsf");
 	}
 
 	public ModelTbl(ResultSet rs) throws SQLException {

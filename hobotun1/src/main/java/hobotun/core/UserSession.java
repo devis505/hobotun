@@ -51,6 +51,7 @@ public class UserSession implements Serializable {
 	public boolean getClose() {
 
 		if (user != null) {
+			user.onClear();			
 			user = null;
 		}
 
@@ -60,6 +61,8 @@ public class UserSession implements Serializable {
 	// Проверяем одминл ли это
 	public boolean isIaAdmin() {
 
+		iaAdmin = false;
+		
 		try {
 			if (user != null) {
 				if (admin.equals(user.getUserTbl().getId_user().toString())) {

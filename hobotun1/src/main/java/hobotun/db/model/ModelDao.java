@@ -9,6 +9,8 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import hobotun.db.model.action.DeleteModele;
+import hobotun.db.model.action.DeleteModeleLink;
 import hobotun.db.model.action.GetCountModel;
 import hobotun.db.model.action.InsertModelReturnId;
 import hobotun.db.model.action.InsertModeleMsg;
@@ -21,6 +23,8 @@ import hobotun.db.model.action.SelectModelById;
 import hobotun.db.model.action.SelectModelByIdUser;
 import hobotun.db.model.action.SelectModelByIdUserBay;
 import hobotun.db.model.action.SelectModeleMsgByIdModele;
+import hobotun.db.model.action.SelectModeleNotModer;
+import hobotun.db.model.action.UpdateModeration;
 import hobotun.db.model.tbl.CountModelTbl;
 import hobotun.db.model.tbl.ModelTbl;
 import hobotun.db.model.tbl.ModeleMsgTbl;
@@ -42,6 +46,11 @@ public class ModelDao implements IModelDao {
 	
 	private InsertModeleMsg insertModeleMsg;
 	private SelectModeleMsgByIdModele selectModeleMsgByIdModele;
+	
+	private SelectModeleNotModer selectModeleNotModer;
+	private DeleteModele deleteModele;
+	private DeleteModeleLink deleteModeleLink;
+	private UpdateModeration updateModeration;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -59,6 +68,15 @@ public class ModelDao implements IModelDao {
 		
 		insertModeleMsg = new InsertModeleMsg(dataSource);
 		selectModeleMsgByIdModele = new SelectModeleMsgByIdModele(dataSource);
+
+		selectModeleNotModer = new SelectModeleNotModer(dataSource);
+		deleteModele = new DeleteModele(dataSource);
+		deleteModeleLink = new DeleteModeleLink(dataSource);
+		updateModeration = new UpdateModeration(dataSource);
+	}
+	
+	public List<ModelTbl> selectModeleNotModer() {
+		return selectModeleNotModer.execute();
 	}
 
 	public DataSource getDataSource() {
@@ -176,6 +194,18 @@ public class ModelDao implements IModelDao {
 		paramMap.put("id_modele", id_modele);
 		
 		return selectModeleMsgByIdModele.executeByNamedParam(paramMap);
+	}
+	
+	public void deleteModele(Map<String, Object> paramMap) {
+		deleteModele.updateByNamedParam(paramMap);
+	}
+	
+	public void deleteModeleLink(Map<String, Object> paramMap) {
+		deleteModeleLink.updateByNamedParam(paramMap);
+	}
+	
+	public void updateModeration(Map<String, Object> paramMap) {
+		updateModeration.updateByNamedParam(paramMap);
 	}
 
 }

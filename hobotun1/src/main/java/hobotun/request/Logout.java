@@ -12,17 +12,17 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class Logout implements Serializable {
 
-    public Logout() {
-	if (UserSession.getInstance().getClose()) {
-	    Misc.redirect("/pages/common/main.jsf");
+	public Logout() {
+		if (UserSession.getInstance().getClose()) {
+			Misc.redirect("/pages/common/main.jsf");
+		}
 	}
-    }
 
-    public String getMsg() {
-	return msg;
-    }
+	public String getMsg() {
+		return msg;
+	}
 
-    private static final long serialVersionUID = 4954861313936026719L;
-    private static final String msg = "Выполняется переход на главную страницу.";
+	private static final long serialVersionUID = 4954861313936026719L;
+	private static final String msg = "Выполняется переход на главную страницу.";
 
 }

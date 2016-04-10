@@ -61,49 +61,43 @@
 				<div class="ContainerIndent">
 					<div class="Card">
 				        <div class="CardTopic"> 
-				        	<i class="fa fa-users" style="color: #666f77;">Пользователи</i>
+				        	<i class="fa fa-connectdevelop" style="color: #666f77;">Модели ожидающие модерации</i>
 				        </div>
 				        
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
 			
-				        <p:dataTable var="user" value="#{allUsers.users}" id="users" paginator="true" rows="20" paginatorPosition="top">			        
-						    <p:column headerText="Код" width="44" sortBy="#{user.id_user}">
-						        <h:outputText value="#{user.id_user}" />
-						    </p:column>
-						    <p:column headerText="Логин" sortBy="#{user.login}">
-						        <h:outputText value="#{user.login}" />
-						    </p:column>
-						    <p:column headerText="e-mail" sortBy="#{user.mail}">
-						        <h:outputText value="#{user.mail}" />
-						    </p:column>
-						    <p:column headerText="Дата рег." width="76" sortBy="#{user.dtReg}">
-						        <h:outputText value="#{user.dtReg}" />
-						    </p:column>
-						    <p:column headerText="ФИО" sortBy="#{user.fio}">
-						        <h:outputText value="#{user.fio}" />
-						    </p:column>
-						    <p:column headerText="Баланс" width="64" sortBy="#{user.balance}">
-						        <h:outputText value="#{user.balance}" />
-						    </p:column>
-						    
-						    <p:column headerText="Блок." width="55" sortBy="#{user.is_block}">
-						        <h:outputText value="#{user.is_block}" />
-						    </p:column>
-						    
-						    <p:column headerText="Блок Форум" width="96" sortBy="#{user.is_block_forum}">
-						        <h:outputText value="#{user.is_block_forum}" />
-						    </p:column>
-						    
-						    <p:column headerText="Действия" width="140">
-						        <p:link href="../../pages/user/userProfil.jsf?id=#{user.id_user}" value="Просмотреть" /><br/>
-						        <p:commandLink value="Заблокировать форум" actionListener="#{user.onBlockForum}" rendered="#{user.is_block_forum != 1}"  />
-						        <p:commandLink style="color:red !important;" value="Разблокировать форум" actionListener="#{user.onUnBlockForum}" rendered="#{user.is_block_forum != 0}" /><br/>
-						        <p:commandLink value="Заблокировать" actionListener="#{user.onBlock}" rendered="#{user.is_block != 1}" />
-						        <p:commandLink style="color:red !important;" value="Разблокировать" actionListener="#{user.onUnBlock}" rendered="#{user.is_block != 0}" />
-						    </p:column>
-						    
-						</p:dataTable>
+				        <h:form id="notModeration" enctype="multipart/form-data" style="padding-left: 20px;">
+							<p:dataGrid var="model" value="#{modeleNotModer.modeles}" columns="6" paginator="false" layout="grid" >
+								<h:panelGrid columns="1">
+									
+									<p:link href="../modele/modele.jsf?id=#{model.idModel}">
+										<span style="width: 170px; height: 180px; padding-bottom: 20px;" class="Container100 ContainerIndent"> 
+																													
+											<h:graphicImage url="/GetImage?idImg=#{model.idImg1min}" /> 
+											
+											<span style="width: 170px;"> 
+												<i class="fa fa-rub Fs10 Fleft MarRight10"><p:outputLabel value="#{model.price_calc}" styleClass="Fs10" style="padding-left: 5px;" /></i> 
+												<i class="fa fa-star-o Fs10 Fleft MarRight10"><p:outputLabel value="#{model.rating}" styleClass="Fs10" style="padding-left: 5px;" /></i> 
+												<i class="fa fa-upload Fs10 Fleft MarRight10"><p:outputLabel value="#{model.download}" styleClass="Fs10" style="padding-left: 5px;" /></i> 
+												<i class="fa fa-wechat Fs10 Fleft MarRight10"><p:outputLabel value="#{model.msg}" styleClass="Fs10" style="padding-left: 5px;" /></i>
+											</span>
+										</span>
+									</p:link>
+									
+									<h:panelGrid columns="3" style="padding-left:5px;">
+										<p:commandLink actionListener="#{model.onDelete}" value="Удалить" style="color: red !important;" />
+										<p:outputLabel value="|" />
+										<p:link value="Редактировать" />
+										<p:outputLabel value="" />
+										<p:outputLabel value="" />
+										<p:commandLink actionListener="#{model.onModerator}" value="Подтвердить" style="color: green !important;" />
+									</h:panelGrid>
+									
+									<div class="Separator"></div>
+								</h:panelGrid>
+							</p:dataGrid>
+				        </h:form>	
 				        
 			        </div>
 			    </div>

@@ -55,7 +55,7 @@
 
     </ui:define>
     
-    <h:form id="main">
+    <h:form id="main" rendered="#{userSession.user.userTbl.is_block_forum != 1}">
 	    <div style="width: 1224px; margin: auto;">
 			<div class="Container100 Responsive100">
 				<div class="ContainerIndent">
