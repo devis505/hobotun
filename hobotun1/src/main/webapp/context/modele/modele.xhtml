@@ -186,6 +186,15 @@
 												</p:commandButton>
 											</h:column>
 										</h:panelGrid>
+										
+										<h:panelGrid columns="1" rendered="#{userSession.iaAdmin}">
+											<h:column>
+												<p:commandButton value="Скачать с правами админа" process="@form" update="@form" ajax="false"
+													class="CyanButton" href="#" icon="fa fa-cloud-download">
+													<p:fileDownload value="#{modele.file}" />
+												</p:commandButton>
+											</h:column>
+										</h:panelGrid>
 									</h:form>								
 							</div>	
 							
