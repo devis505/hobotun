@@ -318,7 +318,35 @@ public class SaveModelForm {
 	}
 
 	private void saveBigImg(ImageTbl imateTbl, ModelePartParam param) {
-		imateTbl.setImage(getByteByStreem(param.getParam()));
+		
+		try {
+			BufferedImage img = ImageIO.read(param.getParam().getInputStream());
+
+			if (img.getWidth() > img.getHeight()) {
+				img = img.getSubimage(0, 0, img.getHeight(), img.getHeight());
+			} else {
+				img = img.getSubimage(0, 0, img.getWidth(), img.getWidth());
+			}
+			
+			BufferedImage scaled = new BufferedImage(IMG_WIDTH_BIG, IMG_HEIGHT_BIG, BufferedImage.TYPE_INT_RGB);
+			Graphics2D g = scaled.createGraphics();
+
+			Image scaled1 = img.getScaledInstance(IMG_WIDTH_BIG, IMG_HEIGHT_BIG, Image.SCALE_SMOOTH);
+
+			g.drawImage(scaled1, 0, 0, null);
+			g.dispose();
+
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+			g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+			ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+			ImageIO.write(scaled, "JPEG", byteArray);
+
+			imateTbl.setImage(byteArray.toByteArray());
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void saveMiniImg(ModelePartParam param, ImageTbl img) {
@@ -578,6 +606,9 @@ public class SaveModelForm {
 
 	private static final int IMG_WIDTH = 170;
 	private static final int IMG_HEIGHT = 170;
+	
+	private static final int IMG_WIDTH_BIG = 640;
+	private static final int IMG_HEIGHT_BIG = 640;
 
 	private static final String ID_MSG_FOR_SAVE_ELEMENT = "saveForm:save";
 	private static final Integer ID_PARAM_SUCCESS_SAVE = 1;
