@@ -103,6 +103,11 @@ public class SaveModelForm {
 
 	public void onSaveModel() {
 
+		if (fileModel.getParam() != null) {
+			file.setNm_file(fileModel.getParam().getFileName());
+			file.setFile(fileModel.getParam().getContents());
+		}
+
 		boolean err = false;
 		String msg = "";
 
@@ -120,7 +125,7 @@ public class SaveModelForm {
 			err = true;
 			msg = SystemParams.getInstance().getParam(27);
 		}
-		
+
 		if (bigImg1.isEmpty()) {
 			err = true;
 			msg = SystemParams.getInstance().getParam(28);
@@ -128,14 +133,36 @@ public class SaveModelForm {
 
 		if (!err) {
 			try {
+				saveMiniImg(bigImg1, miniImgTbl1);
+				saveBigImg(imgTbl1, bigImg1);
 				saveImage(imgTbl1);
-				saveImage(imgTbl2);
-				saveImage(imgTbl3);
-				saveImage(imgTbl4);
-				saveImage(imgTbl5);
 
+				if (!bigImg2.isEmpty()) {
+					saveMiniImg(bigImg2, miniImgTbl2);
+					saveBigImg(imgTbl2, bigImg2);
+					saveImage(imgTbl2);
+				}
+
+				if (!bigImg3.isEmpty()) {
+					saveMiniImg(bigImg3, miniImgTbl3);
+					saveBigImg(imgTbl3, bigImg3);
+					saveImage(imgTbl3);
+				}
+
+				if (!bigImg4.isEmpty()) {
+					saveMiniImg(bigImg4, miniImgTbl4);
+					saveBigImg(imgTbl4, bigImg4);
+					saveImage(imgTbl4);					
+				}
+
+				if (!bigImg5.isEmpty()) {
+					saveMiniImg(bigImg5, miniImgTbl5);
+					saveBigImg(imgTbl5, bigImg5);
+					saveImage(imgTbl5);
+				}
+				
 				FileDao fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
-				file.setNm_file(fileModel.getText());
+				file.setNm_file(fileModel.getParam().getFileName());
 				fileDao.Insert(file);
 
 				ModelTbl model = new ModelTbl();
@@ -264,7 +291,7 @@ public class SaveModelForm {
 			} else {
 				img = img.getSubimage(0, 0, img.getWidth(), img.getWidth());
 			}
-			
+
 			BufferedImage scaled = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 			Graphics2D g = scaled.createGraphics();
 
@@ -289,45 +316,40 @@ public class SaveModelForm {
 	}
 
 	public void onSaveModelFile(AjaxBehaviorEvent event) {
-		file.setFile(getByteByStreem(fileModel.getParam()));
+		file.setFile(fileModel.getParam().getContents());
 	}
 
 	public void onSaveModelImg1(AjaxBehaviorEvent event) {
-		saveMiniImg(bigImg1, miniImgTbl1);
-		saveBigImg(imgTbl1, bigImg1);
+
 	}
 
 	public void onSaveModelImg2(AjaxBehaviorEvent event) {
-		saveMiniImg(bigImg2, miniImgTbl2);
-		saveBigImg(imgTbl2, bigImg2);
+
 	}
 
 	public void onSaveModelImg3(AjaxBehaviorEvent event) {
-		saveMiniImg(bigImg3, miniImgTbl3);
-		saveBigImg(imgTbl3, bigImg3);
+
 	}
 
 	public void onSaveModelImg4(AjaxBehaviorEvent event) {
-		saveMiniImg(bigImg4, miniImgTbl4);
-		saveBigImg(imgTbl4, bigImg4);
+
 	}
 
 	public void onSaveModelImg5(AjaxBehaviorEvent event) {
-		saveMiniImg(bigImg5, miniImgTbl5);
-		saveBigImg(imgTbl5, bigImg5);
+
 	}
 
 	private void saveBigImg(ImageTbl imateTbl, ModelePartParam param) {
-		
+
 		try {
-			BufferedImage img = ImageIO.read(param.getParam().getInputStream());
+			BufferedImage img = ImageIO.read(param.getParam().getInputstream());
 
 			if (img.getWidth() > img.getHeight()) {
 				img = img.getSubimage(0, 0, img.getHeight(), img.getHeight());
 			} else {
 				img = img.getSubimage(0, 0, img.getWidth(), img.getWidth());
 			}
-			
+
 			BufferedImage scaled = new BufferedImage(IMG_WIDTH_BIG, IMG_HEIGHT_BIG, BufferedImage.TYPE_INT_RGB);
 			Graphics2D g = scaled.createGraphics();
 
@@ -343,7 +365,7 @@ public class SaveModelForm {
 			ImageIO.write(scaled, "JPEG", byteArray);
 
 			imateTbl.setImage(byteArray.toByteArray());
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -351,7 +373,7 @@ public class SaveModelForm {
 
 	private void saveMiniImg(ModelePartParam param, ImageTbl img) {
 		try {
-			CreateMiniJpg(param.getParam().getInputStream(), img, IMG_WIDTH, IMG_HEIGHT);
+			CreateMiniJpg(param.getParam().getInputstream(), img, IMG_WIDTH, IMG_HEIGHT);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -577,23 +599,6 @@ public class SaveModelForm {
 
 	public void setAltruist(boolean isAltruist) {
 		this.isAltruist = isAltruist;
-		/*
-		 * fileModel.setAltruist(this.isAltruist);
-		 * bigImg1.setAltruist(this.isAltruist);
-		 * bigImg2.setAltruist(this.isAltruist);
-		 * bigImg3.setAltruist(this.isAltruist);
-		 * bigImg4.setAltruist(this.isAltruist);
-		 * bigImg5.setAltruist(this.isAltruist);
-		 * modelName.setAltruist(this.isAltruist);
-		 * modeleTegs.setAltruist(this.isAltruist);
-		 * modeleDescription.setAltruist(this.isAltruist);
-		 * fbx.setAltruist(this.isAltruist); obj.setAltruist(this.isAltruist);
-		 * texture.setAltruist(this.isAltruist);
-		 * booleanParams.setAltruist(this.isAltruist);
-		 * countPoligons.setAltruist(this.isAltruist);
-		 * formatGreenVisible.setAltruist(this.isAltruist);
-		 * categoryGreenVisible.setAltruist(this.isAltruist);
-		 */
 	}
 
 	public ModeleBooleanParam getBooleanTexture() {
@@ -606,7 +611,7 @@ public class SaveModelForm {
 
 	private static final int IMG_WIDTH = 170;
 	private static final int IMG_HEIGHT = 170;
-	
+
 	private static final int IMG_WIDTH_BIG = 640;
 	private static final int IMG_HEIGHT_BIG = 640;
 

@@ -37,7 +37,7 @@ public class EditPic implements Serializable {
 
 		try {
 
-			BufferedImage imgTmp = ImageIO.read(this.img.getParam().getInputStream());
+			BufferedImage imgTmp = ImageIO.read(this.img.getParam().getInputstream());
 
 			if (imgTmp.getWidth() > imgTmp.getHeight()) {
 				imgTmp = imgTmp.getSubimage(0, 0, imgTmp.getHeight(), imgTmp.getHeight());

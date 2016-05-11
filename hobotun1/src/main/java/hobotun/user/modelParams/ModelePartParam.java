@@ -1,18 +1,17 @@
 package hobotun.user.modelParams;
 
-import javax.servlet.http.Part;
+import org.primefaces.model.UploadedFile;
 
 public class ModelePartParam extends AModeleParam {
 
-	private Part param = null;
-	private String fileName = "";
+	private UploadedFile param = null;
 
-	public Part getParam() {
+	public UploadedFile getParam() {
 		checParamValue();
 		return param;
 	}
 
-	public void setParam(Part param) {
+	public void setParam(UploadedFile param) {
 		this.param = param;
 		checParamValue();
 	}
@@ -23,20 +22,7 @@ public class ModelePartParam extends AModeleParam {
 			setOpacity50();
 		} else {
 			setOpacity100();
-			fileName = getFileName(param);
 		}
 	}
 
-	public String getText() {
-		return fileName;
-	}
-
-	private String getFileName(Part part) {
-		for (String cd : part.getHeader("content-disposition").split(";")) {
-			if (cd.trim().startsWith("filename")) {
-				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-			}
-		}
-		return null;
-	}
 }

@@ -184,3 +184,9 @@ a {
 .ui-message.ui-message-info.ui-widget.ui-corner-all {
 	padding: 9px !important;
 }
+
+.ui-fileupload-filename {
+	position: absolute;
+    padding-top: 10px;
+    width: 400px;
+}

@@ -10,9 +10,7 @@ public class ModeleHints {
 	private List<String> hint = new ArrayList<>();
 	
 	public ModeleHints () {
-		for (int i = 2; i < 26; i++) {
-			hint.add(SystemParams.getInstance().getParam(i));
-		}
+		hint = SystemParams.getInstance().getAllHintsForModelUpload();
 	}
 
 	public List<String> getHint() {

@@ -1,6 +1,7 @@
 package hobotun.db.SystemParam;
 
 import hobotun.db.SystemParam.action.SelectAllParams;
+import hobotun.db.SystemParam.action.SelectAllParamsForUloadModel;
 import hobotun.db.SystemParam.action.SelectParamById;
 import hobotun.db.SystemParam.action.SelectParamByNm;
 import hobotun.db.SystemParam.table.SystemParamTbl;
@@ -17,16 +18,22 @@ public class SystemParamDao implements ISystemParamDao {
 	private SelectParamById selectParamById;
 	private SelectAllParams selectAllParams;
 	private SelectParamByNm selectParamByNm;
+	private SelectAllParamsForUloadModel selectAllParamsForUloadModel;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 		selectParamById = new SelectParamById(dataSource);
 		selectAllParams = new SelectAllParams(dataSource);
 		selectParamByNm = new SelectParamByNm(dataSource);
+		selectAllParamsForUloadModel = new SelectAllParamsForUloadModel(dataSource);
 	}
 
 	public DataSource getDataSource() {
 		return dataSource;
+	}
+	
+	public List<SystemParamTbl> getAllHintsForModelUpload() { 
+		return selectAllParamsForUloadModel.execute();
 	}
 
 	@Override

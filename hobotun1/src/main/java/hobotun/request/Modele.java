@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.springframework.stereotype.Component;
 
 import hobotun.core.Misc;
 import hobotun.core.UserSession;
@@ -33,6 +34,7 @@ import hobotun.db.user.table.UserTbl;
 import hobotun.db.userModel.UserModelDao;
 import hobotun.db.userModel.table.UserModelTbl;
 
+@Component
 @ManagedBean(name = "modele")
 @ViewScoped
 public class Modele implements Serializable {

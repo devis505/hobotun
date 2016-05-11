@@ -1,7 +1,11 @@
 package hobotun.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import hobotun.db.DBUtil;
 import hobotun.db.SystemParam.SystemParamDao;
+import hobotun.db.SystemParam.table.SystemParamTbl;
 
 public class SystemParams {
 
@@ -22,6 +26,16 @@ public class SystemParams {
 		}
 
 		return instance;
+	}
+	
+	public List<String> getAllHintsForModelUpload() {
+		List<String> hints = new ArrayList<>();
+		
+		for (SystemParamTbl sysParam : sysDao.getAllHintsForModelUpload()) {
+			hints.add(sysParam.getVlParam());
+		}
+		
+		return hints;
 	}
 
 	public String getParam(Integer key) {

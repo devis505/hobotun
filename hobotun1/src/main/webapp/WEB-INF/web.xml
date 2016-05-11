@@ -5,10 +5,31 @@
 	version="3.0">
 
 	<display-name>Archetype Created Web Application</display-name>
-
+	
 	<welcome-file-list>
 		<welcome-file>index.jsf</welcome-file>
 	</welcome-file-list>
+
+	<!-- listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/applicationContext.xml</param-value>
+	</context-param -->
+
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>
+			org.primefaces.webapp.filter.FileUploadFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -23,11 +44,26 @@
 	<servlet>
 		<servlet-name>GetImage</servlet-name>
 		<servlet-class>hobotun.servlets.GetImage</servlet-class>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetImage</servlet-name>
 		<url-pattern>/GetImage</url-pattern>
 	</servlet-mapping>
+	
+	<!-- servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/dispatcher-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping -->
 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
