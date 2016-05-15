@@ -4,54 +4,6 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:p="http://primefaces.org/ui">
 
-		<!-- h:form id="out_money"> -->
-		<h:form id="main">
-			<p:dataTable id="balances" var="balance"
-				value="#{userBalanceOut.outBalance}" paginator="true" rows="5"
-				paginatorPosition="bottom"
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-				rowsPerPageTemplate="5">
-
-				<p:column headerText="Id">
-					<h:outputText value="#{balance.id}" />
-				</p:column>
-
-				<p:column headerText="Сумма">
-					<h:outputText value="#{balance.outMoney}" />
-				</p:column>
-
-				<p:column headerText="Статус">
-					<h:outputText value="#{balance.stateName}" />
-				</p:column>
-
-				<p:column headerText="Дата запроса">
-					<h:outputText value="#{balance.dtStartOut}" />
-				</p:column>
-
-				<p:column headerText="Дата исполнения">
-					<h:outputText value="#{balance.dtFinishOut}" />
-				</p:column>
-
-
-			</p:dataTable>
-
-			<h:panelGrid columns="2" cellpadding="10" id="outPanel">
-				<p:inputText styleClass="Fs18" style="padding-left:0px !important;"
-					value="#{userSession.user.outBalance}" />
-
-				<p:commandButton value="Списать" class="CyanButton Fleft"
-					icon="fa fa-minus" update="@form,balances"
-					action="#{userSession.user.outBalance}">
-				</p:commandButton>
-			</h:panelGrid>
-			<!-- /h:form> -->
-		</h:form>
-	</ui:composition>
 
 </ui:composition>

@@ -7,33 +7,67 @@ import java.sql.SQLException;
 
 public class OutUserBalanceTbl {
 
-	private Integer id;
+	private Integer id_balance_hist;
 	private Integer id_user;
-	private BigDecimal outMoney;
-	private Integer state;
-	private String stateName;
-	private Date dtStartOut;
-	private Date dtFinishOut;
+	private BigDecimal sm;
+	private Date dt_create;
+	private Date dt_change;
+	private String desc;
+	private Integer kd_state;
+	private Integer kd_type;
 
 	public OutUserBalanceTbl(ResultSet rs) throws SQLException {
-
-		setId(rs.getInt("id"));
+		setId_balance_hist(rs.getInt("id_balance_hist"));
 		setId_user(rs.getInt("id_user"));
-		setOutMoney(rs.getBigDecimal("outMoney"));
-		setState(rs.getInt("state"));
-		setStateName(rs.getString("stateName"));
-		setDtStartOut(rs.getDate("dtStartOut"));
-		setDtFinishOut(rs.getDate("dtFinishOut"));
+		setSm(rs.getBigDecimal("sm"));
+		
+		dt_create = rs.getDate("dt_create");
+		dt_change = rs.getDate("dt_change");
+		desc = rs.getString("desc");
+		kd_state = rs.getInt("kd_state");
+		kd_type = rs.getInt("kd_type");
 	}
 
-	public Integer getId() {
-		return id;
+	public Date getDt_create() {
+		return dt_create;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setDt_create(Date dt_create) {
+		this.dt_create = dt_create;
 	}
 
+	public Date getDt_change() {
+		return dt_change;
+	}
+
+	public void setDt_change(Date dt_change) {
+		this.dt_change = dt_change;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public Integer getKd_state() {
+		return kd_state;
+	}
+
+	public void setKd_state(Integer kd_state) {
+		this.kd_state = kd_state;
+	}
+
+	public Integer getKd_type() {
+		return kd_type;
+	}
+
+	public void setKd_type(Integer kd_type) {
+		this.kd_type = kd_type;
+	}
+	
 	public Integer getId_user() {
 		return id_user;
 	}
@@ -42,44 +76,20 @@ public class OutUserBalanceTbl {
 		this.id_user = id_user;
 	}
 
-	public BigDecimal getOutMoney() {
-		return outMoney;
+	public Integer getId_balance_hist() {
+		return id_balance_hist;
 	}
 
-	public void setOutMoney(BigDecimal outMoney) {
-		this.outMoney = outMoney;
+	public void setId_balance_hist(Integer id_balance_hist) {
+		this.id_balance_hist = id_balance_hist;
 	}
 
-	public Integer getState() {
-		return state;
+	public BigDecimal getSm() {
+		return sm;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
-	}
-
-	public Date getDtStartOut() {
-		return dtStartOut;
-	}
-
-	public void setDtStartOut(Date dtStartOut) {
-		this.dtStartOut = dtStartOut;
-	}
-
-	public Date getDtFinishOut() {
-		return dtFinishOut;
-	}
-
-	public void setDtFinishOut(Date dtFinishOut) {
-		this.dtFinishOut = dtFinishOut;
-	}
-
-	public String getStateName() {
-		return stateName;
-	}
-
-	public void setStateName(String stateName) {
-		this.stateName = stateName;
+	public void setSm(BigDecimal sm) {
+		this.sm = sm;
 	}
 
 }

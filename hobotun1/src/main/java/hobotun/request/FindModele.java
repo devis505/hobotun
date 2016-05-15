@@ -3,13 +3,15 @@ package hobotun.request;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import hobotun.db.DBUtil;
 import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
-import hobotun.user.Category;
+import hobotun.model.Category;
 
 @ManagedBean(name = "findModele")
 @ViewScoped
@@ -18,16 +20,17 @@ public class FindModele implements Serializable{
 	private static final long serialVersionUID = 4759632650445905080L;
 	private List<ModelTbl> models;
 	private ModelDao modelDao;
+	
+	@ManagedProperty("#{category}")
 	private Category categoryes;
+	
 	private String keyWord = ""; 
 	private String option = "1";
 	
 	private Integer countModel;
 	
-	public FindModele() {
-		categoryes = new Category();
-		categoryes.init();
-		
+	@PostConstruct
+	public void init() {
 		modelDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
 		changeSort();
 	}

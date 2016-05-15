@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.imageio.ImageIO;
@@ -27,6 +28,7 @@ import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
 import hobotun.db.userModel.UserModelDao;
 import hobotun.db.userModel.table.UserModelTbl;
+import hobotun.model.Category;
 import hobotun.user.modelParams.ModeleBooleanParam;
 import hobotun.user.modelParams.ModeleHints;
 import hobotun.user.modelParams.ModeleIntegerParam;
@@ -70,7 +72,9 @@ public class SaveModelForm {
 	private Format formats;
 	private ModeleBooleanParam formatGreenVisible = new ModeleBooleanParam();
 
+	@ManagedProperty("#{category}")
 	private Category categoryes;
+	
 	private ModeleBooleanParam categoryGreenVisible = new ModeleBooleanParam();
 
 	private String allErr = "";
@@ -97,8 +101,8 @@ public class SaveModelForm {
 		formats = new Format();
 		formats.init();
 
-		categoryes = new Category();
-		categoryes.init();
+		//categoryes = new Category();
+		//categoryes.init();
 	}
 
 	public void onSaveModel() {
@@ -126,7 +130,7 @@ public class SaveModelForm {
 			msg = SystemParams.getInstance().getParam(27);
 		}
 
-		if (bigImg1.isEmpty()) {
+		if (bigImg1.getParam().getFileName().isEmpty()) {
 			err = true;
 			msg = SystemParams.getInstance().getParam(28);
 		}
@@ -137,25 +141,25 @@ public class SaveModelForm {
 				saveBigImg(imgTbl1, bigImg1);
 				saveImage(imgTbl1);
 
-				if (!bigImg2.isEmpty()) {
+				if (!bigImg2.getParam().getFileName().isEmpty()) {
 					saveMiniImg(bigImg2, miniImgTbl2);
 					saveBigImg(imgTbl2, bigImg2);
 					saveImage(imgTbl2);
 				}
 
-				if (!bigImg3.isEmpty()) {
+				if (!bigImg3.getParam().getFileName().isEmpty()) {
 					saveMiniImg(bigImg3, miniImgTbl3);
 					saveBigImg(imgTbl3, bigImg3);
 					saveImage(imgTbl3);
 				}
 
-				if (!bigImg4.isEmpty()) {
+				if (!bigImg4.getParam().getFileName().isEmpty()) {
 					saveMiniImg(bigImg4, miniImgTbl4);
 					saveBigImg(imgTbl4, bigImg4);
 					saveImage(imgTbl4);					
 				}
 
-				if (!bigImg5.isEmpty()) {
+				if (!bigImg5.getParam().getFileName().isEmpty()) {
 					saveMiniImg(bigImg5, miniImgTbl5);
 					saveBigImg(imgTbl5, bigImg5);
 					saveImage(imgTbl5);
@@ -210,6 +214,8 @@ public class SaveModelForm {
 
 				errColor = "Green";
 				saveButtonEnable = true;
+				
+				Misc.redirect("/pages/user/user.jsf?userPageId=4");
 			} catch (Exception e) {
 				e.printStackTrace();
 				err = true;

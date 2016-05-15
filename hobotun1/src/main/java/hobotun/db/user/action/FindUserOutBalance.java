@@ -13,23 +13,20 @@ import org.springframework.jdbc.object.MappingSqlQuery;
 
 public class FindUserOutBalance extends MappingSqlQuery<OutUserBalanceTbl> {
 
-    private static final String SQL_FIND_USER_OUT_BALANCE = 
-	    "SELECT outb.*, case when outb.state = 1 then 'В обработке' when outb.state = 2 then 'Обработан' else 'Отменен' end stateName \n"
-	  + "  FROM hb_outUserBalance outb \n"
-	  + " WHERE outb.id_user = :id_user ";
+	private static final String SQL_FIND_USER_OUT_BALANCE = 
+			  "SELECT bh.* \n"
+			+ "  FROM hb_balance_hist bh \n" 
+		    + " WHERE bh.id_user = :id_user order by 1 desc";
 
-    public FindUserOutBalance(DataSource dataSource) {
-	super(dataSource, SQL_FIND_USER_OUT_BALANCE);
+	public FindUserOutBalance(DataSource dataSource) {
+		super(dataSource, SQL_FIND_USER_OUT_BALANCE);
 
-	super.declareParameter(new SqlParameter("id_user", Types.INTEGER));
-    }
+		super.declareParameter(new SqlParameter("id_user", Types.INTEGER));
+	}
 
-    @Override
-    protected OutUserBalanceTbl mapRow(ResultSet rs, int rowNum) throws SQLException {
-	return new OutUserBalanceTbl(rs);
-    }
-
+	@Override
+	protected OutUserBalanceTbl mapRow(ResultSet rs, int rowNum) throws SQLException {
+		return new OutUserBalanceTbl(rs);
+	}
 
 }
-
-

@@ -29,6 +29,7 @@ import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
 import hobotun.db.userModel.UserModelDao;
 import hobotun.db.userModel.table.UserModelTbl;
+import hobotun.model.Category;
 
 @ManagedBean(name = "saveModel1")
 @ViewScoped

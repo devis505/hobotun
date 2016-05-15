@@ -66,30 +66,54 @@
 				        
 				        <div class="SeparatorFull"></div>
 				        <div class="EmptyBox10"></div>
-				        
-			
-				        
+				        	
 				        	<h:panelGrid columns="2">
-				        		<p:outputLabel value="Наименование" />
-				        		<p:inputText value="#{directoryes.nmCategory}" />
+				        		<p:commandButton value="Добавить категорию" update="categoryGrid" onclick="PF('addCategory').show();"  />
+				        		<p:commandButton value="Добавить под категорию" update="subCategoryPanel" onclick="PF('addSubCategory').show();" actionListener="#{directoryes.updateDialog}" />
 				        	</h:panelGrid>
 				        	
-				        	<p:commandButton value="Добавить" actionListener="#{directoryes.onSave}" update="categoryGrid" />
+				        	<p:dialog header="Добавить категорию" widgetVar="addCategory" modal="true">
+							    <h:panelGrid columns="2" id="categoryPanel">
+							    	<p:outputLabel value="Название:" />
+							    	<p:inputText value="#{directoryes.category.nm_category_p}" />
+							    </h:panelGrid>
+							    
+							    <p:commandButton value="Сохранить" actionListener="#{directoryes.onSaveCategory}" />
+							</p:dialog>   
+							
+							<p:dialog header="Добавить под категорию" widgetVar="addSubCategory" modal="true">
+							    <h:panelGrid columns="2" id="subCategoryPanel">
+							    	<p:outputLabel value="Категория:" />
+							    	<p:outputLabel value="#{directoryes.selectedNode.data.name}" />
+							    	<p:outputLabel value="Название:" />
+							    	<p:inputText value="#{directoryes.subCategory.nmCategory}" />
+							    </h:panelGrid>
+							    
+							    <p:commandButton value="Сохранить" actionListener="#{directoryes.onSaveSubCategory}" />
+							</p:dialog>
 				        
-						    <p:dataTable var="directory" value="#{directoryes.categoryes}" rows="20" paginator="true" paginatorPosition="top" id="categoryGrid">
-						        <p:column headerText="Код">
-						            <p:outputLabel value="#{directory.idCategory}" />
-						        </p:column>
-						 
+						    <p:treeTable value="#{directoryes.root}" var="document" id="categoryGrid" selectionMode="single" selection="#{directoryes.selectedNode}">
+						        <f:facet name="header">
+						            Список категорий
+						        </f:facet>
+						        
 						        <p:column headerText="Название">
-						            <p:outputLabel value="#{directory.nmCategory}" />
+						            <h:outputText value="#{document.name}" />
 						        </p:column>
-						 
-						        <p:column headerText="Действие">
-						            <p:commandButton value="Удалить" update="categoryGrid" actionListener="#{directory.onDelete}" />
+						        
+						        <p:column headerText="Код">
+						            <h:outputText value="#{document.id}" />
 						        </p:column>
-						 
-						    </p:dataTable>
+						        
+						        <p:column style="width:100px" headerText="Действия">
+						        	<p:commandButton value="Удалить" actionListener="#{document.onDelete}"  />
+						        	
+						            <!-- p:commandLink title="View Detail" styleClass="ui-icon ui-icon-search">
+						                <f:setPropertyActionListener value="#{document}" target="#{ttBasicView.selectedDocument}" />
+						            </p:commandLink -->
+						        </p:column>
+						        
+						    </p:treeTable>
 						
 				        
 			        </div>

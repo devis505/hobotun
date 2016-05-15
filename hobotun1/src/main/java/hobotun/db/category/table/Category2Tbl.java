@@ -8,45 +8,27 @@ import hobotun.core.ParamsForQuery;
 import hobotun.db.DBUtil;
 import hobotun.db.category.CategoryDao;
 
-public class CategoryTbl implements CategoryAll {
+public class Category2Tbl implements CategoryAll{
 
-	private Integer idCategory;
-	private String nmCategory;
+	private String nm_category_p;
 	private Integer id_category_p;
 
-	public CategoryTbl() {
-		nmCategory = "";
+	public Category2Tbl() {
+		nm_category_p = "";
 	}
 	
-	public CategoryTbl(ResultSet rs) throws SQLException {
-		this.idCategory = rs.getInt("idCategory");
-		this.nmCategory = rs.getString("nmCategory");
+	public Category2Tbl(ResultSet rs) throws SQLException {
 		this.id_category_p = rs.getInt("id_category_p");
+		this.nm_category_p = rs.getString("nm_category_p");
 	}
 	
-	public Integer getIdCategory() {
-		return idCategory;
-	}
-
-	public void setIdCategory(Integer idCategory) {
-		this.idCategory = idCategory;
-	}
-
-	public String getNmCategory() {
-		return nmCategory;
-	}
-
-	public void setNmCategory(String nmCategory) {
-		this.nmCategory = nmCategory;
-	}
-
 	public void onDelete() {
 		CategoryDao categoryDao = DBUtil.getInstance().getBean("categoryDao", CategoryDao.class);
 		
 		ParamsForQuery inParams = new ParamsForQuery();
-		inParams.setParam("idCategory", idCategory);
+		inParams.setParam("id_category_p", id_category_p);
 		
-		categoryDao.deleteCategory(inParams.getAllParam());
+		categoryDao.deleteCategory2(inParams.getAllParam());
 		Misc.redirect("/pages/admin/directoryes.jsf");
 	}
 
@@ -56,5 +38,13 @@ public class CategoryTbl implements CategoryAll {
 
 	public void setId_category_p(Integer id_category_p) {
 		this.id_category_p = id_category_p;
+	}
+
+	public String getNm_category_p() {
+		return nm_category_p;
+	}
+
+	public void setNm_category_p(String nm_category_p) {
+		this.nm_category_p = nm_category_p;
 	}
 }
