@@ -6,7 +6,8 @@
 
 
 		
-	<h:form enctype="multipart/form-data">
+	<h:form enctype="multipart/form-data" style="height:100%; overflow-y:visible; display:block;">
+	    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 	    <table style="width:100%;">
 	    	<tr>
 	    		<td>
@@ -86,11 +87,11 @@
 	    			<p:outputLabel value="Версия редактора: " styleClass="Fs20" />
 	    		</td>
 	    		<td>
-	    			<p:selectOneMenu id="Format" style="width:250px;" value="#{saveModel.formats.format}" >
+	    			<h:selectOneMenu id="Format" style="width:250px;" value="#{saveModel.formats.format}" styleClass="newList">
 						<p:ajax listener="#{saveModel.onChangeFormat}" update="greenFormats itogo" />
 						<f:selectItem itemLabel="Выберите формат" itemValue="" />
 						<f:selectItems value="#{saveModel.formats.formates}" />
-					</p:selectOneMenu>
+					</h:selectOneMenu>
 	    		</td>
 	    		<td>
 	    			<p:panel id="greenFormats" styleClass="GreenPanel">
@@ -113,11 +114,11 @@
 	    			<p:outputLabel value="Категория: " styleClass="Fs20" />
 	    		</td>
 	    		<td>
-	    			<p:selectOneMenu id="Category" style="width:250px;" value="#{saveModel.categoryes.category}"  >
+	    			<h:selectOneMenu id="Category" style="width:250px;" styleClass="newList" value="#{saveModel.categoryes.category}" appendTo="@this" maxlength="10" >
 						<p:ajax listener="#{saveModel.onChangeCategory}" update="greenCategory itogo" />
 						<f:selectItem itemLabel="Выберите категорию" itemValue="" />
 						<f:selectItems value="#{saveModel.categoryes.categoryes}" />
-					</p:selectOneMenu>
+					</h:selectOneMenu>
 	    		</td>
 	    		<td>
 	    			<p:panel id="greenCategory" styleClass="GreenPanel">

@@ -11,15 +11,15 @@
 		xmlns:p="http://primefaces.org/ui">
 		
 		<h:panelGrid columns="2" cellpadding="10" id="outPanel" style="padding-left: 5px;">
-			<!-- p:link styleClass="HoverEffect Fs20" value="Загрузить">
+			<p:button styleClass="HoverEffect Fs20" value="Загрузить" outcome="user">
 				<f:param name="userPageId" value="9" />
-			</p:link -->
-			<p:commandButton value="Загрузить" type="button" onclick="PF('dlg2').show();" />
+			</p:button>
+			<!-- p:commandButton value="Загрузить" type="button" onclick="PF('dlg2').show();" /-->
 		</h:panelGrid>
 		
-		<p:dialog header="Загрузка новой модели" widgetVar="dlg2" modal="true" width="950" closeOnEscape="false" draggable="false" resizable="false" dynamic="true" style="height:80% !important;">
+		<!-- p:dialog header="Загрузка новой модели" widgetVar="dlg2" modal="true" width="950" closeOnEscape="false" draggable="false" resizable="false" dynamic="true" style="height:80% !important;">
 			<ui:include src="dialog.xhtml" />
-		</p:dialog>
+		</p:dialog> -->
 		
 		<div class="EmptyBox10"></div>
 		<p:outputLabel value="Ожидают модерации" styleClass="Fs20" style="padding-left:16px;" />
