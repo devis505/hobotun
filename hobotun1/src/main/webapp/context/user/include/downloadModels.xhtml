@@ -4,26 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<p:ajaxStatus style="display:block;width:32px;height:32px;position:fixed;right:7px;bottom:7px">
-        <f:facet name="start">
-        	
-            <p:graphicImage url="/resources/adamantium-layout/images/preloader.gif"/>
-        </f:facet>
-
-        <f:facet name="complete">
-            <h:outputText value="" />
-        </f:facet>
-    </p:ajaxStatus>
-     
-    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
-
-	<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-	    <p:graphicImage name="../../resources/adamantium-layout/images/preloader.gif" />
-	</p:dialog>
 
 	<h:form enctype="multipart/form-data" style="padding-left:95px; padding-top:30px;">
-		<p:commandButton value="Send" icon="ui-icon-refresh" />
-	
 	    <table style="width:100%;">
 	    	<tr>
 	    		<td>

@@ -10,14 +10,14 @@
 		<welcome-file>index.jsf</welcome-file>
 	</welcome-file-list>
 
-	<!-- listener>
+	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/applicationContext.xml</param-value>
-	</context-param -->
+	</context-param>
 
 	<filter>
 		<filter-name>PrimeFaces FileUpload Filter</filter-name>
@@ -51,7 +51,7 @@
 		<url-pattern>/GetImage</url-pattern>
 	</servlet-mapping>
 	
-	<!-- servlet>
+	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
@@ -63,7 +63,7 @@
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
-	</servlet-mapping -->
+	</servlet-mapping>
 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
