@@ -61,10 +61,12 @@
 				<div class="ContainerIndent">
 					<div class="Card">
 				        <div class="CardTopic"> 
-				        	<i class="fa fa-search Fs30 Fleft MarRight10"></i> 
-				            Поиск модели<br/>
-				            <span class="CardSubTopic">Введите наименование модели для поиска, для более точного поиска выберите категорию</span>
-				            <div class="EmptyBox10"></div>
+				        	<p:panelGrid columns="">
+					        	<p:button styleClass="HoverEffect Fs20" value="Загрузить" href="../user/user.jsf?userPageId=9" disabled="#{!userSession.user.authorization}">
+									<f:param name="userPageId" value="9" />
+								</p:button>
+								<p:outputLabel style="padding-left:10px;" value="Чтобы загрузить модель, Вы должны быть авторизованы." rendered="#{!userSession.user.authorization}" />
+							</p:panelGrid>
 				        </div>
 				        
 				        <div class="SeparatorFull"></div>
