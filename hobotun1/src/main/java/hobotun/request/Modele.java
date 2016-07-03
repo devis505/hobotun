@@ -40,6 +40,8 @@ import hobotun.db.userModel.table.UserModelTbl;
 public class Modele implements Serializable {
 
 	private String modeleId;
+	
+	private String url = "https://money.yandex.ru/quickpay/confirm.xml?receiver=410014362076153&formcomment=&short-dest=&label=1&quickpay-form=donate&targets=1&sum=1&comment=test&need-fio=false&need-email=false&need-phone=false&need-address=false&paymentType=PC";
 
 	private ModelTbl modele;
 	private UserModelTbl userModel;
@@ -367,6 +369,13 @@ public class Modele implements Serializable {
 
 	public void setProvider(Integer provider) {
 		this.provider = provider;
+		
+		if (provider == 1) {
+			url = "https://money.yandex.ru/quickpay/confirm.xml?receiver=410014362076153&formcomment=&short-dest=&label=1&quickpay-form=donate&targets=1&sum=1&comment=test&need-fio=false&need-email=false&need-phone=false&need-address=false&paymentType=PC";
+		} else {
+			url = "https://money.yandex.ru/quickpay/confirm.xml?receiver=410014362076153&formcomment=&short-dest=&label=1&quickpay-form=donate&targets=1&sum=1&comment=test&need-fio=false&need-email=false&need-phone=false&need-address=false&paymentType=AC";
+		}
+		
 	}
 
 	public boolean isFree() {
@@ -426,6 +435,14 @@ public class Modele implements Serializable {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

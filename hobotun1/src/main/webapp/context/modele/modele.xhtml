@@ -55,7 +55,7 @@
 
     </ui:define>
     
-    <h:form id="main">
+    <h:form id="main" >
 	    <div style="width: 1170px; margin: auto;"> <!-- 1224px;  -->
 			<div class="Container100 Responsive100">
 				<div class="ContainerIndent">
@@ -166,12 +166,13 @@
 											</h:column>
 											<h:column rendered="#{userSession.user.authorization}">
 												<p:selectOneRadio id="console" value="#{modele.provider}">
-													<f:selectItem itemLabel="Деньгионлайн" itemValue="1" />
-													<f:selectItem itemLabel="Robokassa" itemValue="2" />
+													<f:selectItem itemLabel="Яндекс.Деньгами" itemValue="1" />
+													<f:selectItem itemLabel="Банковской картой" itemValue="2" />
 												</p:selectOneRadio>
 											</h:column>
 											<h:column>
-												<p:button value="Купить" class="CyanButton" href="#" icon="fa fa-cart-arrow-down" disabled="#{!userSession.user.authorization}"/>
+												<p:button value="Купить" class="CyanButton" href="#{modele.url}" 
+													icon="fa fa-cart-arrow-down" disabled="#{!userSession.user.authorization}"></p:button>
 											</h:column>
 										</h:panelGrid>
 										
