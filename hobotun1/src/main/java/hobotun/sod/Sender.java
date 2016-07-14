@@ -1,9 +1,7 @@
 package hobotun.sod;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
-import org.springframework.beans.propertyeditors.URLEditor;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,7 +15,7 @@ public class Sender {
     private JsonRequestParams request;
     private JsonResponceParams responce;
 
-    private String url = "http://localhost:8080/sod/json?json={json}";
+    private String url = "http://www.hobotun.com:80/sod/json?json={json}";
 
     public Sender() {
 
@@ -30,7 +28,7 @@ public class Sender {
 
     public void send() throws RestClientException, UnsupportedEncodingException {
 	RestTemplate restTemplate = new RestTemplate();
-
+	
 	Gson gson = new Gson();
 	String json = gson.toJson(request);
 	

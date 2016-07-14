@@ -171,8 +171,8 @@
 												</p:selectOneRadio>
 											</h:column>
 											<h:column>
-												<p:button value="Купить" class="CyanButton" href="#{modele.url}" 
-													icon="fa fa-cart-arrow-down" disabled="#{!userSession.user.authorization}"></p:button>
+												<p:commandButton value="Купить" class="CyanButton" actionListener="#{modele.send}" 
+													icon="fa fa-cart-arrow-down" disabled="#{!userSession.user.authorization}"></p:commandButton>
 											</h:column>
 										</h:panelGrid>
 										
