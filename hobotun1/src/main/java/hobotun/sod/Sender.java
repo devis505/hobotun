@@ -15,7 +15,7 @@ public class Sender {
     private JsonRequestParams request;
     private JsonResponceParams responce;
 
-    private String url = "http://www.hobotun.com:80/sod/json?json={json}";
+    private String url = "http://env-0095980.jelastic.regruhosting.ru/sod/json?json={json}";
 
     public Sender() {
 
