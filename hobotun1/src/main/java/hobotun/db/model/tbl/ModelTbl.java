@@ -43,6 +43,7 @@ public class ModelTbl {
 	private Integer rating = 0;
 	private Integer download = 0;
 	private Integer msg = 0;
+	private String urlModel = "";
 	
 	private BigDecimal price_calc = BigDecimal.ZERO;
 
@@ -72,6 +73,7 @@ public class ModelTbl {
 		res.put("count_poligon", count_poligon);
 		res.put("texture", texture);
 		res.put("is_moderation", is_moderation);
+		res.put("urlModel", urlModel);
 
 		return res;
 	}
@@ -129,6 +131,7 @@ public class ModelTbl {
 		rating = rs.getInt("rating");
 		download = rs.getInt("download");
 		msg = rs.getInt("msg");
+		urlModel = rs.getString("urlModel");
 		
 		if(is_moderation.equals(1))
 			opacality = OPACITY_100;
@@ -354,6 +357,14 @@ public class ModelTbl {
 
 	public void setPrice_calc(BigDecimal price_calc) {
 		this.price_calc = price_calc;
+	}
+
+	public String getUrlModel() {
+		return urlModel;
+	}
+
+	public void setUrlModel(String urlModel) {
+		this.urlModel = urlModel;
 	}
 
 }

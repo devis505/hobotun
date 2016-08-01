@@ -5,11 +5,357 @@
 	xmlns:p="http://primefaces.org/ui">
 
 
-	<p:lightBox iframe="true" id="lighbox3" width="900px" height="600px">
-      <h:outputLink value="http://localhost:8080/hobotun/" title="test">
-      	<h:outputText value="PrimeFaces HomePage" />
-      </h:outputLink>
- 
-    </p:lightBox>
+	<h:form enctype="multipart/form-data" style="padding-left:95px; padding-top:30px;">
+	    <table style="width:100%;">
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track1" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack1" for="track1" value="#{saveModel.modeleHint.hint[0]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="Название:" styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<p:inputText id="name" value="#{saveModel.modelName.param}" class="inputTextPF"/>
+	    		</td>
+	    		<td></td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track2" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack2" for="track2" value="#{saveModel.modeleHint.hint[1]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel for="tegs" value="Теги:" styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<p:inputText id="tegs" value="#{saveModel.modeleTegs.param}" placeholder="перечислять через запятую" class="inputTextPF" label="Tegs">
+						<p:ajax event="keyup" update="greenTags itogo" />
+					</p:inputText>
+	    		</td>
+	    		<td>
+	    			<p:panel id="greenTags" styleClass="GreenPanel">
+						<h:panelGrid columns="2">
+							<h:outputText id="tagsGrinBox" value=" " styleClass="GreenBlick #{saveModel.modeleTegs.opacity}" rendered="true" />
+							<h:outputText id="tagsCost" value="#{saveModel.modeleHint.hint[15]}руб." styleClass="CostBlock #{saveModel.modeleTegs.opacity}" rendered="true" />
+						</h:panelGrid>
+					</p:panel>
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track3" value="#">
+				        <i class="fa fa-info-circle info" id="track3"></i> 
+				        <p:tooltip id="toolTipTrack3" for="track3" value="#{saveModel.modeleHint.hint[2]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="Описание: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<p:inputTextarea id="description" value="#{saveModel.modeleDescription.param}" maxlength="320" rows="4" autoResize="true"
+								placeholder="Описание (Максимальная длина 320 символов)" style="width:500px;" >
+						<p:ajax event="keyup" update="greenDesc itogo" />
+					</p:inputTextarea>
+	    		</td>
+	    		<td>
+	    			<p:panel id="greenDesc" styleClass="GreenPanel" style="height: 99px; width: 85px;">
+						<h:panelGrid columns="2">
+							<h:outputText id="descGrinBox" value=" " styleClass="GreenArea #{saveModel.modeleDescription.opacity}" rendered="true" />
+							<h:outputText id="descCost" value="#{saveModel.modeleHint.hint[16]}руб." styleClass="CostBlock #{saveModel.modeleDescription.opacity}" rendered="true" />
+						</h:panelGrid>
+					</p:panel>
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track4" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack4" for="track4" value="#{saveModel.modeleHint.hint[3]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="Версия редактора: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<h:selectOneMenu id="Format" style="width:250px;" value="#{saveModel.formats.format}" styleClass="newList">
+						<p:ajax listener="#{saveModel.onChangeFormat}" update="greenFormats itogo" />
+						<f:selectItem itemLabel="Выберите формат" itemValue="" />
+						<f:selectItems value="#{saveModel.formats.formates}" />
+					</h:selectOneMenu>
+	    		</td>
+	    		<td>
+	    			<p:panel id="greenFormats" styleClass="GreenPanel">
+						<h:panelGrid columns="2">
+							<h:outputText id="formatGrinBox" value=" " styleClass="GreenBlick #{saveModel.formatGreenVisible.opacity}" rendered="true" />
+							<h:outputText id="formatCost" value="#{saveModel.modeleHint.hint[17]}руб." styleClass="CostBlock #{saveModel.formatGreenVisible.opacity}" rendered="true" />
+						</h:panelGrid>
+					</p:panel>
+	    		</td>
+	    	</tr>
+
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track5" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack5" for="track5" value="#{saveModel.modeleHint.hint[4]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="Категория: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<h:selectOneMenu id="Category" style="width:250px;" styleClass="newList" value="#{saveModel.categoryes.category}" appendTo="@this" maxlength="10" >
+						<p:ajax listener="#{saveModel.onChangeCategory}" update="greenCategory itogo" />
+						<f:selectItem itemLabel="Выберите категорию" itemValue="" />
+						<f:selectItems value="#{saveModel.categoryes.categoryes}" />
+					</h:selectOneMenu>
+	    		</td>
+	    		<td>
+	    			<p:panel id="greenCategory" styleClass="GreenPanel">
+						<h:panelGrid columns="2">
+							<h:outputText id="categoryGrinBox" value=" " styleClass="GreenBlick #{saveModel.categoryGreenVisible.opacity}" rendered="true" />
+							<h:outputText id="categoryCost" value="#{saveModel.modeleHint.hint[18]}руб." styleClass="CostBlock #{saveModel.categoryGreenVisible.opacity}" rendered="true" />
+						</h:panelGrid>
+					</p:panel>
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track6" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack6" for="track6" value="#{saveModel.modeleHint.hint[5]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="Доп. форматы: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<h:panelGrid  columns="2" style="margin-bottom:10px" cellpadding="5">
+						<p:selectBooleanCheckbox value="#{saveModel.obj.param}" itemLabel="obj" >
+							<p:ajax update="greenFbx itogo" listener="#{saveModel.onChangeFbx}" />
+						</p:selectBooleanCheckbox>
+						<p:selectBooleanCheckbox value="#{saveModel.fbx.param}" itemLabel="fbx" >
+							<p:ajax update="greenFbx itogo"  listener="#{saveModel.onChangeFbx}"/>
+						</p:selectBooleanCheckbox>
+					</h:panelGrid>
+	    		</td>
+	    		<td>
+	    			<p:panel id="greenFbx" styleClass="GreenPanel" style="height: 66px;">
+						<h:panelGrid columns="2">
+							<h:outputText id="fbxGrinBox" value=" " styleClass="GreenBlick #{saveModel.booleanParams.opacity}" rendered="true" />
+							<h:outputText id="fbxCost" value="#{saveModel.modeleHint.hint[19]}руб." styleClass="CostBlock #{saveModel.booleanParams.opacity}" rendered="true" />
+						</h:panelGrid>
+					</p:panel>
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track15" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack15" for="track15" value="#{saveModel.modeleHint.hint[6]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="Содержит: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<h:panelGrid  columns="2" style="margin-bottom:10px" cellpadding="5">
+						<p:selectBooleanCheckbox value="#{saveModel.texture.param}" itemLabel="текстуры и материалы" >
+							<p:ajax update="greenTexture itogo"  listener="#{saveModel.onChangeTexture}"/>
+						</p:selectBooleanCheckbox>
+					</h:panelGrid>
+	    		</td>
+	    		<td>
+	    			<p:panel id="greenTexture" styleClass="GreenPanel">
+						<h:panelGrid columns="2">
+							<h:outputText id="textureGrinBox" value=" " styleClass="GreenBlick #{saveModel.texture.opacity}" rendered="true" />
+							<h:outputText id="textureCost" value="#{saveModel.modeleHint.hint[20]}руб." styleClass="CostBlock #{saveModel.texture.opacity}" rendered="true" />
+						</h:panelGrid>
+					</p:panel>
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track7" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack7" for="track7" value="#{saveModel.modeleHint.hint[7]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel for="countPoligons" value="Кол-во полигонов:" styleClass="Fs20" style="padding-right: 10px;" />
+	    		</td>
+	    		<td>
+	    			<p:inputText id="countPoligons" value="#{saveModel.countPoligons.param}" label="countPoligons" size="40" onkeydown="return isNumber(event);">
+						<p:ajax process="@this" update="greenPolingons itogo" />
+					</p:inputText>
+	    		</td>
+	    		<td>
+	    			<p:panel id="greenPolingons" styleClass="GreenPanel">
+						<h:panelGrid columns="2">
+							<h:outputText id="polingonsGrinBox" value=" " styleClass="GreenBlick #{saveModel.countPoligons.opacity}" rendered="true" />
+							<h:outputText id="polingonsCost" value="#{saveModel.modeleHint.hint[21]}руб." styleClass="CostBlock #{saveModel.countPoligons.opacity}" rendered="true" />
+						</h:panelGrid>
+					</p:panel>
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track8" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack8" for="track8" value="#{saveModel.modeleHint.hint[8]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="Модель: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<p:fileUpload id="modelFile" sizeLimit="100000000" mode="simple" skinSimple="true" label="Загрузить" value="#{saveModel.fileModel.param}" />
+	    		</td>
+	    		<td>
+	    			
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track9" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack9" for="track9" value="#{saveModel.modeleHint.hint[9]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="1 рендер: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<p:fileUpload id="modelImg1" sizeLimit="1000000" mode="simple" skinSimple="true" label="Загрузить" value="#{saveModel.bigImg1.param}" />
+	    		</td>
+	    		<td>
+	    		
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track10" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack10" for="track10" value="#{saveModel.modeleHint.hint[10]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="2 рендер: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<p:fileUpload id="modelImg2" sizeLimit="1000000" mode="simple" skinSimple="true" label="Загрузить" value="#{saveModel.bigImg2.param}" />
+	    		</td>
+	    		<td>
+	    		
+	    		</td>
+	    	</tr>
+	    	    	
+			<tr>
+	    		<td>
+	    			<h:outputLink id="track11" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack11" for="track11" value="#{saveModel.modeleHint.hint[11]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="3 рендер: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<p:fileUpload id="modelImg3" sizeLimit="1000000" mode="simple" skinSimple="true" label="Загрузить" value="#{saveModel.bigImg3.param}" />
+	    		</td>
+	    		<td>
+	    		
+	    		</td>
+	    	</tr>
+	    	
+		    <tr>
+	    		<td>
+	    			<h:outputLink id="track12" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack12" for="track12" value="#{saveModel.modeleHint.hint[12]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="Сетка hi-poly: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<p:fileUpload id="modelImg4" sizeLimit="1000000" mode="simple" skinSimple="true" label="Загрузить" value="#{saveModel.bigImg4.param}" />
+	    		</td>
+	    		<td>
+	    		
+	    		</td>
+	    	</tr>	
+	    	
+			<tr>
+	    		<td>
+	    			<h:outputLink id="track13" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack13" for="track13" value="#{saveModel.modeleHint.hint[13]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="Сетка low-poly: " styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<p:fileUpload id="modelImg5" sizeLimit="1000000" mode="simple" skinSimple="true" label="Загрузить" value="#{saveModel.bigImg5.param}" />
+	    		</td>
+	    		<td>
+	    		
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td>
+	    			<h:outputLink id="track14" value="#">
+				        <i class="fa fa-info-circle info" id="track"></i> 
+				        <p:tooltip id="toolTipTrack14" for="track14" value="#{saveModel.modeleHint.hint[14]}" trackMouse="true" />
+				    </h:outputLink>
+	    		</td>
+	    		<td>
+	    			<p:outputLabel value="Я альтруист" styleClass="Fs20" />
+	    		</td>
+	    		<td>
+	    			<p:selectBooleanCheckbox value="#{saveModel.altruist}" style="padding-left:65px;">
+						<p:ajax update="itogo" listener="#{saveModel.onChangeFbx}"/>
+					</p:selectBooleanCheckbox>
+	    		</td>
+	    		<td>
+	    		
+	    		</td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td></td>
+	    		<td></td>
+	    		<td></td>
+	    		<td><p:outputLabel id="itogo" value="Итого: #{saveModel.cost}" styleClass="Fs18" /></td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td></td>
+	    		<td></td>
+	    		<td></td>
+	    		<td><p:commandButton value="Сохранить" id="save" actionListener="#{saveModel.onSaveModel}" disabled="#{saveModel.saveButtonEnable}" ajax="false" /></td>
+	    	</tr>
+	    	
+	    	
+	    </table>
+	    
+	    
+    </h:form>
 
 </ui:composition>

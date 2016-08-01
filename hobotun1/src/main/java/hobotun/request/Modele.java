@@ -54,7 +54,9 @@ public class Modele implements Serializable {
 	private ModelTbl modele;
 	private UserModelTbl userModel;
 	private UserTbl user;
-	private FileTbl fileModele;
+	//private FileTbl fileModele;
+	private String urlModele;
+	
 	private CategoryTbl category;
 	private FormatTabl format;
 
@@ -115,8 +117,8 @@ public class Modele implements Serializable {
 
 		loadUser(userModel.getIdUser());
 
-		FileDao fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
-		fileModele = fileDao.SelectFileById(modele.getIdFile()).get(0);
+		//FileDao fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
+		//fileModele = fileDao.SelectFileById(modele.getIdFile()).get(0);
 
 		CategoryDao categoryDao = DBUtil.getInstance().getBean("categoryDao", CategoryDao.class);
 		category = categoryDao.getCategoryById(modele.getIdCategory());
@@ -129,6 +131,8 @@ public class Modele implements Serializable {
 		visibleImg3 = (modele.getIdImg3min() != 0);
 		visibleImg4 = (modele.getIdImg4min() != 0);
 		visibleImg5 = (modele.getIdImg5min() != 0);
+		
+		urlModele = modele.getUrlModel();
 
 		if (modele.getPrice().compareTo(BigDecimal.ZERO) > 0) {
 			free = false;
@@ -264,9 +268,8 @@ public class Modele implements Serializable {
 		}
 
 	}
-
-	public StreamedContent getFile() {
-
+	
+	public void fileLoad() {
 		if (!isAllredyBay) {
 			UserModelTbl userModel = new UserModelTbl();
 
@@ -278,11 +281,27 @@ public class Modele implements Serializable {
 			userModelDao.insertUserModel(userModel);
 		}
 
-		return new DefaultStreamedContent(new ByteArrayInputStream(fileModele.getFile()),
-				new MimetypesFileTypeMap().getContentType(fileModele.getNm_file()), fileModele.getNm_file());
-
-		// Misc.redirect("/pages/user/user.jsf?userPageId=5");
+		Misc.redirectOut(urlModele);
 	}
+
+//	public StreamedContent getFile() {
+//
+//		if (!isAllredyBay) {
+//			UserModelTbl userModel = new UserModelTbl();
+//
+//			userModel.setIdEntityType(new Long(2));
+//			userModel.setIdModel(new Long(modeleId));
+//			userModel.setIdUser(UserSession.getInstance().getUser().getUserTbl().getId_user());
+//
+//			UserModelDao userModelDao = DBUtil.getInstance().getBean("userModelDao", UserModelDao.class);
+//			userModelDao.insertUserModel(userModel);
+//		}
+//
+//		//return new DefaultStreamedContent(new ByteArrayInputStream(fileModele.getFile()),
+//		//		new MimetypesFileTypeMap().getContentType(fileModele.getNm_file()), fileModele.getNm_file());
+//
+//		Misc.redirect(urlModele);
+//	}
 
 	public Integer getRating() {
 		return rating;
@@ -344,9 +363,9 @@ public class Modele implements Serializable {
 		return idBigImg;
 	}
 
-	public FileTbl getFileModele() {
-		return fileModele;
-	}
+	//public FileTbl getFileModele() {
+	//	return fileModele;
+	//}
 
 	public void onRate() {
 		allRatingModel += rating;

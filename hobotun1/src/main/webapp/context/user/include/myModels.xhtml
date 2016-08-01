@@ -11,16 +11,16 @@
 		xmlns:p="http://primefaces.org/ui">
 		
 		<h:panelGrid columns="2" cellpadding="10" id="outPanel" style="padding-left: 5px;">
-			<p:lightBox iframe="true" id="lighbox3" width="900px" height="700px" onHide="location.reload();">
+			<!-- p:lightBox iframe="true" id="lighbox3" width="900px" height="700px" onHide="location.reload();">
 		      <h:outputLink value="http://localhost:8080/UploadFile/?id_user=#{userSession.user.userInfo.id_user}"  title="Загрузка новой модели">
 		      	<p:commandButton styleClass="HoverEffect Fs20" value="Загрузить" >
 				</p:commandButton>
 		      </h:outputLink>
-		    </p:lightBox>
+		    </p:lightBox -->
 		
-			<!-- p:button styleClass="HoverEffect Fs20" value="Загрузить" outcome="user">
+			<p:button styleClass="HoverEffect Fs20" value="Загрузить" outcome="user">
 				<f:param name="userPageId" value="9" />
-			</p:button -->
+			</p:button>
 			<!-- p:commandButton value="Загрузить" type="button" onclick="PF('dlg2').show();" /-->
 		</h:panelGrid>
 		

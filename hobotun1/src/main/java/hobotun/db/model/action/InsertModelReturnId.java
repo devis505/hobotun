@@ -9,8 +9,8 @@ import org.springframework.jdbc.object.SqlUpdate;
 
 public class InsertModelReturnId extends SqlUpdate {
 
-	private static final String SQL_INSERT_FILE = "INSERT INTO hb_model(nmModel, description, idImg1, idImg2, idImg3, idImg4, idImg5, idFile, idCategory, idFormat, obj, fbx, idImg1min, idImg2min, idImg3min, idImg4min, idImg5min, tegs, price, count_poligon, texture, is_moderation) "
-			+ "VALUES (:nmModel, :description, :idImg1, :idImg2, :idImg3, :idImg4, :idImg5, :idFile, :idCategory, :idFormat, :obj, :fbx, :idImg1min, :idImg2min, :idImg3min, :idImg4min, :idImg5min, :tegs, :price, :count_poligon, :texture, :is_moderation)";
+	private static final String SQL_INSERT_FILE = "INSERT INTO hb_model(nmModel, description, idImg1, idImg2, idImg3, idImg4, idImg5, idFile, idCategory, idFormat, obj, fbx, idImg1min, idImg2min, idImg3min, idImg4min, idImg5min, tegs, price, count_poligon, texture, is_moderation, urlModel) "
+			+ "VALUES (:nmModel, :description, :idImg1, :idImg2, :idImg3, :idImg4, :idImg5, :idFile, :idCategory, :idFormat, :obj, :fbx, :idImg1min, :idImg2min, :idImg3min, :idImg4min, :idImg5min, :tegs, :price, :count_poligon, :texture, :is_moderation, :urlModel)";
 
 	public InsertModelReturnId(DataSource dataSource) {
 		super(dataSource, SQL_INSERT_FILE);
@@ -44,6 +44,8 @@ public class InsertModelReturnId extends SqlUpdate {
 		super.declareParameter(new SqlParameter("count_poligon", Types.INTEGER));
 		super.declareParameter(new SqlParameter("texture", Types.INTEGER));
 		super.declareParameter(new SqlParameter("is_moderation", Types.INTEGER));
+
+		super.declareParameter(new SqlParameter("urlModel", Types.VARCHAR));
 
 		super.setGeneratedKeysColumnNames(new String[] { "idModel" });
 		super.setReturnGeneratedKeys(true);

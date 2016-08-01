@@ -138,10 +138,7 @@
 											<p:outputLabel value=", Текстуры и материалы" rendered="#{modele.modele.texture == 1}" />
 										</TD>
 									</TR>
-									<TR>
-										<TD style="vertical-align: top;"><i class="fa fa-floppy-o"></i></TD>
-										<TD><p:outputLabel value="#{modele.fileModele.mb} Мб" /></TD>
-									</TR>
+									
 									<TR>
 										<TD style="vertical-align: top;"><i class="fa fa-info-circle"></i></TD>
 										<TD><p:outputLabel value="#{modele.modele.tegs}" /></TD>
@@ -181,9 +178,9 @@
 												<p:outputLabel value="Что бы скачать модель, требуется регистрация" styleClass="Red" />
 											</h:column>
 											<h:column>
-												<p:commandButton value="Скачать" process="@form" update="@form" ajax="false"
-													class="CyanButton" href="#" icon="fa fa-cloud-download" disabled="#{modele.enableAdd}">
-													<p:fileDownload value="#{modele.file}" />
+												<p:commandButton value="Скачать" process="@form" update="@form" ajax="true"
+													class="CyanButton" href="#" icon="fa fa-cloud-download" disabled="#{modele.enableAdd}"
+													actionListener="#{modele.fileLoad}">
 												</p:commandButton>
 											</h:column>
 										</h:panelGrid>
@@ -191,8 +188,7 @@
 										<h:panelGrid columns="1" rendered="#{userSession.iaAdmin}">
 											<h:column>
 												<p:commandButton value="Скачать с правами админа" process="@form" update="@form" ajax="false"
-													class="CyanButton" href="#" icon="fa fa-cloud-download">
-													<p:fileDownload value="#{modele.file}" />
+													class="CyanButton" href="#" icon="fa fa-cloud-download" actionListener="#{modele.fileLoad}">
 												</p:commandButton>
 											</h:column>
 										</h:panelGrid>

@@ -17,12 +17,14 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.imageio.ImageIO;
 import javax.servlet.http.Part;
 
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+
 import hobotun.core.Misc;
 import hobotun.core.UserSession;
 import hobotun.db.DBUtil;
 import hobotun.db.Image.ImageDao;
 import hobotun.db.Image.tbl.ImageTbl;
-import hobotun.db.file.FileDao;
 import hobotun.db.file.tbl.FileTbl;
 import hobotun.db.model.ModelDao;
 import hobotun.db.model.tbl.ModelTbl;
@@ -74,7 +76,7 @@ public class SaveModelForm {
 
 	@ManagedProperty("#{category}")
 	private Category categoryes;
-	
+
 	private ModeleBooleanParam categoryGreenVisible = new ModeleBooleanParam();
 
 	private String allErr = "";
@@ -101,15 +103,36 @@ public class SaveModelForm {
 		formats = new Format();
 		formats.init();
 
-		//categoryes = new Category();
-		//categoryes.init();
+		// categoryes = new Category();
+		// categoryes.init();
 	}
 
 	public void onSaveModel() {
 
+		String filePath = "meerson.ru/hobotun/uploadfile/" + fileModel.getParam().getFileName();
+
 		if (fileModel.getParam() != null) {
 			file.setNm_file(fileModel.getParam().getFileName());
 			file.setFile(fileModel.getParam().getContents());
+
+			FTPClient con = null;
+
+			try {
+				con = new FTPClient();
+				con.connect("37.140.192.174");
+
+				if (con.login("u0174799_hobotun", "q1w2e3r4t5y6u7i8o9p0")) {
+					con.enterLocalPassiveMode(); // important!
+					con.setFileType(FTP.BINARY_FILE_TYPE);
+
+					con.storeFile("/www/" + filePath, fileModel.getParam().getInputstream());
+
+					con.logout();
+					con.disconnect();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		boolean err = false;
@@ -156,7 +179,7 @@ public class SaveModelForm {
 				if (!bigImg4.getParam().getFileName().isEmpty()) {
 					saveMiniImg(bigImg4, miniImgTbl4);
 					saveBigImg(imgTbl4, bigImg4);
-					saveImage(imgTbl4);					
+					saveImage(imgTbl4);
 				}
 
 				if (!bigImg5.getParam().getFileName().isEmpty()) {
@@ -164,10 +187,11 @@ public class SaveModelForm {
 					saveBigImg(imgTbl5, bigImg5);
 					saveImage(imgTbl5);
 				}
-				
-				FileDao fileDao = DBUtil.getInstance().getBean("fileDao", FileDao.class);
-				file.setNm_file(fileModel.getParam().getFileName());
-				fileDao.Insert(file);
+
+				// FileDao fileDao = DBUtil.getInstance().getBean("fileDao",
+				// FileDao.class);
+				// file.setNm_file(fileModel.getParam().getFileName());
+				// fileDao.Insert(file);
 
 				ModelTbl model = new ModelTbl();
 
@@ -182,7 +206,7 @@ public class SaveModelForm {
 				model.setCount_poligon(countPoligons.getParam());
 				model.setTexture(texture.getIntParam());
 
-				model.setIdFile(file.getIdFile());
+				model.setIdFile(null);
 
 				model.setIdImg1(imgTbl1.getIdImage());
 				model.setIdImg2(imgTbl2.getIdImage());
@@ -195,6 +219,7 @@ public class SaveModelForm {
 				model.setIdImg3min(miniImgTbl3.getIdImage());
 				model.setIdImg4min(miniImgTbl4.getIdImage());
 				model.setIdImg5min(miniImgTbl5.getIdImage());
+				model.setUrlModel("http://" + filePath);
 
 				ModelDao modelDao = DBUtil.getInstance().getBean("modelDao", ModelDao.class);
 				modelDao.insertModelReturnId(model);
@@ -214,7 +239,7 @@ public class SaveModelForm {
 
 				errColor = "Green";
 				saveButtonEnable = true;
-				
+
 				Misc.redirect("/pages/user/user.jsf?userPageId=4");
 			} catch (Exception e) {
 				e.printStackTrace();

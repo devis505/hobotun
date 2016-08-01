@@ -12,39 +12,41 @@ import hobotun.sod.responce.JsonResponceParams;
 
 public class Sender {
 
-    private JsonRequestParams request;
-    private JsonResponceParams responce;
+	private JsonRequestParams request;
+	private JsonResponceParams responce;
 
-    private String url = "http://env-0095980.jelastic.regruhosting.ru/sod/json?json={json}";
+	// private String url =
+	// "http://env-0095980.jelastic.regruhosting.ru/sod/json?json={json}";
+	private String url = "http://hobotun.jelastic.regruhosting.ru/sod/json?json={json}";
 
-    public Sender() {
+	public Sender() {
 
-    }
+	}
 
-    public Sender(JsonRequestParams request) {
-	super();
-	this.setRequest(request);
-    }
+	public Sender(JsonRequestParams request) {
+		super();
+		this.setRequest(request);
+	}
 
-    public void send() throws RestClientException, UnsupportedEncodingException {
-	RestTemplate restTemplate = new RestTemplate();
-	
-	Gson gson = new Gson();
-	String json = gson.toJson(request);
-	
-	responce = restTemplate.getForObject(url, JsonResponceParams.class, json);
-    }
+	public void send() throws RestClientException, UnsupportedEncodingException {
+		RestTemplate restTemplate = new RestTemplate();
 
-    public JsonRequestParams getRequest() {
-	return request;
-    }
+		Gson gson = new Gson();
+		String json = gson.toJson(request);
 
-    public void setRequest(JsonRequestParams request) {
-	this.request = request;
-    }
+		responce = restTemplate.getForObject(url, JsonResponceParams.class, json);
+	}
 
-    public JsonResponceParams getResponce() {
-	return responce;
-    }
+	public JsonRequestParams getRequest() {
+		return request;
+	}
+
+	public void setRequest(JsonRequestParams request) {
+		this.request = request;
+	}
+
+	public JsonResponceParams getResponce() {
+		return responce;
+	}
 
 }
